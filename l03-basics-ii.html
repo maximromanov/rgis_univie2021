@@ -24,7 +24,7 @@
 <meta name="author" content="Maxim G. Romanov" />
 
 
-<meta name="date" content="2021-03-15" />
+<meta name="date" content="2021-03-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -173,12 +173,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html"><i class="fa fa-check"></i><b>3</b> L03: Basics II</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html#basicII03"><i class="fa fa-check"></i><b>3.1</b> Data Manipulation &amp; Exloratory Analysis</a></li>
-<li class="chapter" data-level="3.2" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html#G03"><i class="fa fa-check"></i><b>3.2</b> Goals</a></li>
-<li class="chapter" data-level="3.3" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html#class03"><i class="fa fa-check"></i><b>3.3</b> Class</a></li>
-<li class="chapter" data-level="3.4" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html#topics03"><i class="fa fa-check"></i><b>3.4</b> Topics</a></li>
-<li class="chapter" data-level="3.5" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html#REF03"><i class="fa fa-check"></i><b>3.5</b> Reference materials</a></li>
-<li class="chapter" data-level="3.6" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html#HW03"><i class="fa fa-check"></i><b>3.6</b> Homework</a></li>
-<li class="chapter" data-level="3.7" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html#SHW03"><i class="fa fa-check"></i><b>3.7</b> Submitting homework</a></li>
+<li class="chapter" data-level="3.2" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html#some-comments-on-the-previous-lesson-homework"><i class="fa fa-check"></i><b>3.2</b> Some comments on the previous lesson homework:</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html#mess-with-attachments"><i class="fa fa-check"></i><b>3.2.1</b> Mess with “attachments”</a></li>
+<li class="chapter" data-level="3.2.2" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html#vector-operations"><i class="fa fa-check"></i><b>3.2.2</b> Vector operations</a></li>
+<li class="chapter" data-level="3.2.3" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html#na-value"><i class="fa fa-check"></i><b>3.2.3</b> <code>NA</code> Value?</a></li>
+<li class="chapter" data-level="3.2.4" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html#many-vs-many"><i class="fa fa-check"></i><b>3.2.4</b> <code>many</code> Vs <code>"many"</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html#G03"><i class="fa fa-check"></i><b>3.3</b> Goals</a></li>
+<li class="chapter" data-level="3.4" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html#class03"><i class="fa fa-check"></i><b>3.4</b> Class</a></li>
+<li class="chapter" data-level="3.5" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html#topics03"><i class="fa fa-check"></i><b>3.5</b> Topics</a></li>
+<li class="chapter" data-level="3.6" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html#REF03"><i class="fa fa-check"></i><b>3.6</b> Reference materials</a></li>
+<li class="chapter" data-level="3.7" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html#HW03"><i class="fa fa-check"></i><b>3.7</b> Homework</a></li>
+<li class="chapter" data-level="3.8" data-path="l03-basics-ii.html"><a href="l03-basics-ii.html#SHW03"><i class="fa fa-check"></i><b>3.8</b> Submitting homework</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="l04-basics-iii.html"><a href="l04-basics-iii.html"><i class="fa fa-check"></i><b>4</b> L04: Basics III</a>
 <ul>
@@ -289,20 +296,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="basicII03" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Data Manipulation &amp; Exloratory Analysis</h2>
 </div>
-<div id="G03" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Goals</h2>
+<div id="some-comments-on-the-previous-lesson-homework" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Some comments on the previous lesson homework:</h2>
+<div id="mess-with-attachments" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Mess with “attachments”</h3>
+<ul>
+<li><code>R</code> automatically “attaches” a package when a package is loaded. What this means is that you can simply use a command from that package: like <code>glimpse(your_data_frame)</code>, which will give you a <em>glimpse</em> into your dataframe; a potential problem with this approach is that you may load another library that might have the same command — and since the later package will override “attachments,” you may not be aware of (or not pay attention to) the fact that you have lost some old connections.</li>
+<li><code>R</code> will warn you about any overriding, but you may miss that. This warning message will look like what you see below.</li>
+<li>How this can be fixed? An efficient way to avoid this is to use the double-colon operator like this: <code>dplyr::glimpse(your_data_frame)</code></li>
+<li>If, out of the sudden, the command that worked before stops working and throws an error at you — this mess with attachments is likely to be the problem.</li>
+</ul>
+<pre><code>library(dplyr)
+## 
+## Attaching package: &#39;dplyr&#39;
+## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag
+## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<ul>
+<li>for more details: <a href="https://colinfay.me/intro-to-r/packages.html" class="uri">https://colinfay.me/intro-to-r/packages.html</a></li>
+</ul>
+</div>
+<div id="vector-operations" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Vector operations</h3>
+<ul>
+<li>adding two vectors</li>
+<li>multiplying two vectors</li>
+</ul>
+<p>v1 &lt;- c(1,2,3,4,5,6)
+v2 &lt;- c(1,10)
+v3 &lt;- c(100)</p>
+</div>
+<div id="na-value" class="section level3" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> <code>NA</code> Value?</h3>
+<ul>
+<li>Why do you think we need such a value?</li>
+</ul>
+</div>
+<div id="many-vs-many" class="section level3" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> <code>many</code> Vs <code>"many"</code></h3>
+<p>What is the difference, from the example below?</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="l03-basics-ii.html#cb3-1" aria-hidden="true" tabindex="-1"></a>many <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>)</span>
+<span id="cb3-2"><a href="l03-basics-ii.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="l03-basics-ii.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="st">&quot;many&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="l03-basics-ii.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(many)</span></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+</div>
+</div>
+<div id="G03" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Goals</h2>
 <p>Getting to know the basics of working with data: manipulating data, basic techniques of exploratory analysis</p>
 </div>
-<div id="class03" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Class</h2>
+<div id="class03" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Class</h2>
 <ul>
 <li><a href="../../files/03_worksheets_data-manipulation-introduction.Rmd.zip"><code>03_worksheets_data-manipulation-introduction.Rmd.zip</code></a></li>
 <li><a href="../../files/04_worksheets_data-manipulation-continued.Rmd.zip"><code>04_worksheets_data-manipulation-continued.Rmd.zip</code></a></li>
 </ul>
 <p><strong>NB:</strong> Original worksheets prepared by Lincoln Mullen, GMU (<a href="https://dh-r.lincolnmullen.com/worksheets.html" class="uri">https://dh-r.lincolnmullen.com/worksheets.html</a>)</p>
 </div>
-<div id="topics03" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Topics</h2>
+<div id="topics03" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Topics</h2>
 <ul>
 <li>Selecting columns (<code>select()</code>)</li>
 <li>Filtering rows (<code>filter()</code>)</li>
@@ -314,8 +371,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Data reshaping (<code>spread()</code> and <code>gather()</code>)</li>
 </ul>
 </div>
-<div id="REF03" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Reference materials</h2>
+<div id="REF03" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Reference materials</h2>
 <p>Consult relevant chapters from:</p>
 <ul>
 <li>Healy, Kieran <em>Data Visualization: A Practical Guide</em>. Princeton University Press, 2018. ISBN: 978-0691181622. <a href="http://socviz.co/" class="uri">http://socviz.co/</a></li>
@@ -323,8 +380,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Wickham, Hadley. <em>Advanced R, Second Edition.</em> 2 edition. Boca Raton: Chapman and Hall/CRC, 2019. <a href="http://adv-r.had.co.nz/" class="uri">http://adv-r.had.co.nz/</a></li>
 </ul>
 </div>
-<div id="HW03" class="section level2" number="3.6">
-<h2><span class="header-section-number">3.6</span> Homework</h2>
+<div id="HW03" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Homework</h2>
 <ul>
 <li>Finish your worksheets and submit as described below.</li>
 <li><em>Additional:</em> if you’d like more practice, you can use <code>swirl</code> library:
@@ -337,8 +394,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 </div>
-<div id="SHW03" class="section level2" number="3.7">
-<h2><span class="header-section-number">3.7</span> Submitting homework</h2>
+<div id="SHW03" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> Submitting homework</h2>
 <ul>
 <li>Homework assignment must be submitted by the beginning of the next class;</li>
 <li>Email your homework to the instructor as attachments.
