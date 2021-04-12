@@ -308,8 +308,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.3</span> Software &amp; Other Required Materials</h2>
 <ul>
 <li>R</li>
-<li>OCR Engines (<a href="https://www.onlineocr.net/" class="uri">https://www.onlineocr.net/</a>)</li>
-<li>Excel, Google Spreadsheets, or any other alternative</li>
+<li>OCR Engines (<a href="https://www.onlineocr.net/" class="uri">https://www.onlineocr.net/</a>); text editor (for example, <a href="https://www.sublimetext.com/">Sublime Text</a>)</li>
+<li>Excel, Google Spreadsheets, or any other alternative (<em>Easy CSV Editor</em> is a great option for Mac)</li>
 </ul>
 </div>
 <div id="INCLASSI05" class="section level2" number="5.4">
@@ -370,12 +370,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.6.1</span> Note on the <code>CSV</code>/<code>TSV</code> format</h3>
 <p><code>CSV</code> stands for <em>comma-separated values</em>; <code>TSV</code> — for <em>tab-separated values</em>.</p>
 <p>Below is an examples of a CSV format. Here, the first line is the <em>header</em>, which provides the names of columns; each line is a row, while columns are separated with <code>,</code> commas.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode cs"><code class="sourceCode cs"><span id="cb11-1"><a href="l05-data-i.html#cb11-1" aria-hidden="true" tabindex="-1"></a>city<span class="op">,</span>growth_from_2000_to_2013<span class="op">,</span>latitude<span class="op">,</span>longitude<span class="op">,</span>population<span class="op">,</span>rank<span class="op">,</span>state</span>
-<span id="cb11-2"><a href="l05-data-i.html#cb11-2" aria-hidden="true" tabindex="-1"></a>New York<span class="op">,</span><span class="fl">4.8</span><span class="op">%,</span><span class="fl">40.7127837</span><span class="op">,-</span><span class="fl">74.0059413</span><span class="op">,</span><span class="dv">8405837</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span>New York</span>
-<span id="cb11-3"><a href="l05-data-i.html#cb11-3" aria-hidden="true" tabindex="-1"></a>Los Angeles<span class="op">,</span><span class="fl">4.8</span><span class="op">%,</span><span class="fl">34.0522342</span><span class="op">,-</span><span class="fl">118.2436849</span><span class="op">,</span><span class="dv">3884307</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span>California</span>
-<span id="cb11-4"><a href="l05-data-i.html#cb11-4" aria-hidden="true" tabindex="-1"></a>Chicago<span class="op">,-</span><span class="fl">6.1</span><span class="op">%,</span><span class="fl">41.8781136</span><span class="op">,-</span><span class="fl">87.6297982</span><span class="op">,</span><span class="dv">2718782</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span>Illinois</span>
-<span id="cb11-5"><a href="l05-data-i.html#cb11-5" aria-hidden="true" tabindex="-1"></a>Houston<span class="op">,</span><span class="fl">11.0</span><span class="op">%,</span><span class="fl">29.7604267</span><span class="op">,-</span><span class="fl">95.3698028</span><span class="op">,</span><span class="dv">2195914</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span>Texas</span>
-<span id="cb11-6"><a href="l05-data-i.html#cb11-6" aria-hidden="true" tabindex="-1"></a>Philadelphia<span class="op">,</span><span class="fl">2.6</span><span class="op">%,</span><span class="fl">39.9525839</span><span class="op">,-</span><span class="fl">75.1652215</span><span class="op">,</span><span class="dv">1553165</span><span class="op">,</span><span class="dv">5</span><span class="op">,</span>Pennsylvania</span></code></pre></div>
+<pre class="csv"><code>city,growth_from_2000_to_2013,latitude,longitude,population,rank,state
+New York,4.8%,40.7127837,-74.0059413,8405837,1,New York
+Los Angeles,4.8%,34.0522342,-118.2436849,3884307,2,California
+Chicago,-6.1%,41.8781136,-87.6297982,2718782,3,Illinois
+Houston,11.0%,29.7604267,-95.3698028,2195914,4,Texas
+Philadelphia,2.6%,39.9525839,-75.1652215,1553165,5,Pennsylvania</code></pre>
 <p><code>TSV</code> is a better option than a <code>CSV</code>, since TAB characters (<code>\t</code>) are very unlikely to appear in values.</p>
 <p>Neither <code>TSV</code> not <code>CSV</code> are good for preserving <em>new line characters</em> (<code>\n</code>)—or, in other words, text split into multiple lines/paragraphs. As a workaround, one can convert <code>\n</code> into some unlikely-to-occur character combination (for example, <code>;;;</code>), which would be easy to restore into <code>\n</code> later, if necessary.</p>
 </div>
