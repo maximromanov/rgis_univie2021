@@ -203,7 +203,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="l05-data-i.html"><a href="l05-data-i.html#G05"><i class="fa fa-check"></i><b>5.2</b> Goals</a></li>
 <li class="chapter" data-level="5.3" data-path="l05-data-i.html"><a href="l05-data-i.html#SOFT05"><i class="fa fa-check"></i><b>5.3</b> Software &amp; Other Required Materials</a></li>
 <li class="chapter" data-level="5.4" data-path="l05-data-i.html"><a href="l05-data-i.html#INCLASSI05"><i class="fa fa-check"></i><b>5.4</b> In Class I: <em>Theoretical and Conceptual</em></a></li>
-<li class="chapter" data-level="5.5" data-path="l05-data-i.html"><a href="l05-data-i.html#ways-of-obtaining-data"><i class="fa fa-check"></i><b>5.5</b> Ways of obtaining data</a></li>
+<li class="chapter" data-level="5.5" data-path="l05-data-i.html"><a href="l05-data-i.html#ways-of-obtaining-data"><i class="fa fa-check"></i><b>5.5</b> Ways of obtaining data</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="l05-data-i.html"><a href="l05-data-i.html#using-ocr"><i class="fa fa-check"></i><b>5.5.1</b> Using OCR</a></li>
+</ul></li>
 <li class="chapter" data-level="5.6" data-path="l05-data-i.html"><a href="l05-data-i.html#MainFormat05"><i class="fa fa-check"></i><b>5.6</b> Main format</a>
 <ul>
 <li class="chapter" data-level="5.6.1" data-path="l05-data-i.html"><a href="l05-data-i.html#note-on-the-csvtsv-format"><i class="fa fa-check"></i><b>5.6.1</b> Note on the <code>CSV</code>/<code>TSV</code> format</a></li>
@@ -322,6 +325,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Creating one’s own dataset</li>
 <li>Digitizing data from printed and/or hand-written sources</li>
 </ol>
+<div id="using-ocr" class="section level3" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> Using OCR</h3>
+<p>In class we will use an online OCR engine, but you might want to consider using OCR directly in R. For this purpose, R uses library <code>tesseract</code>, which required <em>Tesseract</em> software to be installed on your computer. <a href="https://maximromanov.github.io/univie2020/lesson-08.html">You can find detailed instructions here</a> (<strong>Warning</strong>: this part may be a little bit annoying, but <em>Tesseract</em> is a useful software to have and to know how to use.)</p>
+<p>Here is some R code that should get you started on using <em>Tesseract</em>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="l05-data-i.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DETAILS: https://cran.r-project.org/web/packages/tesseract/vignettes/intro.html</span></span>
+<span id="cb8-2"><a href="l05-data-i.html#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="l05-data-i.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseract)</span>
+<span id="cb8-4"><a href="l05-data-i.html#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="l05-data-i.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#LANGUAGEDATA: &lt;https://github.com/tesseract-ocr/langdata&gt;</span></span>
+<span id="cb8-6"><a href="l05-data-i.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tesseract_download</span>(<span class="st">&quot;eng&quot;</span>) <span class="co"># this needs to be done only once</span></span>
+<span id="cb8-7"><a href="l05-data-i.html#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tesseract_download</span>(<span class="st">&quot;deu&quot;</span>) <span class="co"># this needs to be done only once</span></span>
+<span id="cb8-8"><a href="l05-data-i.html#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="l05-data-i.html#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># The following code OCRs a single image and saves results into a file</span></span>
+<span id="cb8-10"><a href="l05-data-i.html#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="l05-data-i.html#cb8-11" aria-hidden="true" tabindex="-1"></a>eng <span class="ot">&lt;-</span> <span class="fu">tesseract</span>(<span class="st">&quot;eng&quot;</span>)</span>
+<span id="cb8-12"><a href="l05-data-i.html#cb8-12" aria-hidden="true" tabindex="-1"></a>deu <span class="ot">&lt;-</span> <span class="fu">tesseract</span>(<span class="st">&quot;deu&quot;</span>)</span>
+<span id="cb8-13"><a href="l05-data-i.html#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="l05-data-i.html#cb8-14" aria-hidden="true" tabindex="-1"></a>pngPage <span class="ot">&lt;-</span> <span class="st">&quot;Sample_Page_With_Tabular_Data_Morris.png&quot;</span></span>
+<span id="cb8-15"><a href="l05-data-i.html#cb8-15" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> tesseract<span class="sc">::</span><span class="fu">ocr</span>(pngPage, <span class="at">engine =</span> eng)</span>
+<span id="cb8-16"><a href="l05-data-i.html#cb8-16" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_lines</span>(text, <span class="fu">str_replace</span>(pngPage, <span class="st">&quot;.png&quot;</span>, <span class="st">&quot;.txt&quot;</span>))</span></code></pre></div>
+</div>
 </div>
 <div id="MainFormat05" class="section level2" number="5.6">
 <h2><span class="header-section-number">5.6</span> Main format</h2>
@@ -344,12 +368,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.6.1</span> Note on the <code>CSV</code>/<code>TSV</code> format</h3>
 <p><code>CSV</code> stands for <em>comma-separated values</em>; <code>TSV</code> — for <em>tab-separated values</em>.</p>
 <p>Below is an examples of a CSV format. Here, the first line is the <em>header</em>, which provides the names of columns; each line is a row, while columns are separated with <code>,</code> commas.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode cs"><code class="sourceCode cs"><span id="cb8-1"><a href="l05-data-i.html#cb8-1" aria-hidden="true" tabindex="-1"></a>city<span class="op">,</span>growth_from_2000_to_2013<span class="op">,</span>latitude<span class="op">,</span>longitude<span class="op">,</span>population<span class="op">,</span>rank<span class="op">,</span>state</span>
-<span id="cb8-2"><a href="l05-data-i.html#cb8-2" aria-hidden="true" tabindex="-1"></a>New York<span class="op">,</span><span class="fl">4.8</span><span class="op">%,</span><span class="fl">40.7127837</span><span class="op">,-</span><span class="fl">74.0059413</span><span class="op">,</span><span class="dv">8405837</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span>New York</span>
-<span id="cb8-3"><a href="l05-data-i.html#cb8-3" aria-hidden="true" tabindex="-1"></a>Los Angeles<span class="op">,</span><span class="fl">4.8</span><span class="op">%,</span><span class="fl">34.0522342</span><span class="op">,-</span><span class="fl">118.2436849</span><span class="op">,</span><span class="dv">3884307</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span>California</span>
-<span id="cb8-4"><a href="l05-data-i.html#cb8-4" aria-hidden="true" tabindex="-1"></a>Chicago<span class="op">,-</span><span class="fl">6.1</span><span class="op">%,</span><span class="fl">41.8781136</span><span class="op">,-</span><span class="fl">87.6297982</span><span class="op">,</span><span class="dv">2718782</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span>Illinois</span>
-<span id="cb8-5"><a href="l05-data-i.html#cb8-5" aria-hidden="true" tabindex="-1"></a>Houston<span class="op">,</span><span class="fl">11.0</span><span class="op">%,</span><span class="fl">29.7604267</span><span class="op">,-</span><span class="fl">95.3698028</span><span class="op">,</span><span class="dv">2195914</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span>Texas</span>
-<span id="cb8-6"><a href="l05-data-i.html#cb8-6" aria-hidden="true" tabindex="-1"></a>Philadelphia<span class="op">,</span><span class="fl">2.6</span><span class="op">%,</span><span class="fl">39.9525839</span><span class="op">,-</span><span class="fl">75.1652215</span><span class="op">,</span><span class="dv">1553165</span><span class="op">,</span><span class="dv">5</span><span class="op">,</span>Pennsylvania</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode cs"><code class="sourceCode cs"><span id="cb9-1"><a href="l05-data-i.html#cb9-1" aria-hidden="true" tabindex="-1"></a>city<span class="op">,</span>growth_from_2000_to_2013<span class="op">,</span>latitude<span class="op">,</span>longitude<span class="op">,</span>population<span class="op">,</span>rank<span class="op">,</span>state</span>
+<span id="cb9-2"><a href="l05-data-i.html#cb9-2" aria-hidden="true" tabindex="-1"></a>New York<span class="op">,</span><span class="fl">4.8</span><span class="op">%,</span><span class="fl">40.7127837</span><span class="op">,-</span><span class="fl">74.0059413</span><span class="op">,</span><span class="dv">8405837</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span>New York</span>
+<span id="cb9-3"><a href="l05-data-i.html#cb9-3" aria-hidden="true" tabindex="-1"></a>Los Angeles<span class="op">,</span><span class="fl">4.8</span><span class="op">%,</span><span class="fl">34.0522342</span><span class="op">,-</span><span class="fl">118.2436849</span><span class="op">,</span><span class="dv">3884307</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span>California</span>
+<span id="cb9-4"><a href="l05-data-i.html#cb9-4" aria-hidden="true" tabindex="-1"></a>Chicago<span class="op">,-</span><span class="fl">6.1</span><span class="op">%,</span><span class="fl">41.8781136</span><span class="op">,-</span><span class="fl">87.6297982</span><span class="op">,</span><span class="dv">2718782</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span>Illinois</span>
+<span id="cb9-5"><a href="l05-data-i.html#cb9-5" aria-hidden="true" tabindex="-1"></a>Houston<span class="op">,</span><span class="fl">11.0</span><span class="op">%,</span><span class="fl">29.7604267</span><span class="op">,-</span><span class="fl">95.3698028</span><span class="op">,</span><span class="dv">2195914</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span>Texas</span>
+<span id="cb9-6"><a href="l05-data-i.html#cb9-6" aria-hidden="true" tabindex="-1"></a>Philadelphia<span class="op">,</span><span class="fl">2.6</span><span class="op">%,</span><span class="fl">39.9525839</span><span class="op">,-</span><span class="fl">75.1652215</span><span class="op">,</span><span class="dv">1553165</span><span class="op">,</span><span class="dv">5</span><span class="op">,</span>Pennsylvania</span></code></pre></div>
 <p><code>TSV</code> is a better option than a <code>CSV</code>, since TAB characters (<code>\t</code>) are very unlikely to appear in values.</p>
 <p>Neither <code>TSV</code> not <code>CSV</code> are good for preserving <em>new line characters</em> (<code>\n</code>)—or, in other words, text split into multiple lines/paragraphs. As a workaround, one can convert <code>\n</code> into some unlikely-to-occur character combination (for example, <code>;;;</code>), which would be easy to restore into <code>\n</code> later, if necessary.</p>
 </div>
