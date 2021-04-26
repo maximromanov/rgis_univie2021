@@ -257,12 +257,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5.1" data-path="l07-gis-i.html"><a href="l07-gis-i.html#georeferencing"><i class="fa fa-check"></i><b>7.5.1</b> Georeferencing</a></li>
 <li class="chapter" data-level="7.5.2" data-path="l07-gis-i.html"><a href="l07-gis-i.html#georeferencing-maps-without-a-grid"><i class="fa fa-check"></i><b>7.5.2</b> Georeferencing maps without a grid</a></li>
 <li class="chapter" data-level="7.5.3" data-path="l07-gis-i.html"><a href="l07-gis-i.html#geocoding"><i class="fa fa-check"></i><b>7.5.3</b> Geocoding</a></li>
+<li class="chapter" data-level="7.5.4" data-path="l07-gis-i.html"><a href="l07-gis-i.html#reverse-geocoding"><i class="fa fa-check"></i><b>7.5.4</b> Reverse Geocoding</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="l07-gis-i.html"><a href="l07-gis-i.html#INCLASSII07"><i class="fa fa-check"></i><b>7.6</b> In Class II: <em>Practical</em></a></li>
-<li class="chapter" data-level="7.7" data-path="l07-gis-i.html"><a href="l07-gis-i.html#RM07"><i class="fa fa-check"></i><b>7.7</b> Reference Materials</a></li>
-<li class="chapter" data-level="7.8" data-path="l07-gis-i.html"><a href="l07-gis-i.html#AR07"><i class="fa fa-check"></i><b>7.8</b> Additional Readings</a></li>
-<li class="chapter" data-level="7.9" data-path="l07-gis-i.html"><a href="l07-gis-i.html#HW07"><i class="fa fa-check"></i><b>7.9</b> Homework</a></li>
-<li class="chapter" data-level="7.10" data-path="l07-gis-i.html"><a href="l07-gis-i.html#SH07"><i class="fa fa-check"></i><b>7.10</b> Submitting homework</a></li>
+<li class="chapter" data-level="7.6" data-path="l07-gis-i.html"><a href="l07-gis-i.html#RM07"><i class="fa fa-check"></i><b>7.6</b> Reference Materials</a></li>
+<li class="chapter" data-level="7.7" data-path="l07-gis-i.html"><a href="l07-gis-i.html#AR07"><i class="fa fa-check"></i><b>7.7</b> Additional Readings</a></li>
+<li class="chapter" data-level="7.8" data-path="l07-gis-i.html"><a href="l07-gis-i.html#HW07"><i class="fa fa-check"></i><b>7.8</b> Homework</a></li>
+<li class="chapter" data-level="7.9" data-path="l07-gis-i.html"><a href="l07-gis-i.html#SH07"><i class="fa fa-check"></i><b>7.9</b> Submitting homework</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="misc-i-reading-assignments.html"><a href="misc-i-reading-assignments.html"><i class="fa fa-check"></i>MISC I: Reading Assignments</a>
 <ul>
@@ -538,7 +538,31 @@ Budapest,Austria-Hungary,19.05326,47.50452</code></pre>
 <span id="cb15-2"><a href="l07-gis-i.html#cb15-2" aria-hidden="true" tabindex="-1"></a>  tidygeocoder<span class="sc">::</span><span class="fu">geocode</span>(<span class="at">city =</span> city, <span class="at">country =</span> country, <span class="at">method =</span> <span class="st">&#39;osm&#39;</span>, </span>
 <span id="cb15-3"><a href="l07-gis-i.html#cb15-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">full_results =</span> <span class="cn">TRUE</span>, <span class="at">custom_query=</span> <span class="fu">list</span>(<span class="at">extratags =</span> <span class="dv">1</span>))</span>
 <span id="cb15-4"><a href="l07-gis-i.html#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="l07-gis-i.html#cb15-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(dynasties_locations)</span></code></pre></div>
+<span id="cb15-5"><a href="l07-gis-i.html#cb15-5" aria-hidden="true" tabindex="-1"></a>dynasties_locations</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 40
+##   name  city  country dynasty   lat  long place_id licence osm_type osm_id
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;int&gt;
+## 1 Dama… Dama… Syria   Umayya…  33.5 36.3    1.08e7 Data ©… node     1.09e9
+## 2 Bagh… Bagh… Iraq    Abbasi…  33.3 44.4    2.60e8 Data ©… relation 5.64e6
+## 3 Nish… Nish… Iran    Tahiri…  36.2 58.8    2.59e8 Data ©… relation 9.52e6
+## 4 Cord… Cord… Spain   Spanis…  37.9 -4.78   2.59e8 Data ©… relation 3.43e5
+## 5 Cairo Cairo Egypt   Mamluks  30.0 31.2    2.59e8 Data ©… relation 5.47e6
+## 6 Bukh… Bukh… Uzbeki… Samani…  39.8 64.4    1.02e8 Data ©… way      4.56e7
+## # … with 30 more variables: boundingbox &lt;list&gt;, display_name &lt;chr&gt;,
+## #   class &lt;chr&gt;, type &lt;chr&gt;, importance &lt;dbl&gt;, icon &lt;chr&gt;,
+## #   extratags.is_in &lt;chr&gt;, extratags.capital &lt;chr&gt;, extratags.wikidata &lt;chr&gt;,
+## #   extratags.wikipedia &lt;chr&gt;, extratags.is_capital &lt;chr&gt;,
+## #   extratags.population &lt;chr&gt;, extratags.place &lt;chr&gt;,
+## #   extratags.linked_place &lt;chr&gt;, `extratags.capital_ISO3166-1` &lt;chr&gt;,
+## #   extratags.website &lt;chr&gt;, extratags.ele &lt;chr&gt;, `extratags.ref:ine` &lt;chr&gt;,
+## #   `extratags.ref:whc` &lt;chr&gt;, extratags.heritage &lt;chr&gt;,
+## #   `extratags.idee:name` &lt;chr&gt;, `extratags.whc:criteria` &lt;chr&gt;,
+## #   `extratags.ine:municipio` &lt;chr&gt;, `extratags.population:date` &lt;chr&gt;,
+## #   `extratags.heritage:operator` &lt;chr&gt;,
+## #   `extratags.whc:inscription_date` &lt;chr&gt;, extratags.rank &lt;chr&gt;,
+## #   extratags.border_type &lt;chr&gt;, `extratags.left:province` &lt;chr&gt;,
+## #   `extratags.right:province` &lt;chr&gt;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="l07-gis-i.html#cb17-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(dynasties_locations)</span></code></pre></div>
 <table style="width:100%;">
 <colgroup>
 <col width="0%" />
@@ -882,33 +906,37 @@ Budapest,Austria-Hungary,19.05326,47.50452</code></pre>
 </tbody>
 </table>
 <p>To check whether results are any go, we can use the following code to generate a very simple map. (We will get into details of how to build beautiful maps in the next lessons.)</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="l07-gis-i.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb16-2"><a href="l07-gis-i.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(maps)</span>
-<span id="cb16-3"><a href="l07-gis-i.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="l07-gis-i.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb18-2"><a href="l07-gis-i.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(maps)</span>
+<span id="cb18-3"><a href="l07-gis-i.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code></pre></div>
 <p>Here is a sample code to build a very simple map:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="l07-gis-i.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dynasties_locations, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat)) <span class="sc">+</span></span>
-<span id="cb17-2"><a href="l07-gis-i.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">borders</span>(<span class="st">&#39;world&#39;</span>) <span class="sc">+</span></span>
-<span id="cb17-3"><a href="l07-gis-i.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">force =</span> <span class="dv">2</span>, <span class="at">segment.alpha =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
-<span id="cb17-4"><a href="l07-gis-i.html#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_void</span>()</span></code></pre></div>
-<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="l07-gis-i.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dynasties_locations, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat)) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="l07-gis-i.html#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">borders</span>(<span class="st">&#39;world&#39;</span>) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="l07-gis-i.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">force =</span> <span class="dv">2</span>, <span class="at">segment.alpha =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb19-4"><a href="l07-gis-i.html#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_void</span>()</span></code></pre></div>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="reverse-geocoding" class="section level3" number="7.5.4">
+<h3><span class="header-section-number">7.5.4</span> Reverse Geocoding</h3>
+<p>Reverse geocoding is similar to geocoding, but we start with coordinates and trying to get more data on what is there at these cordinates. There is a library <code>revgeo</code> (<a href="https://github.com/mhudecheck/revgeo" class="uri">https://github.com/mhudecheck/revgeo</a>) that we can use for this purpose.</p>
+<p><strong>NB:</strong> there is a little glitch with the library, as it sends requests to an URL that is no longer in use. This can be fixed by using this <a href="./files/QGIS/revgeo.R.zip">script</a>. Doenload it, unzip it and add it to your code with the following line:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="l07-gis-i.html#cb20-1" aria-hidden="true" tabindex="-1"></a>pathToRevGeo <span class="ot">&lt;-</span> <span class="st">&quot;path/to/the/script/on/your/computer/revgeo.R&quot;</span></span>
+<span id="cb20-2"><a href="l07-gis-i.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(pathToRevGeo)</span></code></pre></div>
 </div>
 </div>
-<div id="INCLASSII07" class="section level2" number="7.6">
-<h2><span class="header-section-number">7.6</span> In Class II: <em>Practical</em></h2>
-</div>
-<div id="RM07" class="section level2" number="7.7">
-<h2><span class="header-section-number">7.7</span> Reference Materials</h2>
+<div id="RM07" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> Reference Materials</h2>
 <ul>
 <li><p>Clifford, Jim, Josh MacFadyen, and Daniel Macfarlane. 2013. “Installing QGIS 2.0 and Adding Layers.” Programming Historian, December. <a href="https://programminghistorian.org/lessons/qgis-layers" class="uri">https://programminghistorian.org/lessons/qgis-layers</a>.</p></li>
 <li><p>Clifford, Jim, Josh MacFadyen, and Daniel Macfarlane. 2013. “Georeferencing in QGIS 2.0.” Programming Historian, December. <a href="https://programminghistorian.org/lessons/georeferencing-qgis" class="uri">https://programminghistorian.org/lessons/georeferencing-qgis</a>.</p></li>
 </ul>
 </div>
-<div id="AR07" class="section level2" number="7.8">
-<h2><span class="header-section-number">7.8</span> Additional Readings</h2>
+<div id="AR07" class="section level2" number="7.7">
+<h2><span class="header-section-number">7.7</span> Additional Readings</h2>
 <p>…</p>
 </div>
-<div id="HW07" class="section level2" number="7.9">
-<h2><span class="header-section-number">7.9</span> Homework</h2>
+<div id="HW07" class="section level2" number="7.8">
+<h2><span class="header-section-number">7.8</span> Homework</h2>
 <ol style="list-style-type: decimal">
 <li>Finish georeferencing maps:
 <ul>
@@ -917,8 +945,8 @@ Budapest,Austria-Hungary,19.05326,47.50452</code></pre>
 </ul></li>
 </ol>
 </div>
-<div id="SH07" class="section level2" number="7.10">
-<h2><span class="header-section-number">7.10</span> Submitting homework</h2>
+<div id="SH07" class="section level2" number="7.9">
+<h2><span class="header-section-number">7.9</span> Submitting homework</h2>
 <ul>
 <li>Homework assignment must be submitted by the beginning of the next class;</li>
 <li>Email your homework to the instructor as attachments.
