@@ -524,7 +524,7 @@ Budapest,Austria-Hungary,19.05326,47.50452</code></pre>
 <p>We wil need the following libraries:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="l07-gis-i.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb13-2"><a href="l07-gis-i.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidygeocoder)</span></code></pre></div>
-<p>Nw we need to build a simple table with some data. <code>tribble</code> function builds a tibble row by row. The first row is column names, then we can add values in lines that follow (splitting into lines is for visual readability).</p>
+<p>Now we need to build a simple table with some data. <code>tribble</code> function builds a tibble row by row. The first row is column names, then we can add values in lines that follow (splitting into lines is for visual readability).</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="l07-gis-i.html#cb14-1" aria-hidden="true" tabindex="-1"></a>dynasties <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
 <span id="cb14-2"><a href="l07-gis-i.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>name, <span class="sc">~</span>city, <span class="sc">~</span>country, <span class="sc">~</span>dynasty,</span>
 <span id="cb14-3"><a href="l07-gis-i.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Damascus&quot;</span>,<span class="st">&quot;Damascus&quot;</span>, <span class="st">&quot;Syria&quot;</span>, <span class="st">&quot;Umayyads&quot;</span>,</span>
@@ -538,7 +538,7 @@ Budapest,Austria-Hungary,19.05326,47.50452</code></pre>
 <span id="cb15-2"><a href="l07-gis-i.html#cb15-2" aria-hidden="true" tabindex="-1"></a>  tidygeocoder<span class="sc">::</span><span class="fu">geocode</span>(<span class="at">city =</span> city, <span class="at">country =</span> country, <span class="at">method =</span> <span class="st">&#39;osm&#39;</span>, </span>
 <span id="cb15-3"><a href="l07-gis-i.html#cb15-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">full_results =</span> <span class="cn">TRUE</span>, <span class="at">custom_query=</span> <span class="fu">list</span>(<span class="at">extratags =</span> <span class="dv">1</span>))</span>
 <span id="cb15-4"><a href="l07-gis-i.html#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="l07-gis-i.html#cb15-5" aria-hidden="true" tabindex="-1"></a>dynasties_locations</span></code></pre></div>
+<span id="cb15-5"><a href="l07-gis-i.html#cb15-5" aria-hidden="true" tabindex="-1"></a>dynasties_locations </span></code></pre></div>
 <pre><code>## # A tibble: 6 x 40
 ##   name  city  country dynasty   lat  long place_id licence osm_type osm_id
 ##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;int&gt;
