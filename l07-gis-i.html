@@ -254,11 +254,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.4" data-path="l06-data-ii.html"><a href="l06-data-ii.html#additional-materials"><i class="fa fa-check"></i><b>7.4</b> Additional Materials</a></li>
 <li class="chapter" data-level="7.5" data-path="l07-gis-i.html"><a href="l07-gis-i.html#INCLASSI07"><i class="fa fa-check"></i><b>7.5</b> In Class I: <em>Theoretical and Conceptual</em></a>
 <ul>
-<li class="chapter" data-level="7.5.1" data-path="l07-gis-i.html"><a href="l07-gis-i.html#necessary-plugins"><i class="fa fa-check"></i><b>7.5.1</b> Necessary Plugins</a></li>
-<li class="chapter" data-level="7.5.2" data-path="l07-gis-i.html"><a href="l07-gis-i.html#projection-issues"><i class="fa fa-check"></i><b>7.5.2</b> Projection Issues</a></li>
-<li class="chapter" data-level="7.5.3" data-path="l07-gis-i.html"><a href="l07-gis-i.html#a-digital-map-layers-of-goodness"><i class="fa fa-check"></i><b>7.5.3</b> A Digital Map: Layers of Goodness</a></li>
-<li class="chapter" data-level="7.5.4" data-path="l07-gis-i.html"><a href="l07-gis-i.html#main-types-of-data-points-lines-polygons"><i class="fa fa-check"></i><b>7.5.4</b> Main Types of Data: Points, Lines, Polygons</a></li>
-<li class="chapter" data-level="7.5.5" data-path="l07-gis-i.html"><a href="l07-gis-i.html#georeferencing"><i class="fa fa-check"></i><b>7.5.5</b> Georeferencing</a></li>
+<li class="chapter" data-level="7.5.1" data-path="l07-gis-i.html"><a href="l07-gis-i.html#georeferencing"><i class="fa fa-check"></i><b>7.5.1</b> Georeferencing</a></li>
+<li class="chapter" data-level="7.5.2" data-path="l07-gis-i.html"><a href="l07-gis-i.html#georeferencing-maps-without-a-grid"><i class="fa fa-check"></i><b>7.5.2</b> Georeferencing maps without a grid</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="l07-gis-i.html"><a href="l07-gis-i.html#INCLASSII07"><i class="fa fa-check"></i><b>7.6</b> In Class II: <em>Practical</em></a></li>
 <li class="chapter" data-level="7.7" data-path="l07-gis-i.html"><a href="l07-gis-i.html#RM07"><i class="fa fa-check"></i><b>7.7</b> Reference Materials</a></li>
@@ -348,66 +345,37 @@ Learning how to do georeferencing and geocoding.</p>
 <p>What is georeferencing?</p>
 <p>What is geocoding?</p>
 <p>Why do we need these?</p>
-<div id="necessary-plugins" class="section level3" number="7.5.1">
-<h3><span class="header-section-number">7.5.1</span> Necessary Plugins</h3>
-</div>
-<div id="projection-issues" class="section level3" number="7.5.2">
-<h3><span class="header-section-number">7.5.2</span> Projection Issues</h3>
-<p><img src="files/QGIS/headGlobus.jpg" /></p>
-<p>See, <a href="https://en.wikipedia.org/wiki/List_of_map_projections" class="uri">https://en.wikipedia.org/wiki/List_of_map_projections</a>.</p>
-</div>
-<div id="a-digital-map-layers-of-goodness" class="section level3" number="7.5.3">
-<h3><span class="header-section-number">7.5.3</span> A Digital Map: Layers of Goodness</h3>
-<p><img src="files/QGIS/maps_layers.jpg" /></p>
-<ul>
-<li>Layers:
-<ul>
-<li>Analytical Layer</li>
-<li>Our Data</li>
-<li>Annotation/Legend</li>
-</ul></li>
-<li>Social Geography
-<ul>
-<li>Political Boundaries</li>
-<li>Settlements, etc.</li>
-</ul></li>
-<li>Physical Geography
-<ul>
-<li>Types of surface</li>
-<li>Continents / Coastal Line</li>
-<li>Elevation profile</li>
-<li>Rivers, Lakes, etc.</li>
-</ul></li>
-<li>Base Layer: Graticule</li>
-</ul>
-</div>
-<div id="main-types-of-data-points-lines-polygons" class="section level3" number="7.5.4">
-<h3><span class="header-section-number">7.5.4</span> Main Types of Data: Points, Lines, Polygons</h3>
-<ul>
-<li>Analytical Layer
-<ul>
-<li>Our Data
-<ul>
-<li>Points:
-<ul>
-<li>item, x<strong>[1]</strong>, point(lat, lon)<strong>[2]</strong></li>
-</ul></li>
-<li>Lines:
-<ul>
-<li>item, x<strong>[1]</strong>, from(lat, lon)<strong>[2]</strong>, to(lat, lon)<strong>[2]</strong></li>
-</ul></li>
-<li>Polygons:
-<ul>
-<li>item, x, area(lat, lon; lat, lon; … lat, lon)<strong>[2]</strong></li>
-</ul></li>
-</ul></li>
-<li>Annotation/Legend</li>
-</ul></li>
-</ul>
-<p><strong>[1]</strong> where x is a categorical parameter; <strong>[2]</strong> lat/lon: decimal coordinates (not DMS)</p>
-</div>
-<div id="georeferencing" class="section level3" number="7.5.5">
-<h3><span class="header-section-number">7.5.5</span> Georeferencing</h3>
+<!-- ### Projection Issues -->
+<!-- ![](./files/QGIS/headGlobus.jpg) -->
+<!-- See, <https://en.wikipedia.org/wiki/List_of_map_projections>. -->
+<!-- ### A Digital Map: Layers of Goodness -->
+<!-- ![](./files/QGIS/maps_layers.jpg) -->
+<!-- * Layers: -->
+<!-- 	* Analytical Layer -->
+<!-- 	* Our Data -->
+<!-- 	* Annotation/Legend -->
+<!-- * Social Geography -->
+<!-- 	* Political Boundaries -->
+<!-- 	* Settlements, etc. -->
+<!-- * Physical Geography -->
+<!-- 	* Types of surface -->
+<!-- 	* Continents / Coastal Line -->
+<!-- 	* Elevation profile -->
+<!-- 	* Rivers, Lakes, etc. -->
+<!-- * Base Layer: Graticule -->
+<!-- ### Main Types of Data: Points, Lines, Polygons -->
+<!-- * Analytical Layer -->
+<!-- 	* Our Data -->
+<!-- 		* Points: -->
+<!-- 			* item, x**[1]**, point(lat, lon)**[2]** -->
+<!-- 		* Lines: -->
+<!-- 			* item, x**[1]**, from(lat, lon)**[2]**, to(lat, lon)**[2]** -->
+<!-- 		* Polygons: -->
+<!-- 			* item, x, area(lat, lon; lat, lon; … lat, lon)**[2]** -->
+<!-- 	* Annotation/Legend -->
+<!-- **[1]** where x is a categorical parameter; **[2]** lat/lon: decimal coordinates (not DMS) -->
+<div id="georeferencing" class="section level3" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Georeferencing</h3>
 <p>QGIS must be installed and running. <em>Note:</em> Interfaces might differ from system to system; the same applies to different versions of QGIS. Before we proceed, you may want to add Google Layers. To Add Google maps layer: (on the left pane, <em>Browser</em>) XYZ &gt; New connection &gt; paste one of the following links (Source: <a href="https://geogeek.xyz/how-to-add-google-maps-layers-in-qgis-3.html" class="uri">https://geogeek.xyz/how-to-add-google-maps-layers-in-qgis-3.html</a>):</p>
 <ol style="list-style-type: decimal">
 <li><strong>Google Maps</strong>: <a href="https://mt1.google.com/vt/lyrs=r&amp;x=%7Bx%7D&amp;y=%7By%7D&amp;z=%7Bz%7D" class="uri">https://mt1.google.com/vt/lyrs=r&amp;x={x}&amp;y={y}&amp;z={z}</a></li>
@@ -417,8 +385,8 @@ Learning how to do georeferencing and geocoding.</p>
 <li><strong>Google Roads</strong>: <a href="https://mt1.google.com/vt/lyrs=h&amp;x=%7Bx%7D&amp;y=%7By%7D&amp;z=%7Bz%7D" class="uri">https://mt1.google.com/vt/lyrs=h&amp;x={x}&amp;y={y}&amp;z={z}</a></li>
 </ol>
 <p><strong>NB:</strong> Images of maps to work with below</p>
-<div id="step-by-step-instructions" class="section level4" number="7.5.5.1">
-<h4><span class="header-section-number">7.5.5.1</span> Step-by-step instructions</h4>
+<div id="step-by-step-instructions" class="section level4" number="7.5.1.1">
+<h4><span class="header-section-number">7.5.1.1</span> Step-by-step instructions</h4>
 <p><img src="files/QGIS/OldDesignShop_MapCentralEurope_Small.jpg" /></p>
 <ul>
 <li>Let’s georeference this old map of Europe. Here is the link: <a href="./files/QGIS/OldDesignShop_MapCentralEurope.jpg"><em>OldDesignShop_MapCentralEurope.jpg</em></a>.</li>
@@ -459,20 +427,41 @@ Learning how to do georeferencing and geocoding.</p>
 </ul></li>
 <li><strong>[!!!]</strong> Keep in mind that you add layers to your map and a layer on top may cover the layer below!</li>
 </ul>
+<p>Below you can see how a georeferences map would look, if only 4 points GCP (ground reference points) have been collected. In the areas circled with red you can see that the northern par of the UK and Denmark are not very well aligned.</p>
+<p><img src="files/QGIS/samples/001_small.jpg" /></p>
+<p>In the example below you the georeferences map has about a dozen GCP. Alignment of the northern part of the UK and Denmark is much better. In general, if you have a clear coordinate grid on your maps, you may want to georeference all intersections—this will give you the best possible results.</p>
+<p><img src="files/QGIS/samples/002_small.jpg" /></p>
 <p>In general, this procedure can be extremely helpful if:</p>
 <ul>
 <li>you need to collect geographical information from historical maps;</li>
 <li>you want to use some historical map as the base layer for mapping your data;</li>
 </ul>
 </div>
-<div id="collecting-point-data-very-simple-way" class="section level4" number="7.5.5.2">
-<h4><span class="header-section-number">7.5.5.2</span> Collecting Point Data (Very Simple Way)</h4>
+</div>
+<div id="georeferencing-maps-without-a-grid" class="section level3" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> Georeferencing maps without a grid</h3>
+<p>You may have a map that does not have any grid. In this case you will have to georeference your map by visual cues. The steps are the same as above, but instead of typing in the coordinates, you will need to identify the same visual features on the map that you georeference (your source map) and the base layer map loaded into QGIS (your target map).</p>
 <ul>
-<li>Create a CSV file; copy/paste the content from below (three lines of text!)</li>
+<li>First, you click on the selected feature on your source map.</li>
+<li>Then, click on “From Map Canvas”</li>
+<li>Then, find the same feature on the target map and click there — the GCP will be automatically created.</li>
 </ul>
-<pre><code>city,state,lon,lat,lon1,lat1
-New York,New York,-8234229.297,4970380.761,-8234229.297,4970380.761
-Philadelphia,Pennsylvania,-8368867.370,4858182.367,-8368867.370,4858182.367</code></pre>
+<p><img src="files/QGIS/samples/008_small.jpg" /></p>
+<p>For for our practice we will use <a href="./files/QGIS/Wien_0890208.jpg">the following old map of Vienna</a> (Source: <a href="https://davidrumsey.georeferencer.com/maps/784dd2aa-30f6-5668-8e35-3878a385d14a/">David Ramsey Map Collection</a>)</p>
+<p><img src="files/QGIS/samples/005_small.jpg" /></p>
+<p>In my attempt, I just picked three points in the 1st district: Burgtor, Schottentor, and Domkirche St. Stephan. For this particular map this seems to be sufficiently enough, although areas outside of the 1st district are not too well aligned.</p>
+<p><img src="files/QGIS/samples/004_small.jpg" /></p>
+<div id="collecting-point-data-very-simple-way" class="section level4" number="7.5.2.1">
+<h4><span class="header-section-number">7.5.2.1</span> Collecting Point Data (Very Simple Way)</h4>
+<ul>
+<li>Create a CSV file; copy/paste the content from below (six lines of text!)</li>
+</ul>
+<pre><code>city,state,lon,lat
+Warsaw,Russia,21.13066,52.23914
+Berlin,Germany,13.38309,52.54312
+Hamburg,Germany,9.98335,53.54092
+Vienna,Austria-Hungary,16.39089,48.27847
+Budapest,Austria-Hungary,19.05326,47.50452</code></pre>
 <ul>
 <li>In QGIS, load this file by:
 <ul>
@@ -481,51 +470,47 @@ Philadelphia,Pennsylvania,-8368867.370,4858182.367,-8368867.370,4858182.367</cod
 <ul>
 <li>CSV (comma separated format)</li>
 <li>Point coodinates (X field: <code>lon</code>; Y field: <code>lat</code>)</li>
-<li>Geometry CRS: <code>EPSG:4325 - WGS 84 / Pseudo Mercator</code></li>
+<li>Geometry CRS: <code>EPSG:4326 - WGS 84 / Pseudo Mercator</code></li>
 <li>(you will have only two lines of data, instead of five)</li>
-<li>Make sure to click <code>Add</code> when you are done!
-<img src="files/QGIS/delimitedTextLayer.png" alt="US_eastStates_03.jpg" /></li>
+<li>Make sure to click <code>Add</code> when you are done!</li>
 </ul></li>
 </ul></li>
-<li>The layer is there, but we need to add labels to see the cities
+</ul>
+<p><img src="files/QGIS/samples/006_Small.jpg" />
+* The layer is there, but we need to add labels to see the cities
+* Right-click on the layer &gt; Properties
+* On the tab <code>Labels</code> change the settings like on the screenshot below
+* Click <code>Apply</code>, then <code>OK</code>.
+<img src="files/QGIS/citiesLabels.png" />
+* You should see several cities on the map now:
+* If nothing appears, try: Right-click on the layer &gt; Set CRS &gt; Set Layer CRS: Choose <code>WGS 84 / Pseudo-Mercator</code>
+* Now, we can use <code>Coordinate Capture</code> plugin to collect data from our georeferenced map:
+* If activated, coordinarte capture should be visible in lower right corner
+* To activate coordinate capture: <code>Plugins</code> &gt; <code>Manage and Install Plugins...</code> &gt; [search for <em>coordinate capture</em>], then tick a box against <strong>Coordinate Capture</strong>
+* You might still need to do: <code>Vector</code> &gt; <code>Coordinate Capture</code> to make it appear.</p>
+<p><img src="files/QGIS/samples/007_Small.jpg" /></p>
 <ul>
-<li>Right-click on the layer &gt; Properties</li>
-<li>On the tab <code>Labels</code> change the settings like on the screenshot below</li>
-<li>Click <code>Apply</code>, then <code>OK</code>.
-<img src="files/QGIS/citiesLabels.png" alt="US_eastStates_03.jpg" /></li>
-</ul></li>
-<li>You should see two cities now on the map:
-<ul>
-<li>If nothing appears, try: Right-click on the layer &gt; Set CRS &gt; Set Layer CRS: Choose <code>WGS 84 / Pseudo-Mercator</code></li>
-</ul></li>
-<li>Now, we can use <code>Coordinate Capture</code> plugin to collect data from our georeferenced map:
-<ul>
-<li>If activated, coordinarte capture should be visible in lower right corner
-<ul>
-<li>To activate coordinate capture: <code>Plugins</code> &gt; <code>Manage and Install Plugins...</code> &gt; [search for <em>coordinate capture</em>], then tick a box against <strong>Coordinate Capture</strong></li>
-</ul></li>
-</ul></li>
 <li>Collecting coordinates:
 <ul>
-<li>Keep the initial CSV open in some editor</li>
-<li>In <code>Coordinate Capture</code>, click <em>Start capture</em>
+<li>Keep the initial CSV open in some editor;</li>
+<li>In <code>Coordinate Capture</code>, click <em>Start capture</em>;
 <ul>
-<li>Click on any point on the map &gt; coordinates of that location will appear in the plugin</li>
-<li>Click <code>Copy to Clipboard</code></li>
+<li>Click on any point on the map &gt; coordinates of that location will appear in the plugin;</li>
+<li>Choose the top coordinates (see image above), click on an icon to the right of the coordinates to copy them;</li>
 </ul></li>
 <li>Go back to the open CSV:
 <ul>
 <li>Add a new line:
 <ul>
-<li>Type the name of the city</li>
-<li>Add comma and type the name of the state (alternatively, just add another comma)</li>
-<li>Now, paste what you copied into Clipboard (this will add two sets of coordinates)</li>
+<li>Type the name of the city;</li>
+<li>Add comma and type the name of the country (alternatively, just add another comma if you want to keep it empty);</li>
+<li>Now, paste what you copied into Clipboard (this will add a set of coordinates)</li>
 </ul></li>
 <li>Save the file</li>
 </ul></li>
 <li>Back in QGIS:
 <ul>
-<li>Switch the layer off and on: after that the newly-added city must appear on the map.</li>
+<li>Newly-added city must appear on the map. (if not, try to switch the layer off and on.)</li>
 </ul></li>
 <li>Repeat, until all required data is collected.</li>
 </ul></li>
