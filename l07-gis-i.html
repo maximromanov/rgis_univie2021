@@ -639,6 +639,7 @@ Budapest,Austria-Hungary,19.05326,47.50452</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="l07-gis-i.html#cb20-1" aria-hidden="true" tabindex="-1"></a>pathToRevGeo <span class="ot">&lt;-</span> <span class="st">&quot;path/to/the/script/on/your/computer/revgeo.R&quot;</span></span>
 <span id="cb20-2"><a href="l07-gis-i.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(pathToRevGeo)</span></code></pre></div>
 <p>Now, we can try to get information about a place:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="l07-gis-i.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">revgeo</span>(<span class="at">longitude=</span><span class="fl">16.3637029</span>, <span class="at">latitude=</span><span class="fl">48.2155248</span>, <span class="at">provider =</span> <span class="st">&#39;photon&#39;</span>, <span class="at">output=</span><span class="st">&#39;frame&#39;</span>)</span></code></pre></div>
 <pre><code>[1] &quot;Getting geocode data from Photon: https://photon.komoot.io/reverse?lon=16.3637029&amp;lat=48.2155248&quot;
   housenumber                 street city           state  zip    country
 1          11 Maria-Theresien-Straße Wien State Not Found 1090 Österreich</code></pre>
