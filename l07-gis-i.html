@@ -527,12 +527,12 @@ Budapest,Austria-Hungary,19.05326,47.50452</code></pre>
 <p>Now we need to build a simple table with some data. <code>tribble</code> function builds a tibble row by row. The first row is column names, then we can add values in lines that follow (splitting into lines is for visual readability).</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="l07-gis-i.html#cb14-1" aria-hidden="true" tabindex="-1"></a>dynasties <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
 <span id="cb14-2"><a href="l07-gis-i.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>name, <span class="sc">~</span>city, <span class="sc">~</span>country, <span class="sc">~</span>dynasty,</span>
-<span id="cb14-3"><a href="l07-gis-i.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Damascus&quot;</span>,<span class="st">&quot;Damascus&quot;</span>, <span class="st">&quot;Syria&quot;</span>, <span class="st">&quot;Umayyads&quot;</span>,</span>
-<span id="cb14-4"><a href="l07-gis-i.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Baghdad&quot;</span>, <span class="st">&quot;Baghdad&quot;</span>, <span class="st">&quot;Iraq&quot;</span>, <span class="st">&quot;Abbasids&quot;</span>,</span>
-<span id="cb14-5"><a href="l07-gis-i.html#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Nishapur&quot;</span>, <span class="st">&quot;Nishapur&quot;</span>, <span class="st">&quot;Iran&quot;</span>, <span class="st">&quot;Tahirids&quot;</span>,</span>
-<span id="cb14-6"><a href="l07-gis-i.html#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Cordoba&quot;</span>, <span class="st">&quot;Cordoba&quot;</span>, <span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;Spanish Umayyads&quot;</span>,</span>
-<span id="cb14-7"><a href="l07-gis-i.html#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Cairo&quot;</span>, <span class="st">&quot;Cairo&quot;</span>, <span class="st">&quot;Egypt&quot;</span>, <span class="st">&quot;Mamluks&quot;</span>,</span>
-<span id="cb14-8"><a href="l07-gis-i.html#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Bukhara&quot;</span>, <span class="st">&quot;Bukhara&quot;</span>, <span class="st">&quot;Uzbekistan&quot;</span>, <span class="st">&quot;Samanids&quot;</span>)</span></code></pre></div>
+<span id="cb14-3"><a href="l07-gis-i.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Dimašq&quot;</span>,<span class="st">&quot;Damascus&quot;</span>, <span class="st">&quot;Syria&quot;</span>, <span class="st">&quot;Umayyads&quot;</span>,</span>
+<span id="cb14-4"><a href="l07-gis-i.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Baġdād&quot;</span>, <span class="st">&quot;Baghdad&quot;</span>, <span class="st">&quot;Iraq&quot;</span>, <span class="st">&quot;Abbasids&quot;</span>,</span>
+<span id="cb14-5"><a href="l07-gis-i.html#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Naysābūr&quot;</span>, <span class="st">&quot;Nishapur&quot;</span>, <span class="st">&quot;Iran&quot;</span>, <span class="st">&quot;Tahirids&quot;</span>,</span>
+<span id="cb14-6"><a href="l07-gis-i.html#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Qurṭubaŧ&quot;</span>, <span class="st">&quot;Cordoba&quot;</span>, <span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;Spanish Umayyads&quot;</span>,</span>
+<span id="cb14-7"><a href="l07-gis-i.html#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;al-Qāhiraŧ&quot;</span>, <span class="st">&quot;Cairo&quot;</span>, <span class="st">&quot;Egypt&quot;</span>, <span class="st">&quot;Mamluks&quot;</span>,</span>
+<span id="cb14-8"><a href="l07-gis-i.html#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Buḫārá&quot;</span>, <span class="st">&quot;Bukhara&quot;</span>, <span class="st">&quot;Uzbekistan&quot;</span>, <span class="st">&quot;Samanids&quot;</span>)</span></code></pre></div>
 <p>Now, the following line calls the function <code>geocode</code> (from <code>tidygeocoder</code>) and tries to get all the relevant data from Open Street Maps (<code>osm</code>). You can check the page of the library for more detials: <a href="https://jessecambon.github.io/2020/07/15/tidygeocoder-1-0-0.html" class="uri">https://jessecambon.github.io/2020/07/15/tidygeocoder-1-0-0.html</a>.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="l07-gis-i.html#cb15-1" aria-hidden="true" tabindex="-1"></a>dynasties_locations <span class="ot">&lt;-</span> dynasties <span class="sc">%&gt;%</span></span>
 <span id="cb15-2"><a href="l07-gis-i.html#cb15-2" aria-hidden="true" tabindex="-1"></a>  tidygeocoder<span class="sc">::</span><span class="fu">geocode</span>(<span class="at">city =</span> city, <span class="at">country =</span> country, <span class="at">method =</span> <span class="st">&#39;osm&#39;</span>, </span>
@@ -542,12 +542,12 @@ Budapest,Austria-Hungary,19.05326,47.50452</code></pre>
 <pre><code>## # A tibble: 6 x 40
 ##   name  city  country dynasty   lat  long place_id licence osm_type osm_id
 ##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;int&gt;
-## 1 Dama… Dama… Syria   Umayya…  33.5 36.3    1.08e7 Data ©… node     1.09e9
-## 2 Bagh… Bagh… Iraq    Abbasi…  33.3 44.4    2.60e8 Data ©… relation 5.64e6
-## 3 Nish… Nish… Iran    Tahiri…  36.2 58.8    2.59e8 Data ©… relation 9.52e6
-## 4 Cord… Cord… Spain   Spanis…  37.9 -4.78   2.59e8 Data ©… relation 3.43e5
-## 5 Cairo Cairo Egypt   Mamluks  30.0 31.2    2.59e8 Data ©… relation 5.47e6
-## 6 Bukh… Bukh… Uzbeki… Samani…  39.8 64.4    1.02e8 Data ©… way      4.56e7
+## 1 Dima… Dama… Syria   Umayya…  33.5 36.3    1.08e7 Data ©… node     1.09e9
+## 2 Baġd… Bagh… Iraq    Abbasi…  33.3 44.4    2.60e8 Data ©… relation 5.64e6
+## 3 Nays… Nish… Iran    Tahiri…  36.2 58.8    2.59e8 Data ©… relation 9.52e6
+## 4 Qurṭ… Cord… Spain   Spanis…  37.9 -4.78   2.59e8 Data ©… relation 3.43e5
+## 5 al-Q… Cairo Egypt   Mamluks  30.0 31.2    2.59e8 Data ©… relation 5.47e6
+## 6 Buḫā… Bukh… Uzbeki… Samani…  39.8 64.4    1.02e8 Data ©… way      4.56e7
 ## # … with 30 more variables: boundingbox &lt;list&gt;, display_name &lt;chr&gt;,
 ## #   class &lt;chr&gt;, type &lt;chr&gt;, importance &lt;dbl&gt;, icon &lt;chr&gt;,
 ## #   extratags.is_in &lt;chr&gt;, extratags.capital &lt;chr&gt;, extratags.wikidata &lt;chr&gt;,
@@ -562,346 +562,62 @@ Budapest,Austria-Hungary,19.05326,47.50452</code></pre>
 ## #   `extratags.whc:inscription_date` &lt;chr&gt;, extratags.rank &lt;chr&gt;,
 ## #   extratags.border_type &lt;chr&gt;, `extratags.left:province` &lt;chr&gt;,
 ## #   `extratags.right:province` &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="l07-gis-i.html#cb17-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(dynasties_locations)</span></code></pre></div>
-<table style="width:100%;">
-<colgroup>
-<col width="0%" />
-<col width="0%" />
-<col width="1%" />
-<col width="1%" />
-<col width="0%" />
-<col width="1%" />
-<col width="1%" />
-<col width="7%" />
-<col width="0%" />
-<col width="1%" />
-<col width="4%" />
-<col width="9%" />
-<col width="0%" />
-<col width="1%" />
-<col width="1%" />
-<col width="8%" />
-<col width="3%" />
-<col width="1%" />
-<col width="1%" />
-<col width="2%" />
-<col width="2%" />
-<col width="2%" />
-<col width="1%" />
-<col width="2%" />
-<col width="2%" />
-<col width="2%" />
-<col width="1%" />
-<col width="1%" />
-<col width="1%" />
-<col width="1%" />
-<col width="2%" />
-<col width="2%" />
-<col width="2%" />
-<col width="2%" />
-<col width="2%" />
-<col width="3%" />
-<col width="1%" />
-<col width="2%" />
-<col width="2%" />
-<col width="2%" />
-</colgroup>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="l07-gis-i.html#cb17-1" aria-hidden="true" tabindex="-1"></a>dynasties_locations_filtered <span class="ot">&lt;-</span> dynasties_locations <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="l07-gis-i.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, city, country, lat, long)</span>
+<span id="cb17-3"><a href="l07-gis-i.html#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="l07-gis-i.html#cb17-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(dynasties_locations_filtered)</span></code></pre></div>
+<table>
 <thead>
 <tr class="header">
 <th align="left">name</th>
 <th align="left">city</th>
 <th align="left">country</th>
-<th align="left">dynasty</th>
 <th align="right">lat</th>
 <th align="right">long</th>
-<th align="right">place_id</th>
-<th align="left">licence</th>
-<th align="left">osm_type</th>
-<th align="right">osm_id</th>
-<th align="left">boundingbox</th>
-<th align="left">display_name</th>
-<th align="left">class</th>
-<th align="left">type</th>
-<th align="right">importance</th>
-<th align="left">icon</th>
-<th align="left">extratags.is_in</th>
-<th align="left">extratags.capital</th>
-<th align="left">extratags.wikidata</th>
-<th align="left">extratags.wikipedia</th>
-<th align="left">extratags.is_capital</th>
-<th align="left">extratags.population</th>
-<th align="left">extratags.place</th>
-<th align="left">extratags.linked_place</th>
-<th align="left">extratags.capital_ISO3166-1</th>
-<th align="left">extratags.website</th>
-<th align="left">extratags.ele</th>
-<th align="left">extratags.ref:ine</th>
-<th align="left">extratags.ref:whc</th>
-<th align="left">extratags.heritage</th>
-<th align="left">extratags.idee:name</th>
-<th align="left">extratags.whc:criteria</th>
-<th align="left">extratags.ine:municipio</th>
-<th align="left">extratags.population:date</th>
-<th align="left">extratags.heritage:operator</th>
-<th align="left">extratags.whc:inscription_date</th>
-<th align="left">extratags.rank</th>
-<th align="left">extratags.border_type</th>
-<th align="left">extratags.left:province</th>
-<th align="left">extratags.right:province</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Damascus</td>
+<td align="left">Dimašq</td>
 <td align="left">Damascus</td>
 <td align="left">Syria</td>
-<td align="left">Umayyads</td>
 <td align="right">33.51307</td>
 <td align="right">36.309581</td>
-<td align="right">10760643</td>
-<td align="left">Data © OpenStreetMap contributors, ODbL 1.0. <a href="https://osm.org/copyright" class="uri">https://osm.org/copyright</a></td>
-<td align="left">node</td>
-<td align="right">1091272140</td>
-<td align="left">33.3530695, 33.6730695, 36.1495814, 36.4695814</td>
-<td align="left">دمشق, محافظة دمشق, 2277, سوريا</td>
-<td align="left">place</td>
-<td align="left">city</td>
-<td align="right">0.6691143</td>
-<td align="left"><a href="https://nominatim.openstreetmap.org/ui/mapicons//poi_place_city.p.20.png" class="uri">https://nominatim.openstreetmap.org/ui/mapicons//poi_place_city.p.20.png</a></td>
-<td align="left">Syria سوريا</td>
-<td align="left">yes</td>
-<td align="left">Q3766</td>
-<td align="left">ar:دمشق</td>
-<td align="left">country</td>
-<td align="left">1711000</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">Baghdad</td>
+<td align="left">Baġdād</td>
 <td align="left">Baghdad</td>
 <td align="left">Iraq</td>
-<td align="left">Abbasids</td>
 <td align="right">33.30243</td>
 <td align="right">44.378799</td>
-<td align="right">259628956</td>
-<td align="left">Data © OpenStreetMap contributors, ODbL 1.0. <a href="https://osm.org/copyright" class="uri">https://osm.org/copyright</a></td>
-<td align="left">relation</td>
-<td align="right">5638803</td>
-<td align="left">33.1797569, 33.4868251, 44.1846152, 44.5702931</td>
-<td align="left">بغداد, ناحية مرکز قضاء الکرخ, قضاء الکرخ, محافظة بغداد, العراق / عێراق</td>
-<td align="left">boundary</td>
-<td align="left">administrative</td>
-<td align="right">0.6677155</td>
-<td align="left"><a href="https://nominatim.openstreetmap.org/ui/mapicons//poi_boundary_administrative.p.20.png" class="uri">https://nominatim.openstreetmap.org/ui/mapicons//poi_boundary_administrative.p.20.png</a></td>
-<td align="left">NA</td>
-<td align="left">4</td>
-<td align="left">Q1530</td>
-<td align="left">ar:بغداد</td>
-<td align="left">country</td>
-<td align="left">7216040</td>
-<td align="left">city</td>
-<td align="left">city</td>
-<td align="left">yes</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">Nishapur</td>
+<td align="left">Naysābūr</td>
 <td align="left">Nishapur</td>
 <td align="left">Iran</td>
-<td align="left">Tahirids</td>
 <td align="right">36.21059</td>
 <td align="right">58.792280</td>
-<td align="right">258975712</td>
-<td align="left">Data © OpenStreetMap contributors, ODbL 1.0. <a href="https://osm.org/copyright" class="uri">https://osm.org/copyright</a></td>
-<td align="left">relation</td>
-<td align="right">9518162</td>
-<td align="left">36.180102 , 36.2609171, 58.7435647, 58.8366201</td>
-<td align="left">شهر نیشابور, بخش مرکزی شهرستان نیشابور, شهرستان نیشابور, استان خراسان رضوی, 9313833138, ایران</td>
-<td align="left">boundary</td>
-<td align="left">administrative</td>
-<td align="right">0.5297924</td>
-<td align="left"><a href="https://nominatim.openstreetmap.org/ui/mapicons//poi_boundary_administrative.p.20.png" class="uri">https://nominatim.openstreetmap.org/ui/mapicons//poi_boundary_administrative.p.20.png</a></td>
-<td align="left">Razavi Khorasan Province, Iran</td>
-<td align="left">NA</td>
-<td align="left">Q131350</td>
-<td align="left">fa:نیشابور</td>
-<td align="left">NA</td>
-<td align="left">264375</td>
-<td align="left">city</td>
-<td align="left">city</td>
-<td align="left">NA</td>
-<td align="left"><a href="http://www.neyshabur.ir" class="uri">http://www.neyshabur.ir</a></td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">Cordoba</td>
+<td align="left">Qurṭubaŧ</td>
 <td align="left">Cordoba</td>
 <td align="left">Spain</td>
-<td align="left">Spanish Umayyads</td>
 <td align="right">37.88458</td>
 <td align="right">-4.776014</td>
-<td align="right">258683520</td>
-<td align="left">Data © OpenStreetMap contributors, ODbL 1.0. <a href="https://osm.org/copyright" class="uri">https://osm.org/copyright</a></td>
-<td align="left">relation</td>
-<td align="right">343207</td>
-<td align="left">37.6658228, 38.0315171, -4.9985994, -4.3514283</td>
-<td align="left">Córdoba, Andalucía, España</td>
-<td align="left">boundary</td>
-<td align="left">administrative</td>
-<td align="right">0.6055474</td>
-<td align="left"><a href="https://nominatim.openstreetmap.org/ui/mapicons//poi_boundary_administrative.p.20.png" class="uri">https://nominatim.openstreetmap.org/ui/mapicons//poi_boundary_administrative.p.20.png</a></td>
-<td align="left">NA</td>
-<td align="left">6</td>
-<td align="left">Q5818</td>
-<td align="left">es:Córdoba (España)</td>
-<td align="left">NA</td>
-<td align="left">328547</td>
-<td align="left">NA</td>
-<td align="left">city</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">106</td>
-<td align="left">14021000900</td>
-<td align="left">313</td>
-<td align="left">1</td>
-<td align="left">Córdoba</td>
-<td align="left">(i)(ii)(iii)(iv)</td>
-<td align="left">14021</td>
-<td align="left">2009</td>
-<td align="left">whc</td>
-<td align="left">1984</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">Cairo</td>
+<td align="left">al-Qāhiraŧ</td>
 <td align="left">Cairo</td>
 <td align="left">Egypt</td>
-<td align="left">Mamluks</td>
 <td align="right">30.04439</td>
 <td align="right">31.235726</td>
-<td align="right">259291871</td>
-<td align="left">Data © OpenStreetMap contributors, ODbL 1.0. <a href="https://osm.org/copyright" class="uri">https://osm.org/copyright</a></td>
-<td align="left">relation</td>
-<td align="right">5466227</td>
-<td align="left">29.7483062, 30.3209168, 31.2200331, 31.9090054</td>
-<td align="left">القاهرة, محافظة القاهرة, مصر</td>
-<td align="left">place</td>
-<td align="left">city</td>
-<td align="right">0.6960286</td>
-<td align="left"><a href="https://nominatim.openstreetmap.org/ui/mapicons//poi_place_city.p.20.png" class="uri">https://nominatim.openstreetmap.org/ui/mapicons//poi_place_city.p.20.png</a></td>
-<td align="left">NA</td>
-<td align="left">yes</td>
-<td align="left">Q85</td>
-<td align="left">ar:القاهرة</td>
-<td align="left">country</td>
-<td align="left">9120350</td>
-<td align="left">NA</td>
-<td align="left">city</td>
-<td align="left">yes</td>
-<td align="left">NA</td>
-<td align="left">68</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">0</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">Bukhara</td>
+<td align="left">Buḫārá</td>
 <td align="left">Bukhara</td>
 <td align="left">Uzbekistan</td>
-<td align="left">Samanids</td>
 <td align="right">39.76755</td>
 <td align="right">64.423133</td>
-<td align="right">102206142</td>
-<td align="left">Data © OpenStreetMap contributors, ODbL 1.0. <a href="https://osm.org/copyright" class="uri">https://osm.org/copyright</a></td>
-<td align="left">way</td>
-<td align="right">45589944</td>
-<td align="left">39.7294215, 39.8231975, 64.3768151, 64.478057</td>
-<td align="left">Buxoro, Buxoro Viloyati, 200100, Oʻzbekiston</td>
-<td align="left">boundary</td>
-<td align="left">administrative</td>
-<td align="right">0.5633812</td>
-<td align="left"><a href="https://nominatim.openstreetmap.org/ui/mapicons//poi_boundary_administrative.p.20.png" class="uri">https://nominatim.openstreetmap.org/ui/mapicons//poi_boundary_administrative.p.20.png</a></td>
-<td align="left">Uzbekistan, Bukhara</td>
-<td align="left">NA</td>
-<td align="left">Q5764</td>
-<td align="left">en:Bukhara</td>
-<td align="left">NA</td>
-<td align="left">272500</td>
-<td align="left">city</td>
-<td align="left">city</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">2014</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">province</td>
-<td align="left">Buxoro tuman</td>
-<td align="left">Buxoro shahar</td>
 </tr>
 </tbody>
 </table>
@@ -920,8 +636,10 @@ Budapest,Austria-Hungary,19.05326,47.50452</code></pre>
 <h3><span class="header-section-number">7.5.4</span> Reverse Geocoding</h3>
 <p>Reverse geocoding is similar to geocoding, but we start with coordinates and trying to get more data on what is there at these cordinates. There is a library <code>revgeo</code> (<a href="https://github.com/mhudecheck/revgeo" class="uri">https://github.com/mhudecheck/revgeo</a>) that we can use for this purpose.</p>
 <p><strong>NB:</strong> there is a little glitch with the library, as it sends requests to an URL that is no longer in use. This can be fixed by using this <a href="./files/QGIS/revgeo.R.zip">script</a>. Doenload it, unzip it and add it to your code with the following line:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="l07-gis-i.html#cb20-1" aria-hidden="true" tabindex="-1"></a>pathToRevGeo <span class="ot">&lt;-</span> <span class="st">&quot;path/to/the/script/on/your/computer/revgeo.R&quot;</span></span>
-<span id="cb20-2"><a href="l07-gis-i.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(pathToRevGeo)</span></code></pre></div>
+<p>Now, we can try to get information about a place:</p>
+<pre><code>[1] &quot;Getting geocode data from Photon: https://photon.komoot.io/reverse?lon=16.3637029&amp;lat=48.2155248&quot;
+  housenumber                 street city           state  zip    country
+1          11 Maria-Theresien-Straße Wien State Not Found 1090 Österreich</code></pre>
 </div>
 </div>
 <div id="RM07" class="section level2" number="7.6">
