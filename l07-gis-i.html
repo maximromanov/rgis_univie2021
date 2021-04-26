@@ -636,6 +636,8 @@ Budapest,Austria-Hungary,19.05326,47.50452</code></pre>
 <h3><span class="header-section-number">7.5.4</span> Reverse Geocoding</h3>
 <p>Reverse geocoding is similar to geocoding, but we start with coordinates and trying to get more data on what is there at these cordinates. There is a library <code>revgeo</code> (<a href="https://github.com/mhudecheck/revgeo" class="uri">https://github.com/mhudecheck/revgeo</a>) that we can use for this purpose.</p>
 <p><strong>NB:</strong> there is a little glitch with the library, as it sends requests to an URL that is no longer in use. This can be fixed by using this <a href="./files/QGIS/revgeo.R.zip">script</a>. Doenload it, unzip it and add it to your code with the following line:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="l07-gis-i.html#cb20-1" aria-hidden="true" tabindex="-1"></a>pathToRevGeo <span class="ot">&lt;-</span> <span class="st">&quot;path/to/the/script/on/your/computer/revgeo.R&quot;</span></span>
+<span id="cb20-2"><a href="l07-gis-i.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(pathToRevGeo)</span></code></pre></div>
 <p>Now, we can try to get information about a place:</p>
 <pre><code>[1] &quot;Getting geocode data from Photon: https://photon.komoot.io/reverse?lon=16.3637029&amp;lat=48.2155248&quot;
   housenumber                 street city           state  zip    country
