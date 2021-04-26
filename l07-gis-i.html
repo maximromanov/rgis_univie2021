@@ -522,34 +522,23 @@ Budapest,Austria-Hungary,19.05326,47.50452</code></pre>
 <h3><span class="header-section-number">7.5.3</span> Geocoding</h3>
 <p>Geocoding is a process through which we obtain coordinates of places for which we know only names. The code below takes information that we provide and sends a request to some geocoding service, which—if matches are found—returns results.</p>
 <p>We wil need the following libraries:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="l07-gis-i.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.0.2</code></pre>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✔ ggplot2 3.3.0     ✔ purrr   0.3.4
-## ✔ tibble  3.0.1     ✔ dplyr   1.0.5
-## ✔ tidyr   1.0.2     ✔ stringr 1.4.0
-## ✔ readr   1.3.1     ✔ forcats 0.5.0</code></pre>
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.0.2</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="l07-gis-i.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidygeocoder)</span></code></pre></div>
-<pre><code>## Warning: package &#39;tidygeocoder&#39; was built under R version 4.0.2</code></pre>
-<p>Noe we can build a simple table with some data. <code>tribble</code> function builds a tibble row by row. The first row is column names, then we can add values in lines that follow (splitting into lines is for visual readability).</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="l07-gis-i.html#cb21-1" aria-hidden="true" tabindex="-1"></a>dynasties <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb21-2"><a href="l07-gis-i.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>name, <span class="sc">~</span>city, <span class="sc">~</span>country, <span class="sc">~</span>dynasty,</span>
-<span id="cb21-3"><a href="l07-gis-i.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Damascus&quot;</span>,<span class="st">&quot;Damascus&quot;</span>, <span class="st">&quot;Syria&quot;</span>, <span class="st">&quot;Umayyads&quot;</span>,</span>
-<span id="cb21-4"><a href="l07-gis-i.html#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Baghdad&quot;</span>, <span class="st">&quot;Baghdad&quot;</span>, <span class="st">&quot;Iraq&quot;</span>, <span class="st">&quot;Abbasids&quot;</span>,</span>
-<span id="cb21-5"><a href="l07-gis-i.html#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Nishapur&quot;</span>, <span class="st">&quot;Nishapur&quot;</span>, <span class="st">&quot;Iran&quot;</span>, <span class="st">&quot;Tahirids&quot;</span>,</span>
-<span id="cb21-6"><a href="l07-gis-i.html#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Cordoba&quot;</span>, <span class="st">&quot;Cordoba&quot;</span>, <span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;Spanish Umayyads&quot;</span>,</span>
-<span id="cb21-7"><a href="l07-gis-i.html#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Cairo&quot;</span>, <span class="st">&quot;Cairo&quot;</span>, <span class="st">&quot;Egypt&quot;</span>, <span class="st">&quot;Mamluks&quot;</span>,</span>
-<span id="cb21-8"><a href="l07-gis-i.html#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Bukhara&quot;</span>, <span class="st">&quot;Bukhara&quot;</span>, <span class="st">&quot;Uzbekistan&quot;</span>, <span class="st">&quot;Samanids&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="l07-gis-i.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb13-2"><a href="l07-gis-i.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidygeocoder)</span></code></pre></div>
+<p>Nw we need to build a simple table with some data. <code>tribble</code> function builds a tibble row by row. The first row is column names, then we can add values in lines that follow (splitting into lines is for visual readability).</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="l07-gis-i.html#cb14-1" aria-hidden="true" tabindex="-1"></a>dynasties <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb14-2"><a href="l07-gis-i.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>name, <span class="sc">~</span>city, <span class="sc">~</span>country, <span class="sc">~</span>dynasty,</span>
+<span id="cb14-3"><a href="l07-gis-i.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Damascus&quot;</span>,<span class="st">&quot;Damascus&quot;</span>, <span class="st">&quot;Syria&quot;</span>, <span class="st">&quot;Umayyads&quot;</span>,</span>
+<span id="cb14-4"><a href="l07-gis-i.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Baghdad&quot;</span>, <span class="st">&quot;Baghdad&quot;</span>, <span class="st">&quot;Iraq&quot;</span>, <span class="st">&quot;Abbasids&quot;</span>,</span>
+<span id="cb14-5"><a href="l07-gis-i.html#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Nishapur&quot;</span>, <span class="st">&quot;Nishapur&quot;</span>, <span class="st">&quot;Iran&quot;</span>, <span class="st">&quot;Tahirids&quot;</span>,</span>
+<span id="cb14-6"><a href="l07-gis-i.html#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Cordoba&quot;</span>, <span class="st">&quot;Cordoba&quot;</span>, <span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;Spanish Umayyads&quot;</span>,</span>
+<span id="cb14-7"><a href="l07-gis-i.html#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Cairo&quot;</span>, <span class="st">&quot;Cairo&quot;</span>, <span class="st">&quot;Egypt&quot;</span>, <span class="st">&quot;Mamluks&quot;</span>,</span>
+<span id="cb14-8"><a href="l07-gis-i.html#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Bukhara&quot;</span>, <span class="st">&quot;Bukhara&quot;</span>, <span class="st">&quot;Uzbekistan&quot;</span>, <span class="st">&quot;Samanids&quot;</span>)</span></code></pre></div>
 <p>Now, the following line calls the function <code>geocode</code> (from <code>tidygeocoder</code>) and tries to get all the relevant data from Open Street Maps (<code>osm</code>). You can check the page of the library for more detials: <a href="https://jessecambon.github.io/2020/07/15/tidygeocoder-1-0-0.html" class="uri">https://jessecambon.github.io/2020/07/15/tidygeocoder-1-0-0.html</a>.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="l07-gis-i.html#cb22-1" aria-hidden="true" tabindex="-1"></a>dynasties_locations <span class="ot">&lt;-</span> dynasties <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="l07-gis-i.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  tidygeocoder<span class="sc">::</span><span class="fu">geocode</span>(<span class="at">city =</span> city, <span class="at">country =</span> country, <span class="at">method =</span> <span class="st">&#39;osm&#39;</span>, </span>
-<span id="cb22-3"><a href="l07-gis-i.html#cb22-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">full_results =</span> <span class="cn">TRUE</span>, <span class="at">custom_query=</span> <span class="fu">list</span>(<span class="at">extratags =</span> <span class="dv">1</span>))</span>
-<span id="cb22-4"><a href="l07-gis-i.html#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-5"><a href="l07-gis-i.html#cb22-5" aria-hidden="true" tabindex="-1"></a>dynasties_locations</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="l07-gis-i.html#cb15-1" aria-hidden="true" tabindex="-1"></a>dynasties_locations <span class="ot">&lt;-</span> dynasties <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="l07-gis-i.html#cb15-2" aria-hidden="true" tabindex="-1"></a>  tidygeocoder<span class="sc">::</span><span class="fu">geocode</span>(<span class="at">city =</span> city, <span class="at">country =</span> country, <span class="at">method =</span> <span class="st">&#39;osm&#39;</span>, </span>
+<span id="cb15-3"><a href="l07-gis-i.html#cb15-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">full_results =</span> <span class="cn">TRUE</span>, <span class="at">custom_query=</span> <span class="fu">list</span>(<span class="at">extratags =</span> <span class="dv">1</span>))</span>
+<span id="cb15-4"><a href="l07-gis-i.html#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="l07-gis-i.html#cb15-5" aria-hidden="true" tabindex="-1"></a>dynasties_locations</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 40
 ##   name  city  country dynasty   lat  long place_id licence osm_type osm_id
 ##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;int&gt;
@@ -574,21 +563,14 @@ Budapest,Austria-Hungary,19.05326,47.50452</code></pre>
 ## #   extratags.border_type &lt;chr&gt;, `extratags.left:province` &lt;chr&gt;,
 ## #   `extratags.right:province` &lt;chr&gt;</code></pre>
 <p>To check whether results are any go, we can use the following code to generate a very simple map. (We will get into details of how to build beautiful maps in the next lessons.)</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="l07-gis-i.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb24-2"><a href="l07-gis-i.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(maps)</span></code></pre></div>
-<pre><code>## Loading required package: maps</code></pre>
-<pre><code>## 
-## Attaching package: &#39;maps&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     map</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="l07-gis-i.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb28-2"><a href="l07-gis-i.html#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="l07-gis-i.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dynasties_locations, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat)) <span class="sc">+</span></span>
-<span id="cb28-4"><a href="l07-gis-i.html#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">borders</span>(<span class="st">&#39;world&#39;</span>) <span class="sc">+</span></span>
-<span id="cb28-5"><a href="l07-gis-i.html#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">force =</span> <span class="dv">2</span>, <span class="at">segment.alpha =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
-<span id="cb28-6"><a href="l07-gis-i.html#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_void</span>()</span></code></pre></div>
-<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="l07-gis-i.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb17-2"><a href="l07-gis-i.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(maps)</span>
+<span id="cb17-3"><a href="l07-gis-i.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="l07-gis-i.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dynasties_locations, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="l07-gis-i.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">borders</span>(<span class="st">&#39;world&#39;</span>) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="l07-gis-i.html#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">force =</span> <span class="dv">2</span>, <span class="at">segment.alpha =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb18-4"><a href="l07-gis-i.html#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_void</span>()</span></code></pre></div>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 </div>
 </div>
 <div id="INCLASSII07" class="section level2" number="7.6">
