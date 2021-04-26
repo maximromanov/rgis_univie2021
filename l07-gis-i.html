@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 L06: Data II | 070184 UE Methodological course - Digital Humanities Skills: Intro to GIS (2021S), R Edition</title>
+  <title>7 L07: GIS I | 070184 UE Methodological course - Digital Humanities Skills: Intro to GIS (2021S), R Edition</title>
   <meta name="description" content="This is a collection of relevant materials for the class ‘070184 UE Methodological course - Digital Humanities Skills: Intro to GIS (2021S), R Edition,’ offered at the University of Vienna and taught by Maxim G. Romanov" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 L06: Data II | 070184 UE Methodological course - Digital Humanities Skills: Intro to GIS (2021S), R Edition" />
+  <meta property="og:title" content="7 L07: GIS I | 070184 UE Methodological course - Digital Humanities Skills: Intro to GIS (2021S), R Edition" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://maximromanov.github.io/rgis_univie2021/" />
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="maximromanov/rgis_univie2021" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 L06: Data II | 070184 UE Methodological course - Digital Humanities Skills: Intro to GIS (2021S), R Edition" />
+  <meta name="twitter:title" content="7 L07: GIS I | 070184 UE Methodological course - Digital Humanities Skills: Intro to GIS (2021S), R Edition" />
   
   <meta name="twitter:description" content="This is a collection of relevant materials for the class ‘070184 UE Methodological course - Digital Humanities Skills: Intro to GIS (2021S), R Edition,’ offered at the University of Vienna and taught by Maxim G. Romanov" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="120x120" href="touch-icon.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="l05-data-i.html"/>
-<link rel="next" href="l07-gis-i.html"/>
+<link rel="prev" href="l06-data-ii.html"/>
+<link rel="next" href="misc-i-reading-assignments.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -314,161 +314,248 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="l06-data-ii" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> L06: Data II</h1>
-<div id="modeling-manipulating" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> Modeling &amp; Manipulating</h2>
+<div id="l07-gis-i" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> L07: GIS I</h1>
+<div id="georeferencing-geocoding" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Georeferencing &amp; Geocoding</h2>
 </div>
-<div id="TAG06" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> Goals</h2>
-<p>Getting to know the basics of working with data: modeling, manipulating</p>
+<div id="TAG07" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Goals</h2>
+<p>Learning about what georeferencing and geocoding are.
+Learning how to do georeferencing and geocoding.</p>
 </div>
-<div id="SOFT06" class="section level2" number="6.3">
-<h2><span class="header-section-number">6.3</span> Software</h2>
+<div id="SOFT07" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Software</h2>
 <ul>
+<li>QGIS, <a href="https://qgis.org/" class="uri">https://qgis.org/</a></li>
 <li>R</li>
-<li>Excel, Google Spreadsheets, or any other alternative</li>
 </ul>
 </div>
-<div id="additional-materials" class="section level2" number="6.4">
-<h2><span class="header-section-number">6.4</span> Additional Materials</h2>
+<div id="additional-materials" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Additional Materials</h2>
 <ul>
-<li>Two excellent books on data visualization with R (both available onlenly online):
+<li>QGIS tutorials in <em>Mapping for Historians</em>: <a href="http://transnationalhistory.net/mapping/tutorials/" class="uri">http://transnationalhistory.net/mapping/tutorials/</a>
 <ul>
-<li>Kieran Healy. <em>Data Visualization: A Practical Guide</em>, <a href="https://socviz.co/" class="uri">https://socviz.co/</a>.
-<ul>
-<li>This book is more conceptual and is more of a textbook</li>
-<li>Everybody should read the first chapter “Look at Data!” (<a href="https://socviz.co/lookatdata.html" class="uri">https://socviz.co/lookatdata.html</a>)</li>
+<li>specifically on georeferencing: <a href="http://transnationalhistory.net/mapping/tutorials/georeferencing/" class="uri">http://transnationalhistory.net/mapping/tutorials/georeferencing/</a></li>
 </ul></li>
-<li>Rob Kabacoff. <em>Data Visualization with R</em>, <a href="https://rkabacoff.github.io/datavis/" class="uri">https://rkabacoff.github.io/datavis/</a>
-<ul>
-<li>This book is more of a reference and a cookbook</li>
-</ul></li>
-</ul></li>
+<li>More general QGIS Tutorials: <a href="http://www.qgistutorials.com/en/index.html" class="uri">http://www.qgistutorials.com/en/index.html</a></li>
+<li>Additionally, see tutorials on <em>Programming Historian</em> in the section <code>mapping</code>: <a href="https://programminghistorian.org/en/lessons/?topic=mapping" class="uri">https://programminghistorian.org/en/lessons/?topic=mapping</a></li>
 </ul>
 </div>
-<div id="INCLASSI06" class="section level2" number="6.5">
-<h2><span class="header-section-number">6.5</span> In Class I: <em>Theoretical and Conceptual</em></h2>
+<div id="INCLASSI07" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> In Class I: <em>Theoretical and Conceptual</em></h2>
+<div id="projection-issues" class="section level3" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Projection Issues</h3>
+<div class="figure">
+<img src="/files/QGIS/headGlobus.jpg" alt="" />
+<p class="caption">US_eastStates_03.jpg</p>
 </div>
-<div id="WAYS06" class="section level2" number="6.6">
-<h2><span class="header-section-number">6.6</span> Ways of modeling data: Categorization</h2>
-<blockquote>
-<p>“[Modeling is] a continual process of coming to know by manipulating representations.”</p>
-</blockquote>
-<ul>
-<li>Willard McCarty, “Modeling: A Study in Words and Meanings,” in Susan Schreibman, Ray Siemens, and John Unsworth, <em>A New Companion to Digital Humanities</em>, 2nd ed. (Chichester, UK, 2016), <a href="http://www.digitalhumanities.org/companion/" class="uri">http://www.digitalhumanities.org/companion/</a>.</li>
-</ul>
-<p>One of the most common way of modeling data in historical research—joining items into broader categories. Categorization is important because it allows to group items with low frequencies into items with higher frequencies, and through those discern patterns and trends. Additionally, alternative categorizations allow one to test different perspectives on historical data.</p>
-<p>The overall process is rather simple in terms of technological implementation, but is quite complex in terms of subject knowledge and specialized expertise is required to make well-informed decisions.</p>
-<ul>
-<li>For example, let’s say we have the following categories: <em>baker</em>, <em>blacksmith</em>, <em>coppersmith</em>, <em>confectioner</em>, and <em>goldsmith</em>.
-<ul>
-<li>These can be categorized as <strong>occupations</strong>;</li>
-<li>Additionally, <em>blacksmith</em>, <em>coppersmith</em>, and <em>goldsmith</em> can also be categorized as <strong>‘metal industry’</strong>, while <em>baker</em> and <em>confectioner</em>, can be categorized as <strong>‘food industry’</strong>;</li>
-<li>Yet even more, one might want to introduce additional categories, such as <strong>luxury production</strong> to include items like <em>goldsmith</em> and <em>confectioner</em>; and <strong>regular production</strong> for items like <em>baker</em>, <em>blacksmith</em>, <em>coppersmith</em>.</li>
-</ul></li>
-<li>Such categorizations can be created in two different ways, with each having its advantages:
-<ul>
-<li>first, one can create them as additional columns. This approach will allow to always have the original—or alternative—classifications at hand, which is helpful for re-thinking classifications and creating alternative ones where items will be reclassified differently, based on a different set of assumptions about your subject.</li>
-<li>second, these can be created in separate files, which might be easier as one does not have to stare at existing classifications and therefore will be less influenced by them in making new classification decisions.</li>
-</ul></li>
-<li>Additionally, one can use some pre-existing classifications that have already been created in academic literature. These most likely need to be digitized and converted into properly formatted data, as we discussed in the previous lesson.</li>
-</ul>
+<p>See, <a href="https://en.wikipedia.org/wiki/List_of_map_projections" class="uri">https://en.wikipedia.org/wiki/List_of_map_projections</a>.</p>
 </div>
-<div id="NORM06" class="section level2" number="6.7">
-<h2><span class="header-section-number">6.7</span> Normalization</h2>
-<p>This is a rather simple, yet important procedure, which is, on the technical side, very similar to what was described above. In essence, the main goal of normalization is to remove insignificant differences that may hinder analysis.</p>
-<ul>
-<li>Most common examples would be:
-<ul>
-<li>bringing information to the same format (e.g., dates, names, etc.)</li>
-<li>unifying spelling differences</li>
-</ul></li>
-</ul>
-<p>The best practice is to <strong>preserve the initial data</strong>, creating <em>normalized</em> data in separate columns (or tables)</p>
+<div id="a-digital-map-layers-of-goodness" class="section level3" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> A Digital Map: Layers of Goodness</h3>
+<div class="figure">
+<img src="/files/QGIS/maps_layers.jpg" alt="" />
+<p class="caption">US_eastStates_03.jpg</p>
 </div>
-<div id="note-proxies-features-abstractions" class="section level2" number="6.8">
-<h2><span class="header-section-number">6.8</span> Note: <em>Proxies</em>, <em>Features</em>, <em>Abstractions</em></h2>
-<p>These are the terms that refer to the same idea. The notion of <em>proxies</em> is used in data visualization, that of <em>features</em>—in computer science; that of <em>abstractions</em>—in the humanities.</p>
-<p>The main idea behind these terms is that some simple <em>features</em> of an object can act as <em>proxies</em> to some complex phenomena.</p>
-<p>For example, Ian Morris uses the size of cities as a proxy to the complexity of social organization. The logic is following: the larger the size of a city, the more complex social, economic and technical organization is required to keep that city functional, therefore is can be used as an indicator of the social complexity.</p>
-<p>While <em>proxies</em> are selected from what is available—usually not much, especially when it comes to historical data—as a way to approach something more complex, it may be argued that abstractions are often arrived to from the opposite direction. We start with an object which is available in its complexity and we reduce its complexity to a more manageable form which—we expect—would prepresent a particular aspect of the initial complex object. Most commonly this is applied to texts in a natural language. For example, in <em>stylometry</em> texts are reduced to freqiency lists of most frequent <em>features</em>, which are expected to represent an <em>authorial fingerprint</em>.</p>
-<p>The complexity of texts can be reduced in a number of ways: into a list of lemmas (e.g., for topic modeling analysis), frequency lists (e.g., for document distance comparison), syntactic structures, ngrams, etc. This list is never set and researchers can create multiple abstractions depending on their research questions.</p>
-</div>
-<div id="INCLASSII06" class="section level2" number="6.9">
-<h2><span class="header-section-number">6.9</span> In Class II: <em>Practical</em></h2>
-<p>Data for the practical session and homework: <a href="./files/Bosker_Data.zip">Bosker_Data.zip</a>. The data is available in open access and is a supplement to a study (see, <em>Reference Materials</em>).</p>
-<p>The zipped file includes everything you need for the practical session. Download and unzip (read the article at home!).</p>
-<p><strong>Note:</strong> create a notebook and work through the following questions. Group work is encouraged. Please, explain in one or two sentences what you do in each step, so that your work is also human-readable. Please, submit this notebook as your homework. Make sure to name your file in the following manner: <code>070184-LXX-HW-YourLastName-YourMatriculationNumber.EXT</code>, where <code>LXX</code> is the number of the lesson for which you submit homework; <code>YourLastName</code> is your last name; and <code>YourMatriculationNumber</code> is your matriculation number; <code>EXT</code> is the extension of your file — yopu can submit it either as HTML or as a PDF.</p>
-</div>
-<div id="SI06" class="section level2" number="6.10">
-<h2><span class="header-section-number">6.10</span> <em>Bosker et al.</em> Dataset</h2>
-<p>Please, provide your answers (a few sentences) and/or working code to the following questions:</p>
 <ul>
-<li>Describe and provide working <code>R code</code>:
+<li>Layers:
 <ul>
-<li>Can you figure which file contains data?</li>
-<li>In which format is data?</li>
-<li>How can we load it into R?</li>
+<li>Analytical Layer</li>
+<li>Our Data</li>
+<li>Annotation/Legend</li>
 </ul></li>
-<li>Describe and provide working <code>R code</code>: What is the chronological extent of this data?</li>
-<li>Describe: [<em>easy-ish</em>] What periods can it be divided into? How can we do that?</li>
-<li>Describe, provide more than one strategy. (<em>Comment</em>: Sometimes you must be precise, sometimes approximation may be sufficient; also, consider such issues as reliability and availability of data. Is the data that you have reliable? Are necessary values available? Etc.) How can we introduce the following categories into this data:
+<li>Social Geography
 <ul>
-<li>[<em>easy</em>] North Africa and Europe?</li>
-<li>[<em>a bit more complicated</em>] the Austro-Hungarian Empire?
+<li>Political Boundaries</li>
+<li>Settlements, etc.</li>
+</ul></li>
+<li>Physical Geography
 <ul>
-<li><strong>Optional coding</strong> When did the Empire had the largest number of cities (based on the data set)?</li>
-<li><strong>Optional coding</strong> When was its population at the highest?</li>
+<li>Types of surface</li>
+<li>Continents / Coastal Line</li>
+<li>Elevation profile</li>
+<li>Rivers, Lakes, etc.</li>
 </ul></li>
-<li>[<em>a tad tricky</em>] Christiandom and Islamdom?
-<ul>
-<li><strong>Optional coding</strong> What are the largest cities of Islamdom for each reported period?</li>
-<li><strong>Optional coding</strong> What are the largest western cities of Islamdom between 1000 and 1500 CE?</li>
-</ul></li>
-</ul></li>
+<li>Base Layer: Graticule</li>
 </ul>
 </div>
-<div id="RM06" class="section level2" number="6.11">
-<h2><span class="header-section-number">6.11</span> Reference Materials</h2>
+<div id="main-types-of-data-points-lines-polygons" class="section level3" number="7.5.3">
+<h3><span class="header-section-number">7.5.3</span> Main Types of Data: Points, Lines, Polygons</h3>
 <ul>
-<li>Bosker, Maarten, Eltjo Buringh, and Jan Luiten van Zanden. 2012. “From Baghdad to London: Unraveling Urban Development in Europe, the Middle East, and North Africa, 800–1800.” <em>The Review of Economics and Statistics</em> 95 (4): 1418–37. <a href="https://doi.org/10.1162/REST_a_00284" class="uri">https://doi.org/10.1162/REST_a_00284</a>.</li>
-<li>Bosker, Maarten, Eltjo Buringh, and Jan Luiten Van Zanden. 2014. “Replication Data for: From Baghdad to London: Unraveling Urban Development in Europe, the Middle East, and North Africa, 800-1800.” <em>Harvard Dataverse</em>. <a href="https://doi.org/10.7910/DVN/24747" class="uri">https://doi.org/10.7910/DVN/24747</a>.</li>
-</ul>
-</div>
-<div id="AR06" class="section level2" number="6.12">
-<h2><span class="header-section-number">6.12</span> Additional Readings</h2>
+<li>Analytical Layer
 <ul>
-<li>Moretti, Franco. 2007. <em>Graphs, Maps, Trees: Abstract Models for Literary History</em>. London - New York: Verso.</li>
-<li>Moretti, Franco. 2013. <em>Distant Reading.</em> London ; New York: Verso.</li>
-<li>Romanov, Maxim G. 2017. “Algorithmic Analysis of Medieval Arabic Biographical Collections.” <em>Speculum</em> 92 (S1): S226–46. <a href="https://doi.org/10.1086/693970" class="uri">https://doi.org/10.1086/693970</a>.</li>
+<li>Our Data
+<ul>
+<li>Points:
+<ul>
+<li>item, x<strong>[1]</strong>, point(lat, lon)<strong>[2]</strong></li>
+</ul></li>
+<li>Lines:
+<ul>
+<li>item, x<strong>[1]</strong>, from(lat, lon)<strong>[2]</strong>, to(lat, lon)<strong>[2]</strong></li>
+</ul></li>
+<li>Polygons:
+<ul>
+<li>item, x, area(lat, lon; lat, lon; … lat, lon)<strong>[2]</strong></li>
+</ul></li>
+</ul></li>
+<li>Annotation/Legend</li>
+</ul></li>
 </ul>
+<p><strong>[1]</strong> where x is a categorical parameter; <strong>[2]</strong> lat/lon: decimal coordinates (not DMS)</p>
 </div>
-<div id="HW06" class="section level2" number="6.13">
-<h2><span class="header-section-number">6.13</span> Homework</h2>
+<div id="georeferencing" class="section level3" number="7.5.4">
+<h3><span class="header-section-number">7.5.4</span> Georeferencing</h3>
+<p>QGIS must be installed and running. <em>Note:</em> Interfaces might differ from system to system; the same applies to different versions of QGIS. Before we proceed, you may want to add Google Layers. To Add Google maps layer: (on the left pane, <em>Browser</em>) XYZ &gt; New connection &gt; paste one of the following links (Source: <a href="https://geogeek.xyz/how-to-add-google-maps-layers-in-qgis-3.html" class="uri">https://geogeek.xyz/how-to-add-google-maps-layers-in-qgis-3.html</a>):</p>
 <ol style="list-style-type: decimal">
-<li><strong>Bosker et al. Dataset</strong>. Finish the practical assignment on the <em>Bosker et al.</em> Dataset.</li>
-<li><strong>Viennese Dataset Assignments</strong>. Collectively, you should now have all the data on Vienna’s districts. Next assignment is as follows:
+<li><strong>Google Maps</strong>: <a href="https://mt1.google.com/vt/lyrs=r&amp;x=%7Bx%7D&amp;y=%7By%7D&amp;z=%7Bz%7D" class="uri">https://mt1.google.com/vt/lyrs=r&amp;x={x}&amp;y={y}&amp;z={z}</a></li>
+<li><strong>Google Satellite</strong>: <a href="http://www.google.cn/maps/vt?lyrs=s@189&amp;gl=cn&amp;x=%7Bx%7D&amp;y=%7By%7D&amp;z=%7Bz%7D" class="uri">http://www.google.cn/maps/vt?lyrs=s@189&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={z}</a></li>
+<li><strong>Google Satellite Hybrid</strong>: <a href="https://mt1.google.com/vt/lyrs=y&amp;x=%7Bx%7D&amp;y=%7By%7D&amp;z=%7Bz%7D" class="uri">https://mt1.google.com/vt/lyrs=y&amp;x={x}&amp;y={y}&amp;z={z}</a></li>
+<li><strong>Google Terrain</strong>: <a href="https://mt1.google.com/vt/lyrs=t&amp;x=%7Bx%7D&amp;y=%7By%7D&amp;z=%7Bz%7D" class="uri">https://mt1.google.com/vt/lyrs=t&amp;x={x}&amp;y={y}&amp;z={z}</a></li>
+<li><strong>Google Roads</strong>: <a href="https://mt1.google.com/vt/lyrs=h&amp;x=%7Bx%7D&amp;y=%7By%7D&amp;z=%7Bz%7D" class="uri">https://mt1.google.com/vt/lyrs=h&amp;x={x}&amp;y={y}&amp;z={z}</a></li>
+</ol>
+<p><strong>NB:</strong> Images of maps to work with below</p>
+<div id="step-by-step-instructions" class="section level4" number="7.5.4.1">
+<h4><span class="header-section-number">7.5.4.1</span> Step-by-step instructions</h4>
+<ul>
+<li>In your <code>XYZ Tiles</code>, double click on any Google layer that you added (or on OpenStreetMap)
+<ul>
+<li>A layer should be added to the main map (see, Layer pane)</li>
+</ul></li>
+<li>Open Georeferencer: <code>Raster</code> &gt; <code>Georeferencer</code>
+<ul>
+<li>if you do not see it there, it must be activated first:
+<ul>
+<li><code>Plugins</code> &gt; <code>Manage and Install Plugins...</code> &gt; [search for <em>georeferencer</em>], then tick a box against <strong>Georeferencer GDAL</strong></li>
+</ul></li>
+</ul></li>
+<li>In Georeferencer: <code>File</code> &gt; <code>Open Raster</code> (also the first button on the main panel)
+<ul>
+<li>Choose a file. Lets start with <em>US_eastStates_03.jpg</em> (this one has a grid, so it will be easier to process)</li>
+<li>In <em>Coordinate Reference System Selector</em>, choose <strong>WGS 84 / Pseudo-Mercator</strong>, then clock <code>OK</code></li>
+</ul></li>
+<li>Open <code>Settings</code> &gt; <code>Transformation settings</code> (or click the yellow gears button)
+<ul>
+<li>Choose settings like on the screenshot below (you can also change <code>Compression</code> setting, which will generate a smaller map-image):
+<img src="/files/QGIS/transfSettings.png" alt="US_eastStates_03.jpg" /></li>
+</ul></li>
+<li>Now, adding georeference points:
+<img src="/files/QGIS/coordinates.png" alt="US_eastStates_03.jpg" />
+<ul>
+<li>If you have a grid, it is very easy: just type in coordinates</li>
+<li>If you don’t, it is tricky: you need to find the same features on the image and on the map (for this, click on <code>From Map Canvas</code>)</li>
+</ul></li>
+<li><strong>[!!!]</strong> Ideally, if you know projection of the map, you only need a few points; this almost never happens, so, the more points you create, the more precisely your image will be georeferenced. This is easy when you have a grid.</li>
+<li>When you are done with collecting points, click on <code>PLAY</code> button (green triangle)
+<ul>
+<li>The image of your georeferenced map should appear in the main window.</li>
+</ul></li>
+<li><strong>[!!!]</strong> Keep in mind that you add layers to your map and a layer on top may cover the layer below!</li>
+</ul>
+<p>In general, this procedure can be extremely helpful if:</p>
+<ul>
+<li>you need to collect geographical information from historical maps</li>
+<li>you want to use some historical map as the base layer for mapping your data</li>
+</ul>
+</div>
+<div id="collecting-point-data-very-simple-way" class="section level4" number="7.5.4.2">
+<h4><span class="header-section-number">7.5.4.2</span> Collecting Point Data (Very Simple Way)</h4>
+<ul>
+<li>Create a CSV file; copy/paste the content from below (three lines of text!)</li>
+</ul>
+<pre><code>city,state,lon,lat,lon1,lat1
+New York,New York,-8234229.297,4970380.761,-8234229.297,4970380.761
+Philadelphia,Pennsylvania,-8368867.370,4858182.367,-8368867.370,4858182.367</code></pre>
+<ul>
+<li>In QGIS, load this file by:
+<ul>
+<li><code>Layer</code> &gt; <code>Add Layer</code> &gt; <code>Add Delimited Text Layer</code></li>
+<li>Settings should look like on the screenshor below
+<ul>
+<li>CSV (comma separated format)</li>
+<li>Point coodinates (X field: <code>lon</code>; Y field: <code>lat</code>)</li>
+<li>Geometry CRS: <code>EPSG:4325 - WGS 84 / Pseudo Mercator</code></li>
+<li>(you will have only two lines of data, instead of five)</li>
+<li>Make sure to click <code>Add</code> when you are done!
+<img src="/files/QGIS/delimitedTextLayer.png" alt="US_eastStates_03.jpg" /></li>
+</ul></li>
+</ul></li>
+<li>The layer is there, but we need to add labels to see the cities
+<ul>
+<li>Right-click on the layer &gt; Properties</li>
+<li>On the tab <code>Labels</code> change the settings like on the screenshot below</li>
+<li>Click <code>Apply</code>, then <code>OK</code>.
+<img src="/files/QGIS/citiesLabels.png" alt="US_eastStates_03.jpg" /></li>
+</ul></li>
+<li>You should see two cities now on the map:
+<ul>
+<li>If nothing appears, try: Right-click on the layer &gt; Set CRS &gt; Set Layer CRS: Choose <code>WGS 84 / Pseudo-Mercator</code></li>
+</ul></li>
+<li>Now, we can use <code>Coordinate Capture</code> plugin to collect data from our georeferenced map:
+<ul>
+<li>If activated, coordinarte capture should be visible in lower right corner
+<ul>
+<li>To activate coordinate capture: <code>Plugins</code> &gt; <code>Manage and Install Plugins...</code> &gt; [search for <em>coordinate capture</em>], then tick a box against <strong>Coordinate Capture</strong></li>
+</ul></li>
+</ul></li>
+<li>Collecting coordinates:
+<ul>
+<li>Keep the initial CSV open in some editor</li>
+<li>In <code>Coordinate Capture</code>, click <em>Start capture</em>
+<ul>
+<li>Click on any point on the map &gt; coordinates of that location will appear in the plugin</li>
+<li>Click <code>Copy to Clipboard</code></li>
+</ul></li>
+<li>Go back to the open CSV:
+<ul>
+<li>Add a new line:
+<ul>
+<li>Type the name of the city</li>
+<li>Add comma and type the name of the state (alternatively, just add another comma)</li>
+<li>Now, paste what you copied into Clipboard (this will add two sets of coordinates)</li>
+</ul></li>
+<li>Save the file</li>
+</ul></li>
+<li>Back in QGIS:
+<ul>
+<li>Switch the layer off and on: after that the newly-added city must appear on the map.</li>
+</ul></li>
+<li>Repeat, until all required data is collected.</li>
+</ul></li>
+</ul>
+<p>What is georeferencing?</p>
+<p>What is geocoding?</p>
+<p>Why do we need these?</p>
+</div>
+</div>
+</div>
+<div id="INCLASSII07" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> In Class II: <em>Practical</em></h2>
+</div>
+<div id="RM07" class="section level2" number="7.7">
+<h2><span class="header-section-number">7.7</span> Reference Materials</h2>
+<ul>
+<li><p>Clifford, Jim, Josh MacFadyen, and Daniel Macfarlane. 2013. “Installing QGIS 2.0 and Adding Layers.” Programming Historian, December. <a href="https://programminghistorian.org/lessons/qgis-layers" class="uri">https://programminghistorian.org/lessons/qgis-layers</a>.</p></li>
+<li><p>Clifford, Jim, Josh MacFadyen, and Daniel Macfarlane. 2013. “Georeferencing in QGIS 2.0.” Programming Historian, December. <a href="https://programminghistorian.org/lessons/georeferencing-qgis" class="uri">https://programminghistorian.org/lessons/georeferencing-qgis</a>.</p></li>
+</ul>
+</div>
+<div id="AR07" class="section level2" number="7.8">
+<h2><span class="header-section-number">7.8</span> Additional Readings</h2>
+<p>…</p>
+</div>
+<div id="HW07" class="section level2" number="7.9">
+<h2><span class="header-section-number">7.9</span> Homework</h2>
 <ol style="list-style-type: decimal">
-<li>Work together to create one dataset with all the data on houses and inhabitants on Vienna; what would be the best structure for this dataset?</li>
-<li>Make graphs of the growth of all districts — both, for houses and for inhabitants</li>
-<li>Make a graph of the growth of Vienna using this data. Here, again, you should have two graphs (two perspectives): one based on the number of houses, and another — on the number of inhabitants. After you have the graph, provide your interpretation (this implies looking for additional information, not simply relying on the graph).</li>
-</ol></li>
-<li><strong>Data visualizations</strong>:
-<ol style="list-style-type: decimal">
-<li>Please, make sure to read Kieran Healy’s “Look at Data!” (<a href="https://socviz.co/lookatdata.html" class="uri">https://socviz.co/lookatdata.html</a>)</li>
-<li>Using what you have learned in the chapter, take a close look at the following datasets (given in the order of increasing size and complexity) and think about how they can be visualized. The main goal is to come up with verbal descriptions of how this data can be visualized and what you may expect to learn from these visualizations. You are, of course, welcome to generate those visualizations. Again, group work is encouraged — brainstorming is particularly good for this task.
-<ol style="list-style-type: decimal">
-<li><code>historydata::early_colleges</code></li>
-<li><code>europop::europop</code></li>
-<li><code>historydata::us_cities_pop</code></li>
-</ol></li>
-</ol></li>
-<li><em>Note</em>: you can put everything in one notebook. Do not forget to send me your work!</li>
+<li>Finish georeferencing maps:
+<ul>
+<li>map of Europe (easy)</li>
+<li>map of Vienna (intermeddiate-hard)</li>
+</ul></li>
 </ol>
 </div>
-<div id="SH06" class="section level2" number="6.14">
-<h2><span class="header-section-number">6.14</span> Submitting homework</h2>
+<div id="SH07" class="section level2" number="7.10">
+<h2><span class="header-section-number">7.10</span> Submitting homework</h2>
 <ul>
 <li>Homework assignment must be submitted by the beginning of the next class;</li>
 <li>Email your homework to the instructor as attachments.
@@ -484,8 +571,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="l05-data-i.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="l07-gis-i.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="l06-data-ii.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="misc-i-reading-assignments.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
