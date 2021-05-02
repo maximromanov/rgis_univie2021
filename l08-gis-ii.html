@@ -493,15 +493,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Points:
 <ul>
-<li>item, x<strong>[1]</strong>, point(lat, lon)<strong>[2]</strong></li>
+<li>item, x<strong>[1]</strong>, point(lat, lon)<strong>[2]</strong>; item, x<strong>[1]</strong>, point(lat, lon)<strong>[2]</strong>; item, x<strong>[1]</strong>, point(lat, lon)<strong>[2]</strong>; … item, x<strong>[1]</strong>, point(lat, lon)<strong>[2]</strong>;</li>
 </ul></li>
 <li>Lines:
 <ul>
-<li>item, x<strong>[1]</strong>, from(lat, lon)<strong>[2]</strong>, to(lat, lon)<strong>[2]</strong></li>
+<li>item, x<strong>[1]</strong>, {from(lat, lon)<strong>[2]</strong>, to(lat, lon); from(lat, lon)<strong>[2]</strong>, to(lat, lon); from(lat, lon)<strong>[2]</strong>, to(lat, lon); … from(lat, lon)<strong>[2]</strong>, to(lat, lon);}<strong>[2]</strong></li>
 </ul></li>
 <li>Polygons:
 <ul>
-<li>item, x, area(lat, lon; lat, lon; … lat, lon)<strong>[2]</strong></li>
+<li>item, x, area(lat1, lon1; lat2, lon2; … latX, lonX; … lat1, lon1)<strong>[2]</strong></li>
 </ul></li>
 </ul></li>
 <li>Annotation/Legend</li>
