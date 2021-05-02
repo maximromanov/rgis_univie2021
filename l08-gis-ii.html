@@ -276,8 +276,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1.2" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#SOFT08"><i class="fa fa-check"></i><b>8.1.2</b> Software</a></li>
 <li class="chapter" data-level="8.1.3" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#AM08"><i class="fa fa-check"></i><b>8.1.3</b> Additional Materials</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#HW08"><i class="fa fa-check"></i><b>8.2</b> Homework</a></li>
-<li class="chapter" data-level="8.3" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#SH08"><i class="fa fa-check"></i><b>8.3</b> Submitting homework</a></li>
+<li class="chapter" data-level="8.2" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#corer-concepts-and-teir-practical-implementations"><i class="fa fa-check"></i><b>8.2</b> Corer concepts and teir practical implementations</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#projection-issues"><i class="fa fa-check"></i><b>8.2.1</b> Projection Issues</a></li>
+<li class="chapter" data-level="8.2.2" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#a-digital-map-layers-of-goodness"><i class="fa fa-check"></i><b>8.2.2</b> A Digital Map: Layers of Goodness</a></li>
+<li class="chapter" data-level="8.2.3" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#main-types-of-data-points-lines-polygons"><i class="fa fa-check"></i><b>8.2.3</b> Main Types of Data: Points, Lines, Polygons</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#HW08"><i class="fa fa-check"></i><b>8.3</b> Homework</a></li>
+<li class="chapter" data-level="8.4" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#SH08"><i class="fa fa-check"></i><b>8.4</b> Submitting homework</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="l09-gis-iii.html"><a href="l09-gis-iii.html"><i class="fa fa-check"></i><b>9</b> L09: GIS III</a>
 <ul>
@@ -409,7 +415,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">8</span> L08: GIS II</h1>
 <div id="creating-base-maps" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Creating Base Maps</h2>
-<p><em>Coming soon</em></p>
+<ul>
+<li>Projections; examples; <a href="https://thetruesize.com/" class="uri">https://thetruesize.com/</a></li>
+<li>Understanding main map components: layers of points, lines, polygons and rasters</li>
+<li>Construct a base map, step by step.
+<ul>
+<li>adding main layers</li>
+<li>customizing map with additional goodies</li>
+<li>saving maps</li>
+</ul></li>
+<li>Examples of maps:
+<ul>
+<li>Europe</li>
+<li>Islamic world provinces</li>
+</ul></li>
+<li>PS: Maps as Art:
+<ul>
+<li>Vienna</li>
+</ul></li>
+</ul>
 <div id="TAG08" class="section level3" number="8.1.1">
 <h3><span class="header-section-number">8.1.1</span> Goals</h3>
 <p>…</p>
@@ -423,45 +447,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="AM08" class="section level3" number="8.1.3">
 <h3><span class="header-section-number">8.1.3</span> Additional Materials</h3>
 <p>…</p>
-<!-- ### Projection Issues -->
-<!-- ![](./files/QGIS/headGlobus.jpg) -->
-<!-- See, <https://en.wikipedia.org/wiki/List_of_map_projections>. -->
-<!-- ### A Digital Map: Layers of Goodness -->
-<!-- ![](./files/QGIS/maps_layers.jpg) -->
-<!-- * Layers: -->
-<!-- 	* Analytical Layer -->
-<!-- 	* Our Data -->
-<!-- 	* Annotation/Legend -->
-<!-- * Social Geography -->
-<!-- 	* Political Boundaries -->
-<!-- 	* Settlements, etc. -->
-<!-- * Physical Geography -->
-<!-- 	* Types of surface -->
-<!-- 	* Continents / Coastal Line -->
-<!-- 	* Elevation profile -->
-<!-- 	* Rivers, Lakes, etc. -->
-<!-- * Base Layer: Graticule -->
-<!-- ### Main Types of Data: Points, Lines, Polygons -->
-<!-- * Analytical Layer -->
-<!-- 	* Our Data -->
-<!-- 		* Points: -->
-<!-- 			* item, x**[1]**, point(lat, lon)**[2]** -->
-<!-- 		* Lines: -->
-<!-- 			* item, x**[1]**, from(lat, lon)**[2]**, to(lat, lon)**[2]** -->
-<!-- 		* Polygons: -->
-<!-- 			* item, x, area(lat, lon; lat, lon; … lat, lon)**[2]** -->
-<!-- 	* Annotation/Legend -->
-<!-- **[1]** where x is a categorical parameter; **[2]** lat/lon: decimal coordinates (not DMS) -->
+</div>
+</div>
+<div id="corer-concepts-and-teir-practical-implementations" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Corer concepts and teir practical implementations</h2>
+<div id="projection-issues" class="section level3" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Projection Issues</h3>
+<p><img src="files/QGIS/headGlobus.jpg" /></p>
+<p>See, <a href="https://en.wikipedia.org/wiki/List_of_map_projections" class="uri">https://en.wikipedia.org/wiki/List_of_map_projections</a>.</p>
+<p>Website <a href="https://thetruesize.com/" class="uri">https://thetruesize.com/</a> is a nice tool for demonstrating how projection affects our perceprion of reality. On te following two screenshots you can see how the “sizes” of Russia (~17,1 mln km<sup>2</sup>) and China (c. 9,6 mln. km<sup>2</sup>) change when they change places.</p>
+<p><img src="files/china_and_russia01.jpg" /></p>
+<p><img src="files/china_and_russia02.jpg" /></p>
+</div>
+<div id="a-digital-map-layers-of-goodness" class="section level3" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> A Digital Map: Layers of Goodness</h3>
+<p><img src="files/QGIS/maps_layers.jpg" /></p>
+<ul>
+<li>Layers:
+<ul>
+<li>Analytical Layer</li>
+<li>Our Data</li>
+<li>Annotation/Legend</li>
+</ul></li>
+<li>Social Geography
+<ul>
+<li>Political Boundaries</li>
+<li>Settlements, etc.</li>
+</ul></li>
+<li>Physical Geography
+<ul>
+<li>Types of surface</li>
+<li>Continents / Coastal Line</li>
+<li>Elevation profile</li>
+<li>Rivers, Lakes, etc.</li>
+</ul></li>
+<li>Base Layer: Graticule</li>
+</ul>
+</div>
+<div id="main-types-of-data-points-lines-polygons" class="section level3" number="8.2.3">
+<h3><span class="header-section-number">8.2.3</span> Main Types of Data: Points, Lines, Polygons</h3>
+<ul>
+<li>Analytical Layer
+<ul>
+<li>Our Data
+<ul>
+<li>Points:
+<ul>
+<li>item, x<strong>[1]</strong>, point(lat, lon)<strong>[2]</strong></li>
+</ul></li>
+<li>Lines:
+<ul>
+<li>item, x<strong>[1]</strong>, from(lat, lon)<strong>[2]</strong>, to(lat, lon)<strong>[2]</strong></li>
+</ul></li>
+<li>Polygons:
+<ul>
+<li>item, x, area(lat, lon; lat, lon; … lat, lon)<strong>[2]</strong></li>
+</ul></li>
+</ul></li>
+<li>Annotation/Legend</li>
+</ul></li>
+</ul>
+<p><strong>[1]</strong> where x is a categorical parameter; <strong>[2]</strong> lat/lon: decimal coordinates (not DMS)</p>
 <p>…</p>
 </div>
 </div>
-<div id="HW08" class="section level2" number="8.2">
-<h2><span class="header-section-number">8.2</span> Homework</h2>
+<div id="HW08" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> Homework</h2>
 <p>…</p>
 <p>Submit your knitted notebook.</p>
 </div>
-<div id="SH08" class="section level2" number="8.3">
-<h2><span class="header-section-number">8.3</span> Submitting homework</h2>
+<div id="SH08" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Submitting homework</h2>
 <ul>
 <li>Homework assignment must be submitted by the beginning of the next class;</li>
 <li>Email your homework to the instructor as attachments.
