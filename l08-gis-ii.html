@@ -24,7 +24,7 @@
 <meta name="author" content="Maxim G. Romanov" />
 
 
-<meta name="date" content="2021-05-02" />
+<meta name="date" content="2021-05-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -281,6 +281,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2.1" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#projection-issues"><i class="fa fa-check"></i><b>8.2.1</b> Projection Issues</a></li>
 <li class="chapter" data-level="8.2.2" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#a-digital-map-layers-of-goodness"><i class="fa fa-check"></i><b>8.2.2</b> A Digital Map: Layers of Goodness</a></li>
 <li class="chapter" data-level="8.2.3" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#main-types-of-data-points-lines-polygons"><i class="fa fa-check"></i><b>8.2.3</b> Main Types of Data: Points, Lines, Polygons</a></li>
+<li class="chapter" data-level="8.2.4" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#getting-some-libraries"><i class="fa fa-check"></i><b>8.2.4</b> Getting some libraries</a></li>
+<li class="chapter" data-level="8.2.5" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#getting-some-data"><i class="fa fa-check"></i><b>8.2.5</b> Getting some data</a></li>
+<li class="chapter" data-level="8.2.6" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#creating-the-base-map"><i class="fa fa-check"></i><b>8.2.6</b> Creating the Base Map</a></li>
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#HW08"><i class="fa fa-check"></i><b>8.3</b> Homework</a></li>
 <li class="chapter" data-level="8.4" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#SH08"><i class="fa fa-check"></i><b>8.4</b> Submitting homework</a></li>
@@ -415,17 +418,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">8</span> L08: GIS II</h1>
 <div id="creating-base-maps" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Creating Base Maps</h2>
-<p>[x] Projections; examples; <a href="https://thetruesize.com/" class="uri">https://thetruesize.com/</a>
-[x] Understanding main map components: layers of points, lines, polygons and rasters
-- Construct a base map, step by step.
-- adding main layers
-- customizing map with additional goodies
-- saving maps
-- Examples of maps:
-- Europe
-- Islamic world provinces
-- PS: Maps as Art:
-- Vienna</p>
+<ul>
+<li><del>Projections; examples; <a href="https://thetruesize.com/" class="uri">https://thetruesize.com/</a></del></li>
+<li><del>Understanding main map components: layers of points, lines, polygons and rasters</del></li>
+<li>Construct a base map, step by step.
+<ul>
+<li>adding main layers</li>
+<li>customizing map with additional goodies</li>
+<li>saving maps</li>
+</ul></li>
+<li>Examples of maps:
+<ul>
+<li>Europe</li>
+<li>Islamic world provinces</li>
+</ul></li>
+<li>PS: Maps as Art:
+<ul>
+<li>Vienna</li>
+</ul></li>
+</ul>
 <div id="TAG08" class="section level3" number="8.1.1">
 <h3><span class="header-section-number">8.1.1</span> Goals</h3>
 <p>…</p>
@@ -468,9 +479,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li>Physical Geography
 <ul>
-<li>Types of surface</li>
+<li>Types of surface (<em>raster</em>)</li>
 <li>Continents / Coastal Line</li>
-<li>Elevation profile</li>
+<li>Elevation profile (<em>raster</em>)</li>
 <li>Rivers, Lakes, etc.</li>
 </ul></li>
 <li>Base Layer: Graticule</li>
@@ -481,27 +492,185 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="files/gis-data-types.png" /></p>
 <p><strong>SOURCE</strong>: There are 3 types of vector objects: points, lines or polygons. Each object type has a different structure. Image Source: Colin Williams (NEON), via: <a href="https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/">www.earthdatascience.org</a></p>
 <ul>
-<li>Analytical Layers:
+<li><p>Analytical Layers:</p>
 <ul>
 <li>Our Data
 <ul>
 <li>Points:
 <ul>
-<li>item, x<strong>[1]</strong>, point(lat, lon)<strong>[2]</strong>; item, x<strong>[1]</strong>, point(lat, lon)<strong>[2]</strong>; item, x<strong>[1]</strong>, point(lat, lon)<strong>[2]</strong>; … item, x<strong>[1]</strong>, point(lat, lon)<strong>[2]</strong>;</li>
+<li>item1, x<strong>[1]</strong>, point(lat, lon)<strong>[2]</strong>; item2, x<strong>[1]</strong>, point(lat, lon)<strong>[2]</strong>; item3, x<strong>[1]</strong>, point(lat, lon)<strong>[2]</strong>; … itemX, x<strong>[1]</strong>, point(lat, lon)<strong>[2]</strong>;</li>
 </ul></li>
 <li>Lines:
 <ul>
-<li>item, x<strong>[1]</strong>, {from(lat, lon)<strong>[2]</strong>, to(lat, lon); from(lat, lon)<strong>[2]</strong>, to(lat, lon); from(lat, lon)<strong>[2]</strong>, to(lat, lon); … from(lat, lon)<strong>[2]</strong>, to(lat, lon);}<strong>[2]</strong></li>
+<li>line1, x<strong>[1]</strong>, {from(lat, lon)<strong>[2]</strong>, to(lat, lon); from(lat, lon)<strong>[2]</strong>, to(lat, lon); from(lat, lon)<strong>[2]</strong>, to(lat, lon); … from(lat, lon)<strong>[2]</strong>, to(lat, lon);}<strong>[2]</strong> … lineX …</li>
 </ul></li>
 <li>Polygons:
 <ul>
-<li>item, x, area(lat1, lon1; lat2, lon2; … latX, lonX; … lat1, lon1)<strong>[2]</strong></li>
+<li>polygon1, x, area(lat1, lon1; lat2, lon2; … latX, lonX; … lat1, lon1)<strong>[2]</strong> … polygonX …</li>
 </ul></li>
 </ul></li>
 <li>Annotation/Legend</li>
 </ul></li>
 </ul>
 <p><strong>[1]</strong> where x is a categorical parameter; <strong>[2]</strong> lat/lon: decimal coordinates (not DMS)</p>
+</div>
+<div id="getting-some-libraries" class="section level3" number="8.2.4">
+<h3><span class="header-section-number">8.2.4</span> Getting some libraries</h3>
+<pre><code>install.packages(c(&quot;cowplot&quot;, &quot;googleway&quot;, &quot;ggplot2&quot;, &quot;ggrepel&quot;, &quot;ggspatial&quot;, &quot;libwgeom&quot;, &quot;sf&quot;, &quot;rnaturalearth&quot;, &quot;rnaturalearthdata&quot;, &quot;rnaturalearthhires&quot;))
+install.packages(&quot;raster&quot;, &quot;rgdal&quot;)</code></pre>
+</div>
+<div id="getting-some-data" class="section level3" number="8.2.5">
+<h3><span class="header-section-number">8.2.5</span> Getting some data</h3>
+<ul>
+<li><strong>Terrain Rasters</strong>: <a href="./files/...">…</a> (<em>Source</em>: <a href="https://www.naturalearthdata.com/" class="uri">https://www.naturalearthdata.com/</a>);
+<ul>
+<li>Actually, let’s skip on these tey are rather tricky with R. In most cases, you do not really need raster layers: raster data is usually very large in size and is too robust, which will only obscure what you want to highlight on your map; if you are convinced that you do need to use raster data, see: <a href="https://datacarpentry.org/r-raster-vector-geospatial/" class="uri">https://datacarpentry.org/r-raster-vector-geospatial/</a>; also: <a href="https://geocompr.robinlovelace.net/adv-map.html" class="uri">https://geocompr.robinlovelace.net/adv-map.html</a></li>
+</ul></li>
+<li><strong>Water bodies</strong>: <a href="./files/..."></a> (<em>Source</em>: <a href="https://www.naturalearthdata.com/" class="uri">https://www.naturalearthdata.com/</a>)</li>
+<li><strong>Cities</strong>: <a href="./files/L11_worldcities.csv.zip"></a> (<em>Source</em>: <a href="https://simplemaps.com/data/world-cities" class="uri">https://simplemaps.com/data/world-cities</a>)</li>
+<li>… ?</li>
+</ul>
+</div>
+<div id="creating-the-base-map" class="section level3" number="8.2.6">
+<h3><span class="header-section-number">8.2.6</span> Creating the Base Map</h3>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="l08-gis-ii.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb24-2"><a href="l08-gis-ii.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
+<pre><code>## Warning: package &#39;sf&#39; was built under R version 4.0.2</code></pre>
+<pre><code>## Linking to GEOS 3.8.1, GDAL 3.1.4, PROJ 6.3.1</code></pre>
+<p>Let’s load the first base layer of geographical data (I am using “medium” scale for speed here; for your rfine maps you might want to use higher resolution: <code>scale = "large"</code>):</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="l08-gis-ii.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span></code></pre></div>
+<pre><code>## Warning: package &#39;rnaturalearth&#39; was built under R version 4.0.2</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="l08-gis-ii.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearthdata)</span></code></pre></div>
+<pre><code>## Warning: package &#39;rnaturalearthdata&#39; was built under R version 4.0.2</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="l08-gis-ii.html#cb31-1" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">&quot;medium&quot;</span>, <span class="at">returnclass =</span> <span class="st">&quot;sf&quot;</span>)</span></code></pre></div>
+<p>So, here is our base map. Something is missing…</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="l08-gis-ii.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
+<span id="cb32-2"><a href="l08-gis-ii.html#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="l08-gis-ii.html#cb32-3" aria-hidden="true" tabindex="-1"></a>xlim<span class="ot">=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">12</span>,<span class="dv">80</span>); ylim<span class="ot">=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">50</span>)</span>
+<span id="cb32-4"><a href="l08-gis-ii.html#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="l08-gis-ii.html#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb32-6"><a href="l08-gis-ii.html#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_sf</span>(<span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim, <span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb32-7"><a href="l08-gis-ii.html#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;grey90&quot;</span>))</span></code></pre></div>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>Let’s try to add rivers… and the Aral Sea, which almost completely disappeared in the past 40 years of so. For this, we will need to get relevant data files—most likely in <code>shape</code> format used in GIS applications like ArcGIS and QGIS. Googling usually works for finding relevant data. Files for the Aral Sea: <a href="http://www.marineregions.org/gazetteer.php?p=details&amp;id=4281" class="uri">http://www.marineregions.org/gazetteer.php?p=details&amp;id=4281</a>. Working with <code>shape</code> files is a bit tricky and we need some extra steps to convert <code>shape</code> files into something that R understands, namely, dataframes.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="l08-gis-ii.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgdal)    <span class="co"># R wrapper around GDAL/OGR</span></span></code></pre></div>
+<pre><code>## Warning: package &#39;rgdal&#39; was built under R version 4.0.2</code></pre>
+<pre><code>## Loading required package: sp</code></pre>
+<pre><code>## rgdal: version: 1.5-23, (SVN revision 1121)
+## Geospatial Data Abstraction Library extensions to R successfully loaded
+## Loaded GDAL runtime: GDAL 3.2.1, released 2020/12/29
+## Path to GDAL shared files: /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rgdal/gdal
+## GDAL binary built with GEOS: TRUE 
+## Loaded PROJ runtime: Rel. 7.2.1, January 1st, 2021, [PJ_VERSION: 721]
+## Path to PROJ shared files: /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rgdal/proj
+## PROJ CDN enabled: FALSE
+## Linking to sp version:1.4-5
+## To mute warnings of possible GDAL/OSR exportToProj4() degradation,
+## use options(&quot;rgdal_show_exportToProj4_warnings&quot;=&quot;none&quot;) before loading rgdal.
+## Overwritten PROJ_LIB was /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rgdal/proj</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="l08-gis-ii.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmap)    <span class="co"># for fortifying shapefiles (converting GIS files into data frames)</span></span></code></pre></div>
+<pre><code>## Warning: package &#39;ggmap&#39; was built under R version 4.0.2</code></pre>
+<pre><code>## Google&#39;s Terms of Service: https://cloud.google.com/maps-platform/terms/.</code></pre>
+<pre><code>## Please cite ggmap if you use it! See citation(&quot;ggmap&quot;) for details.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ggmap&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:tidygeocoder&#39;:
+## 
+##     geocode</code></pre>
+<p><strong>NB</strong>: We need <code>ggmap</code> library, because it has a function—<code>fortify()</code>—that converts GIS data (<code>*.shp</code> files) into data frames with which R works. If you try to install <code>ggmap</code> library, you will most likely get an error, as the CRAN <code>ggmap</code> version is for an older version of R; we can try to install the latest version directly from the developer. Such practice has its advantages and disadvantages, keep this in mind! <code>ggmap</code> developer version is hosted at <a href="https://github.com/dkahle/ggmap" class="uri">https://github.com/dkahle/ggmap</a>.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="l08-gis-ii.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;devtools&quot;)</span></span>
+<span id="cb43-2"><a href="l08-gis-ii.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co">#devtools::install_github(&quot;dkahle/ggmap&quot;)</span></span>
+<span id="cb43-3"><a href="l08-gis-ii.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co">#library(ggmap) # for fortifying shapefiles</span></span></code></pre></div>
+<p>Now, let’s read in the shapefile, using the path to the shapefile and the shapefile name minus the extension as arguments. Keep in mind, that the first argument—the path—should not have the trailing <code>/</code>. (See, <a href="https://www.rdocumentation.org/packages/rgdal/versions/1.4-3/topics/readOGR">readOGR</a>)</p>
+<p>First, download the following two files and unzip them (change paths to files if necessary!):</p>
+<ul>
+<li><a href="./files/L11/layer.riverData.zip">layer.riverData.zip</a></li>
+<li><a href="./files/L11/layer.aral_sea.zip">layer.aral_sea.zip</a></li>
+</ul>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="l08-gis-ii.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rivers</span></span>
+<span id="cb44-2"><a href="l08-gis-ii.html#cb44-2" aria-hidden="true" tabindex="-1"></a>rivers <span class="ot">&lt;-</span> <span class="fu">readOGR</span>(<span class="st">&quot;./data_temp/layer.riverData&quot;</span>, <span class="st">&quot;ne_50m_rivers_lake_centerlines&quot;</span>)</span></code></pre></div>
+<pre><code>## OGR data source with driver: ESRI Shapefile 
+## Source: &quot;/Users/romanovienna/Dropbox/6_Teaching_New/_rgis_course/rgis_univie2021_draft/data_temp/layer.riverData&quot;, layer: &quot;ne_50m_rivers_lake_centerlines&quot;
+## with 462 features
+## It has 32 fields
+## Integer64 fields read as strings:  ne_id</code></pre>
+<pre><code>## Warning in readOGR(&quot;./data_temp/layer.riverData&quot;,
+## &quot;ne_50m_rivers_lake_centerlines&quot;): Dropping null geometries: 461</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="l08-gis-ii.html#cb47-1" aria-hidden="true" tabindex="-1"></a>rivers_df <span class="ot">&lt;-</span> <span class="fu">fortify</span>(rivers)</span>
+<span id="cb47-2"><a href="l08-gis-ii.html#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="l08-gis-ii.html#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># adding the Aral sea -- historical basin</span></span>
+<span id="cb47-4"><a href="l08-gis-ii.html#cb47-4" aria-hidden="true" tabindex="-1"></a>aral_sea <span class="ot">&lt;-</span> <span class="fu">readOGR</span>(<span class="st">&quot;./data_temp/layer.aral_sea&quot;</span>, <span class="st">&quot;worldglwd1&quot;</span>)</span></code></pre></div>
+<pre><code>## OGR data source with driver: ESRI Shapefile 
+## Source: &quot;/Users/romanovienna/Dropbox/6_Teaching_New/_rgis_course/rgis_univie2021_draft/data_temp/layer.aral_sea&quot;, layer: &quot;worldglwd1&quot;
+## with 1 features
+## It has 28 fields</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="l08-gis-ii.html#cb49-1" aria-hidden="true" tabindex="-1"></a>aral_sea_df <span class="ot">&lt;-</span> <span class="fu">fortify</span>(aral_sea)</span></code></pre></div>
+<pre><code>## Regions defined for each Polygons</code></pre>
+<p>Let’s try to save these as rData objects (<code>*.rds</code>) and load them, instead of preprocessing <code>shape</code> files everytime, which may take a while. Loading RDS files is just a jiffy. Keep in mind, that you can save any data into RDS file! This might be particularly valuable for storing intermediate results that you do not want to regenerate too often.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="l08-gis-ii.html#cb51-1" aria-hidden="true" tabindex="-1"></a>RDSfolder <span class="ot">=</span> <span class="st">&quot;./data_temp/map.objects/&quot;</span></span>
+<span id="cb51-2"><a href="l08-gis-ii.html#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="l08-gis-ii.html#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(rivers_df, <span class="fu">paste0</span>(RDSfolder,<span class="st">&quot;rivers_df.rds&quot;</span>))</span>
+<span id="cb51-4"><a href="l08-gis-ii.html#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(aral_sea_df, <span class="fu">paste0</span>(RDSfolder,<span class="st">&quot;aral_sea_df.rds&quot;</span>))</span>
+<span id="cb51-5"><a href="l08-gis-ii.html#cb51-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-6"><a href="l08-gis-ii.html#cb51-6" aria-hidden="true" tabindex="-1"></a>rivers_df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">paste0</span>(RDSfolder,<span class="st">&quot;rivers_df.rds&quot;</span>))</span>
+<span id="cb51-7"><a href="l08-gis-ii.html#cb51-7" aria-hidden="true" tabindex="-1"></a>aral_sea_df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">paste0</span>(RDSfolder,<span class="st">&quot;aral_sea_df.rds&quot;</span>))</span></code></pre></div>
+<p>You can now comment out code in <code>shape_data</code> chunk and <code>saveRDS()</code> lines in <code>RDS_files</code> chunk. The entire script will work much faster this way.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="l08-gis-ii.html#cb52-1" aria-hidden="true" tabindex="-1"></a>waterColor <span class="ot">=</span> <span class="st">&quot;lightsteelblue2&quot;</span> <span class="co"># &quot;grey90&quot;</span></span>
+<span id="cb52-2"><a href="l08-gis-ii.html#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="l08-gis-ii.html#cb52-3" aria-hidden="true" tabindex="-1"></a>xlim<span class="ot">=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">12</span>,<span class="dv">80</span>); ylim<span class="ot">=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">50</span>)</span>
+<span id="cb52-4"><a href="l08-gis-ii.html#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world) <span class="sc">+</span></span>
+<span id="cb52-5"><a href="l08-gis-ii.html#cb52-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb52-6"><a href="l08-gis-ii.html#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># rivers and the aral sea</span></span>
+<span id="cb52-7"><a href="l08-gis-ii.html#cb52-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="at">data =</span> rivers_df,<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">color =</span> waterColor, <span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb52-8"><a href="l08-gis-ii.html#cb52-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> aral_sea_df,<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">color =</span> waterColor, <span class="at">fill =</span> waterColor, <span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb52-9"><a href="l08-gis-ii.html#cb52-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># map limits and theme</span></span>
+<span id="cb52-10"><a href="l08-gis-ii.html#cb52-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_sf</span>(<span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim, <span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb52-11"><a href="l08-gis-ii.html#cb52-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> waterColor))</span></code></pre></div>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>Let’s add a scale bar. This we can do with the library <code>ggspatial</code> (location parameters are as follows: <code>tl</code>, <code>tr</code>, <code>bl</code> and <code>br</code> — for top left, top right, bottom left, and bottom right).</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="l08-gis-ii.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggspatial&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: package &#39;ggspatial&#39; was built under R version 4.0.2</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="l08-gis-ii.html#cb55-1" aria-hidden="true" tabindex="-1"></a>xlim<span class="ot">=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">12</span>,<span class="dv">80</span>); ylim<span class="ot">=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">50</span>)</span>
+<span id="cb55-2"><a href="l08-gis-ii.html#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="l08-gis-ii.html#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world) <span class="sc">+</span></span>
+<span id="cb55-4"><a href="l08-gis-ii.html#cb55-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb55-5"><a href="l08-gis-ii.html#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># rivers and the aral sea</span></span>
+<span id="cb55-6"><a href="l08-gis-ii.html#cb55-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="at">data =</span> rivers_df,<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">color =</span> waterColor, <span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb55-7"><a href="l08-gis-ii.html#cb55-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> aral_sea_df,<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">color =</span> waterColor, <span class="at">fill =</span> waterColor, <span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb55-8"><a href="l08-gis-ii.html#cb55-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># annotation scale</span></span>
+<span id="cb55-9"><a href="l08-gis-ii.html#cb55-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotation_scale</span>(<span class="at">location =</span> <span class="st">&quot;bl&quot;</span>, <span class="at">width_hint =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb55-10"><a href="l08-gis-ii.html#cb55-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotation_north_arrow</span>(<span class="at">location =</span> <span class="st">&quot;bl&quot;</span>, <span class="at">which_north =</span> <span class="st">&quot;true&quot;</span>, </span>
+<span id="cb55-11"><a href="l08-gis-ii.html#cb55-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">pad_x =</span> <span class="fu">unit</span>(<span class="fl">0.0</span>, <span class="st">&quot;in&quot;</span>), <span class="at">pad_y =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">&quot;in&quot;</span>),</span>
+<span id="cb55-12"><a href="l08-gis-ii.html#cb55-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">style =</span> north_arrow_fancy_orienteering) <span class="sc">+</span>  </span>
+<span id="cb55-13"><a href="l08-gis-ii.html#cb55-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># map limits and theme</span></span>
+<span id="cb55-14"><a href="l08-gis-ii.html#cb55-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_sf</span>(<span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim, <span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb55-15"><a href="l08-gis-ii.html#cb55-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> waterColor),</span>
+<span id="cb55-16"><a href="l08-gis-ii.html#cb55-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb55-17"><a href="l08-gis-ii.html#cb55-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<pre><code>## Scale on map varies by more than 10%, scale bar may be inaccurate</code></pre>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>For convenience, some of this information can be stored into variables for easy reuse:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="l08-gis-ii.html#cb57-1" aria-hidden="true" tabindex="-1"></a>baseplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> world) <span class="sc">+</span></span>
+<span id="cb57-2"><a href="l08-gis-ii.html#cb57-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb57-3"><a href="l08-gis-ii.html#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># rivers and the aral sea</span></span>
+<span id="cb57-4"><a href="l08-gis-ii.html#cb57-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="at">data =</span> rivers_df,<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">color =</span> waterColor, <span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb57-5"><a href="l08-gis-ii.html#cb57-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> aral_sea_df,<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">color =</span> waterColor, <span class="at">fill =</span> waterColor, <span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb57-6"><a href="l08-gis-ii.html#cb57-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># annotation scale</span></span>
+<span id="cb57-7"><a href="l08-gis-ii.html#cb57-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotation_scale</span>(<span class="at">location =</span> <span class="st">&quot;bl&quot;</span>, <span class="at">width_hint =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb57-8"><a href="l08-gis-ii.html#cb57-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotation_north_arrow</span>(<span class="at">location =</span> <span class="st">&quot;bl&quot;</span>, <span class="at">which_north =</span> <span class="st">&quot;true&quot;</span>, </span>
+<span id="cb57-9"><a href="l08-gis-ii.html#cb57-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">pad_x =</span> <span class="fu">unit</span>(<span class="fl">0.0</span>, <span class="st">&quot;in&quot;</span>), <span class="at">pad_y =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">&quot;in&quot;</span>),</span>
+<span id="cb57-10"><a href="l08-gis-ii.html#cb57-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">style =</span> north_arrow_fancy_orienteering) <span class="sc">+</span>  </span>
+<span id="cb57-11"><a href="l08-gis-ii.html#cb57-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># map limits and theme</span></span>
+<span id="cb57-12"><a href="l08-gis-ii.html#cb57-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_sf</span>(<span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim, <span class="at">expand =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb57-13"><a href="l08-gis-ii.html#cb57-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-14"><a href="l08-gis-ii.html#cb57-14" aria-hidden="true" tabindex="-1"></a>themeParameters <span class="ot">&lt;-</span> <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> waterColor),</span>
+<span id="cb57-15"><a href="l08-gis-ii.html#cb57-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb57-16"><a href="l08-gis-ii.html#cb57-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x=</span><span class="fu">element_blank</span>())</span>
+<span id="cb57-17"><a href="l08-gis-ii.html#cb57-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-18"><a href="l08-gis-ii.html#cb57-18" aria-hidden="true" tabindex="-1"></a>baseplot <span class="sc">+</span> themeParameters</span></code></pre></div>
+<pre><code>## Scale on map varies by more than 10%, scale bar may be inaccurate</code></pre>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>Let’s add some data. You can download <a href="./files/L11_worldcities.csv.zip">this dataset with cities of the world</a>.</p>
 </div>
 </div>
 <div id="HW08" class="section level2" number="8.3">
