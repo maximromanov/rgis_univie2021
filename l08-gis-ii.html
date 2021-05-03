@@ -24,7 +24,7 @@
 <meta name="author" content="Maxim G. Romanov" />
 
 
-<meta name="date" content="2021-05-03" />
+<meta name="date" content="2021-05-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -288,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.2" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#getting-some-data"><i class="fa fa-check"></i><b>8.3.2</b> Getting some data</a></li>
 <li class="chapter" data-level="8.3.3" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#creating-the-base-map"><i class="fa fa-check"></i><b>8.3.3</b> Creating the Base Map</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#interactive-maps"><i class="fa fa-check"></i><b>8.4</b> Interactive Maps</a></li>
+<li class="chapter" data-level="8.4" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#other-base-maps-ggmap"><i class="fa fa-check"></i><b>8.4</b> Other base maps: <code>ggmap</code></a></li>
 <li class="chapter" data-level="8.5" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#artistic-maps"><i class="fa fa-check"></i><b>8.5</b> Artistic Maps</a></li>
 <li class="chapter" data-level="8.6" data-path="l08-gis-ii.html"><a href="l08-gis-ii.html#HW08"><i class="fa fa-check"></i><b>8.6</b> Homework</a></li>
 <li class="chapter" data-level="8.7" data-path="l06-data-ii.html"><a href="l06-data-ii.html#additional-materials"><i class="fa fa-check"></i><b>8.7</b> Additional Materials</a></li>
@@ -424,25 +424,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">8</span> L08: GIS II</h1>
 <div id="creating-base-maps" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Creating Base Maps</h2>
+<p>A base map</p>
+<p>-A base map is a layer with geographic information that serves as a background. A base map provides context for additional layers that are overlaid on top of the base map. Base maps usually provide location references for features that do not change often like boundaries, rivers, lakes, roads, and highways. Even on base maps, these different categories of information are in layers. Usually a base map contains this basic data, and then extra layers with a particular theme, or from a particular discipline, are overlaid on the base map layers for the sake of analysis. (<a href="https://rdkb.sgrc.selkirk.ca/Help/Content/Client_APIs/SV_User/SVU_AboutBaseMaps.htm" class="uri">https://rdkb.sgrc.selkirk.ca/Help/Content/Client_APIs/SV_User/SVU_AboutBaseMaps.htm</a>)</p>
 <ul>
-<li><del>Projections; examples; <a href="https://thetruesize.com/" class="uri">https://thetruesize.com/</a></del></li>
-<li><del>Understanding main map components: layers of points, lines, polygons and rasters</del></li>
-<li>Construct a base map, step by step.
-<ul>
-<li>adding main layers</li>
-<li>customizing map with additional goodies</li>
-<li>saving maps</li>
-</ul></li>
-<li>Examples of maps:
-<ul>
-<li>Europe</li>
-<li>Islamic world provinces</li>
-</ul></li>
-<li>PS: Maps as Art:
-<ul>
-<li>Vienna</li>
-</ul></li>
+<li>A basemap provides a user with context for a map. You can add information to a basemap by overlaying other information on top of it. (<a href="https://nhd.usgs.gov/userGuide/Robohelpfiles/NHD_User_Guide/Interactive_Tutorials/Module_1/Basemaps_Overlays/Popups/What_is_a_Basemap_.htm" class="uri">https://nhd.usgs.gov/userGuide/Robohelpfiles/NHD_User_Guide/Interactive_Tutorials/Module_1/Basemaps_Overlays/Popups/What_is_a_Basemap_.htm</a>)</li>
 </ul>
+<!--
+- ~~Projections; examples; <https://thetruesize.com/>~~
+- ~~Understanding main map components: layers of points, lines, polygons and rasters~~
+- Construct a base map, step by step.
+  - adding main layers
+  - customizing map with additional goodies
+  - saving maps
+- Examples of maps:
+  - Europe
+  - Islamic world provinces
+- PS: Maps as Art:
+  - Vienna
+-->
 <div id="TAG08" class="section level3" number="8.1.1">
 <h3><span class="header-section-number">8.1.1</span> Goals</h3>
 <p>…</p>
@@ -583,102 +582,99 @@ install.packages(&quot;raster&quot;, &quot;rgdal&quot;)</code></pre>
 <pre><code>## The following object is masked from &#39;package:tidygeocoder&#39;:
 ## 
 ##     geocode</code></pre>
-<p><strong>NB</strong>: We need <code>ggmap</code> library, because it has a function—<code>fortify()</code>—that converts GIS data (<code>*.shp</code> files) into data frames with which R works. If you try to install <code>ggmap</code> library, you will most likely get an error, as the CRAN <code>ggmap</code> version is for an older version of R; we can try to install the latest version directly from the developer. Such practice has its advantages and disadvantages, keep this in mind! <code>ggmap</code> developer version is hosted at <a href="https://github.com/dkahle/ggmap" class="uri">https://github.com/dkahle/ggmap</a>.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="l08-gis-ii.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;devtools&quot;)</span></span>
-<span id="cb36-2"><a href="l08-gis-ii.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co">#devtools::install_github(&quot;dkahle/ggmap&quot;)</span></span>
-<span id="cb36-3"><a href="l08-gis-ii.html#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co">#library(ggmap) # for fortifying shapefiles</span></span></code></pre></div>
+<p><strong>NB</strong>: <code>ggmap</code> is a versetile library that brings additional geospatial capabilities to <code>ggplot</code>, but also has a number of its own functions useful for geospatial analysis. For example, its function <code>fortify()</code> converts GIS data (<code>*.shp</code> files) into data frames with which R works. Additionally, it allows you to pull base maps from such providers as Google, Stamen, and Open Street Maps (for more details, see: <a href="https://github.com/dkahle/ggmap" class="uri">https://github.com/dkahle/ggmap</a>).</p>
 <p>Now, let’s read in the shapefile, using the path to the shapefile and the shapefile name minus the extension as arguments. Keep in mind, that the first argument—the path—should not have the trailing <code>/</code>. (See, <a href="https://www.rdocumentation.org/packages/rgdal/versions/1.4-3/topics/readOGR">readOGR</a>)</p>
 <p>First, download the following two files and unzip them (change paths to files if necessary!):</p>
 <ul>
 <li><a href="./files/L11/layer.riverData.zip">layer.riverData.zip</a></li>
 <li><a href="./files/L11/layer.aral_sea.zip">layer.aral_sea.zip</a></li>
 </ul>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="l08-gis-ii.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rivers</span></span>
-<span id="cb37-2"><a href="l08-gis-ii.html#cb37-2" aria-hidden="true" tabindex="-1"></a>rivers <span class="ot">&lt;-</span> <span class="fu">readOGR</span>(<span class="st">&quot;./data_temp/layer.riverData&quot;</span>, <span class="st">&quot;ne_50m_rivers_lake_centerlines&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="l08-gis-ii.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rivers</span></span>
+<span id="cb36-2"><a href="l08-gis-ii.html#cb36-2" aria-hidden="true" tabindex="-1"></a>rivers <span class="ot">&lt;-</span> <span class="fu">readOGR</span>(<span class="st">&quot;./data_temp/layer.riverData&quot;</span>, <span class="st">&quot;ne_50m_rivers_lake_centerlines&quot;</span>)</span></code></pre></div>
 <pre><code>## OGR data source with driver: ESRI Shapefile 
 ## Source: &quot;/Users/romanovienna/Dropbox/6_Teaching_New/_rgis_course/rgis_univie2021_draft/data_temp/layer.riverData&quot;, layer: &quot;ne_50m_rivers_lake_centerlines&quot;
 ## with 462 features
 ## It has 32 fields
 ## Integer64 fields read as strings:  ne_id</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="l08-gis-ii.html#cb39-1" aria-hidden="true" tabindex="-1"></a>rivers_df <span class="ot">&lt;-</span> <span class="fu">fortify</span>(rivers)</span>
-<span id="cb39-2"><a href="l08-gis-ii.html#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-3"><a href="l08-gis-ii.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># adding the Aral sea -- historical basin</span></span>
-<span id="cb39-4"><a href="l08-gis-ii.html#cb39-4" aria-hidden="true" tabindex="-1"></a>aral_sea <span class="ot">&lt;-</span> <span class="fu">readOGR</span>(<span class="st">&quot;./data_temp/layer.aral_sea&quot;</span>, <span class="st">&quot;worldglwd1&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="l08-gis-ii.html#cb38-1" aria-hidden="true" tabindex="-1"></a>rivers_df <span class="ot">&lt;-</span> <span class="fu">fortify</span>(rivers)</span>
+<span id="cb38-2"><a href="l08-gis-ii.html#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="l08-gis-ii.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># adding the Aral sea -- historical basin</span></span>
+<span id="cb38-4"><a href="l08-gis-ii.html#cb38-4" aria-hidden="true" tabindex="-1"></a>aral_sea <span class="ot">&lt;-</span> <span class="fu">readOGR</span>(<span class="st">&quot;./data_temp/layer.aral_sea&quot;</span>, <span class="st">&quot;worldglwd1&quot;</span>)</span></code></pre></div>
 <pre><code>## OGR data source with driver: ESRI Shapefile 
 ## Source: &quot;/Users/romanovienna/Dropbox/6_Teaching_New/_rgis_course/rgis_univie2021_draft/data_temp/layer.aral_sea&quot;, layer: &quot;worldglwd1&quot;
 ## with 1 features
 ## It has 28 fields</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="l08-gis-ii.html#cb41-1" aria-hidden="true" tabindex="-1"></a>aral_sea_df <span class="ot">&lt;-</span> <span class="fu">fortify</span>(aral_sea)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="l08-gis-ii.html#cb40-1" aria-hidden="true" tabindex="-1"></a>aral_sea_df <span class="ot">&lt;-</span> <span class="fu">fortify</span>(aral_sea)</span></code></pre></div>
 <pre><code>## Regions defined for each Polygons</code></pre>
 <p>Let’s try to save these as rData objects (<code>*.rds</code>) and load them, instead of preprocessing <code>shape</code> files everytime, which may take a while. Loading RDS files is just a jiffy. Keep in mind, that you can save any data into RDS file! This might be particularly valuable for storing intermediate results that you do not want to regenerate too often.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="l08-gis-ii.html#cb43-1" aria-hidden="true" tabindex="-1"></a>RDSfolder <span class="ot">=</span> <span class="st">&quot;./data_temp/map.objects/&quot;</span></span>
-<span id="cb43-2"><a href="l08-gis-ii.html#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-3"><a href="l08-gis-ii.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(rivers_df, <span class="fu">paste0</span>(RDSfolder,<span class="st">&quot;rivers_df.rds&quot;</span>))</span>
-<span id="cb43-4"><a href="l08-gis-ii.html#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(aral_sea_df, <span class="fu">paste0</span>(RDSfolder,<span class="st">&quot;aral_sea_df.rds&quot;</span>))</span>
-<span id="cb43-5"><a href="l08-gis-ii.html#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-6"><a href="l08-gis-ii.html#cb43-6" aria-hidden="true" tabindex="-1"></a>rivers_df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">paste0</span>(RDSfolder,<span class="st">&quot;rivers_df.rds&quot;</span>))</span>
-<span id="cb43-7"><a href="l08-gis-ii.html#cb43-7" aria-hidden="true" tabindex="-1"></a>aral_sea_df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">paste0</span>(RDSfolder,<span class="st">&quot;aral_sea_df.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="l08-gis-ii.html#cb42-1" aria-hidden="true" tabindex="-1"></a>RDSfolder <span class="ot">=</span> <span class="st">&quot;./data_temp/map.objects/&quot;</span></span>
+<span id="cb42-2"><a href="l08-gis-ii.html#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="l08-gis-ii.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(rivers_df, <span class="fu">paste0</span>(RDSfolder,<span class="st">&quot;rivers_df.rds&quot;</span>))</span>
+<span id="cb42-4"><a href="l08-gis-ii.html#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(aral_sea_df, <span class="fu">paste0</span>(RDSfolder,<span class="st">&quot;aral_sea_df.rds&quot;</span>))</span>
+<span id="cb42-5"><a href="l08-gis-ii.html#cb42-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="l08-gis-ii.html#cb42-6" aria-hidden="true" tabindex="-1"></a>rivers_df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">paste0</span>(RDSfolder,<span class="st">&quot;rivers_df.rds&quot;</span>))</span>
+<span id="cb42-7"><a href="l08-gis-ii.html#cb42-7" aria-hidden="true" tabindex="-1"></a>aral_sea_df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">paste0</span>(RDSfolder,<span class="st">&quot;aral_sea_df.rds&quot;</span>))</span></code></pre></div>
 <p>You can now comment out code in <code>shape_data</code> chunk and <code>saveRDS()</code> lines in <code>RDS_files</code> chunk. The entire script will work much faster this way.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="l08-gis-ii.html#cb44-1" aria-hidden="true" tabindex="-1"></a>waterColor <span class="ot">=</span> <span class="st">&quot;lightsteelblue2&quot;</span> <span class="co"># &quot;grey90&quot;</span></span>
-<span id="cb44-2"><a href="l08-gis-ii.html#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-3"><a href="l08-gis-ii.html#cb44-3" aria-hidden="true" tabindex="-1"></a>xlim<span class="ot">=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">12</span>,<span class="dv">80</span>); ylim<span class="ot">=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">50</span>)</span>
-<span id="cb44-4"><a href="l08-gis-ii.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world) <span class="sc">+</span></span>
-<span id="cb44-5"><a href="l08-gis-ii.html#cb44-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
-<span id="cb44-6"><a href="l08-gis-ii.html#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># rivers and the aral sea</span></span>
-<span id="cb44-7"><a href="l08-gis-ii.html#cb44-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="at">data =</span> rivers_df,<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">color =</span> waterColor, <span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb44-8"><a href="l08-gis-ii.html#cb44-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> aral_sea_df,<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">color =</span> waterColor, <span class="at">fill =</span> waterColor, <span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb44-9"><a href="l08-gis-ii.html#cb44-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># map limits and theme</span></span>
-<span id="cb44-10"><a href="l08-gis-ii.html#cb44-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_sf</span>(<span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim, <span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb44-11"><a href="l08-gis-ii.html#cb44-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> waterColor))</span></code></pre></div>
-<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="l08-gis-ii.html#cb43-1" aria-hidden="true" tabindex="-1"></a>waterColor <span class="ot">=</span> <span class="st">&quot;lightsteelblue2&quot;</span> <span class="co"># &quot;grey90&quot;</span></span>
+<span id="cb43-2"><a href="l08-gis-ii.html#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="l08-gis-ii.html#cb43-3" aria-hidden="true" tabindex="-1"></a>xlim<span class="ot">=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">12</span>,<span class="dv">80</span>); ylim<span class="ot">=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">50</span>)</span>
+<span id="cb43-4"><a href="l08-gis-ii.html#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world) <span class="sc">+</span></span>
+<span id="cb43-5"><a href="l08-gis-ii.html#cb43-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-6"><a href="l08-gis-ii.html#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># rivers and the aral sea</span></span>
+<span id="cb43-7"><a href="l08-gis-ii.html#cb43-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="at">data =</span> rivers_df,<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">color =</span> waterColor, <span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb43-8"><a href="l08-gis-ii.html#cb43-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> aral_sea_df,<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">color =</span> waterColor, <span class="at">fill =</span> waterColor, <span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb43-9"><a href="l08-gis-ii.html#cb43-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># map limits and theme</span></span>
+<span id="cb43-10"><a href="l08-gis-ii.html#cb43-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_sf</span>(<span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim, <span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb43-11"><a href="l08-gis-ii.html#cb43-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> waterColor))</span></code></pre></div>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <p>Let’s add a scale bar. This we can do with the library <code>ggspatial</code> (location parameters are as follows: <code>tl</code>, <code>tr</code>, <code>bl</code> and <code>br</code> — for top left, top right, bottom left, and bottom right).</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="l08-gis-ii.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggspatial&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="l08-gis-ii.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggspatial&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: package &#39;ggspatial&#39; was built under R version 4.0.2</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="l08-gis-ii.html#cb47-1" aria-hidden="true" tabindex="-1"></a>xlim<span class="ot">=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">12</span>,<span class="dv">80</span>); ylim<span class="ot">=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">50</span>)</span>
-<span id="cb47-2"><a href="l08-gis-ii.html#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-3"><a href="l08-gis-ii.html#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world) <span class="sc">+</span></span>
-<span id="cb47-4"><a href="l08-gis-ii.html#cb47-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
-<span id="cb47-5"><a href="l08-gis-ii.html#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># rivers and the aral sea</span></span>
-<span id="cb47-6"><a href="l08-gis-ii.html#cb47-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="at">data =</span> rivers_df,<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">color =</span> waterColor, <span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb47-7"><a href="l08-gis-ii.html#cb47-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> aral_sea_df,<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">color =</span> waterColor, <span class="at">fill =</span> waterColor, <span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb47-8"><a href="l08-gis-ii.html#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># annotation scale</span></span>
-<span id="cb47-9"><a href="l08-gis-ii.html#cb47-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotation_scale</span>(<span class="at">location =</span> <span class="st">&quot;bl&quot;</span>, <span class="at">width_hint =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb47-10"><a href="l08-gis-ii.html#cb47-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotation_north_arrow</span>(<span class="at">location =</span> <span class="st">&quot;bl&quot;</span>, <span class="at">which_north =</span> <span class="st">&quot;true&quot;</span>, </span>
-<span id="cb47-11"><a href="l08-gis-ii.html#cb47-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">pad_x =</span> <span class="fu">unit</span>(<span class="fl">0.0</span>, <span class="st">&quot;in&quot;</span>), <span class="at">pad_y =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">&quot;in&quot;</span>),</span>
-<span id="cb47-12"><a href="l08-gis-ii.html#cb47-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">style =</span> north_arrow_fancy_orienteering) <span class="sc">+</span>  </span>
-<span id="cb47-13"><a href="l08-gis-ii.html#cb47-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># map limits and theme</span></span>
-<span id="cb47-14"><a href="l08-gis-ii.html#cb47-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_sf</span>(<span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim, <span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb47-15"><a href="l08-gis-ii.html#cb47-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> waterColor),</span>
-<span id="cb47-16"><a href="l08-gis-ii.html#cb47-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb47-17"><a href="l08-gis-ii.html#cb47-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="l08-gis-ii.html#cb46-1" aria-hidden="true" tabindex="-1"></a>xlim<span class="ot">=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">12</span>,<span class="dv">80</span>); ylim<span class="ot">=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">50</span>)</span>
+<span id="cb46-2"><a href="l08-gis-ii.html#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="l08-gis-ii.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world) <span class="sc">+</span></span>
+<span id="cb46-4"><a href="l08-gis-ii.html#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb46-5"><a href="l08-gis-ii.html#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># rivers and the aral sea</span></span>
+<span id="cb46-6"><a href="l08-gis-ii.html#cb46-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="at">data =</span> rivers_df,<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">color =</span> waterColor, <span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb46-7"><a href="l08-gis-ii.html#cb46-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> aral_sea_df,<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">color =</span> waterColor, <span class="at">fill =</span> waterColor, <span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb46-8"><a href="l08-gis-ii.html#cb46-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># annotation scale</span></span>
+<span id="cb46-9"><a href="l08-gis-ii.html#cb46-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotation_scale</span>(<span class="at">location =</span> <span class="st">&quot;bl&quot;</span>, <span class="at">width_hint =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb46-10"><a href="l08-gis-ii.html#cb46-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotation_north_arrow</span>(<span class="at">location =</span> <span class="st">&quot;bl&quot;</span>, <span class="at">which_north =</span> <span class="st">&quot;true&quot;</span>, </span>
+<span id="cb46-11"><a href="l08-gis-ii.html#cb46-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">pad_x =</span> <span class="fu">unit</span>(<span class="fl">0.0</span>, <span class="st">&quot;in&quot;</span>), <span class="at">pad_y =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">&quot;in&quot;</span>),</span>
+<span id="cb46-12"><a href="l08-gis-ii.html#cb46-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">style =</span> north_arrow_fancy_orienteering) <span class="sc">+</span>  </span>
+<span id="cb46-13"><a href="l08-gis-ii.html#cb46-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># map limits and theme</span></span>
+<span id="cb46-14"><a href="l08-gis-ii.html#cb46-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_sf</span>(<span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim, <span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb46-15"><a href="l08-gis-ii.html#cb46-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> waterColor),</span>
+<span id="cb46-16"><a href="l08-gis-ii.html#cb46-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb46-17"><a href="l08-gis-ii.html#cb46-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x=</span><span class="fu">element_blank</span>())</span></code></pre></div>
 <pre><code>## Scale on map varies by more than 10%, scale bar may be inaccurate</code></pre>
-<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p>For convenience, some of this information can be stored into variables for easy reuse:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="l08-gis-ii.html#cb49-1" aria-hidden="true" tabindex="-1"></a>baseplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> world) <span class="sc">+</span></span>
-<span id="cb49-2"><a href="l08-gis-ii.html#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
-<span id="cb49-3"><a href="l08-gis-ii.html#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># rivers and the aral sea</span></span>
-<span id="cb49-4"><a href="l08-gis-ii.html#cb49-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="at">data =</span> rivers_df,<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">color =</span> waterColor, <span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb49-5"><a href="l08-gis-ii.html#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> aral_sea_df,<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">color =</span> waterColor, <span class="at">fill =</span> waterColor, <span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb49-6"><a href="l08-gis-ii.html#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># annotation scale</span></span>
-<span id="cb49-7"><a href="l08-gis-ii.html#cb49-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotation_scale</span>(<span class="at">location =</span> <span class="st">&quot;bl&quot;</span>, <span class="at">width_hint =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb49-8"><a href="l08-gis-ii.html#cb49-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotation_north_arrow</span>(<span class="at">location =</span> <span class="st">&quot;bl&quot;</span>, <span class="at">which_north =</span> <span class="st">&quot;true&quot;</span>, </span>
-<span id="cb49-9"><a href="l08-gis-ii.html#cb49-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">pad_x =</span> <span class="fu">unit</span>(<span class="fl">0.0</span>, <span class="st">&quot;in&quot;</span>), <span class="at">pad_y =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">&quot;in&quot;</span>),</span>
-<span id="cb49-10"><a href="l08-gis-ii.html#cb49-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">style =</span> north_arrow_fancy_orienteering) <span class="sc">+</span>  </span>
-<span id="cb49-11"><a href="l08-gis-ii.html#cb49-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># map limits and theme</span></span>
-<span id="cb49-12"><a href="l08-gis-ii.html#cb49-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_sf</span>(<span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim, <span class="at">expand =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb49-13"><a href="l08-gis-ii.html#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-14"><a href="l08-gis-ii.html#cb49-14" aria-hidden="true" tabindex="-1"></a>themeParameters <span class="ot">&lt;-</span> <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> waterColor),</span>
-<span id="cb49-15"><a href="l08-gis-ii.html#cb49-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb49-16"><a href="l08-gis-ii.html#cb49-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb49-17"><a href="l08-gis-ii.html#cb49-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> waterColor, <span class="at">linetype =</span> <span class="st">&quot;dotted&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="l08-gis-ii.html#cb48-1" aria-hidden="true" tabindex="-1"></a>baseplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> world) <span class="sc">+</span></span>
+<span id="cb48-2"><a href="l08-gis-ii.html#cb48-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb48-3"><a href="l08-gis-ii.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># rivers and the aral sea</span></span>
+<span id="cb48-4"><a href="l08-gis-ii.html#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="at">data =</span> rivers_df,<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">color =</span> waterColor, <span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb48-5"><a href="l08-gis-ii.html#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> aral_sea_df,<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">color =</span> waterColor, <span class="at">fill =</span> waterColor, <span class="at">size =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb48-6"><a href="l08-gis-ii.html#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># annotation scale</span></span>
+<span id="cb48-7"><a href="l08-gis-ii.html#cb48-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotation_scale</span>(<span class="at">location =</span> <span class="st">&quot;bl&quot;</span>, <span class="at">width_hint =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb48-8"><a href="l08-gis-ii.html#cb48-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotation_north_arrow</span>(<span class="at">location =</span> <span class="st">&quot;bl&quot;</span>, <span class="at">which_north =</span> <span class="st">&quot;true&quot;</span>, </span>
+<span id="cb48-9"><a href="l08-gis-ii.html#cb48-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">pad_x =</span> <span class="fu">unit</span>(<span class="fl">0.0</span>, <span class="st">&quot;in&quot;</span>), <span class="at">pad_y =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">&quot;in&quot;</span>),</span>
+<span id="cb48-10"><a href="l08-gis-ii.html#cb48-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">style =</span> north_arrow_fancy_orienteering) <span class="sc">+</span>  </span>
+<span id="cb48-11"><a href="l08-gis-ii.html#cb48-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># map limits and theme</span></span>
+<span id="cb48-12"><a href="l08-gis-ii.html#cb48-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_sf</span>(<span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim, <span class="at">expand =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb48-13"><a href="l08-gis-ii.html#cb48-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-14"><a href="l08-gis-ii.html#cb48-14" aria-hidden="true" tabindex="-1"></a>themeParameters <span class="ot">&lt;-</span> <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> waterColor),</span>
+<span id="cb48-15"><a href="l08-gis-ii.html#cb48-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb48-16"><a href="l08-gis-ii.html#cb48-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb48-17"><a href="l08-gis-ii.html#cb48-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> waterColor, <span class="at">linetype =</span> <span class="st">&quot;dotted&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>))</span></code></pre></div>
 <p>Now we can build the same map with just this:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="l08-gis-ii.html#cb50-1" aria-hidden="true" tabindex="-1"></a>baseplot <span class="sc">+</span> themeParameters</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="l08-gis-ii.html#cb49-1" aria-hidden="true" tabindex="-1"></a>baseplot <span class="sc">+</span> themeParameters</span></code></pre></div>
 <pre><code>## Scale on map varies by more than 10%, scale bar may be inaccurate</code></pre>
-<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p>Let’s add some data. You can download <a href="./files/L11_worldcities.csv.zip">this dataset with cities of the world</a>.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="l08-gis-ii.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb52-2"><a href="l08-gis-ii.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb52-3"><a href="l08-gis-ii.html#cb52-3" aria-hidden="true" tabindex="-1"></a>worldcities <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/L11_worldcities.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="l08-gis-ii.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb51-2"><a href="l08-gis-ii.html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb51-3"><a href="l08-gis-ii.html#cb51-3" aria-hidden="true" tabindex="-1"></a>worldcities <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/L11_worldcities.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   city = col_character(),
@@ -693,163 +689,268 @@ install.packages(&quot;raster&quot;, &quot;rgdal&quot;)</code></pre>
 ##   population = col_double(),
 ##   id = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="l08-gis-ii.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># xlim=c(-12,80); ylim=c(10,50)</span></span>
-<span id="cb54-2"><a href="l08-gis-ii.html#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-3"><a href="l08-gis-ii.html#cb54-3" aria-hidden="true" tabindex="-1"></a>wc_filtered <span class="ot">&lt;-</span> worldcities <span class="sc">%&gt;%</span></span>
-<span id="cb54-4"><a href="l08-gis-ii.html#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(lat, <span class="dv">10</span>, <span class="dv">50</span>), <span class="fu">between</span>(lng, <span class="sc">-</span><span class="dv">12</span>, <span class="dv">80</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb54-5"><a href="l08-gis-ii.html#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(population))</span>
-<span id="cb54-6"><a href="l08-gis-ii.html#cb54-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb54-7"><a href="l08-gis-ii.html#cb54-7" aria-hidden="true" tabindex="-1"></a>top_cities <span class="ot">&lt;-</span> worldcities <span class="sc">%&gt;%</span></span>
-<span id="cb54-8"><a href="l08-gis-ii.html#cb54-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(lat, <span class="dv">10</span>, <span class="dv">50</span>), <span class="fu">between</span>(lng, <span class="sc">-</span><span class="dv">12</span>, <span class="dv">80</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb54-9"><a href="l08-gis-ii.html#cb54-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(population)) <span class="sc">%&gt;%</span></span>
-<span id="cb54-10"><a href="l08-gis-ii.html#cb54-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, <span class="at">wt =</span> population)</span>
-<span id="cb54-11"><a href="l08-gis-ii.html#cb54-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb54-12"><a href="l08-gis-ii.html#cb54-12" aria-hidden="true" tabindex="-1"></a>graph01 <span class="ot">&lt;-</span> baseplot <span class="sc">+</span> </span>
-<span id="cb54-13"><a href="l08-gis-ii.html#cb54-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> wc_filtered, <span class="fu">aes</span>(<span class="at">x=</span>lng, <span class="at">y=</span>lat, <span class="at">size=</span>population), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">col=</span><span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
-<span id="cb54-14"><a href="l08-gis-ii.html#cb54-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range=</span><span class="fu">c</span>(<span class="fl">0.01</span>, <span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb54-15"><a href="l08-gis-ii.html#cb54-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> top_cities, <span class="fu">aes</span>(<span class="at">x=</span>lng, <span class="at">y=</span>lat), <span class="at">col=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb54-16"><a href="l08-gis-ii.html#cb54-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> top_cities, <span class="fu">aes</span>(<span class="at">x=</span>lng, <span class="at">y=</span>lat, <span class="at">label =</span> city), <span class="at">force =</span> <span class="dv">2</span>, <span class="at">segment.alpha =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
-<span id="cb54-17"><a href="l08-gis-ii.html#cb54-17" aria-hidden="true" tabindex="-1"></a>  themeParameters</span>
-<span id="cb54-18"><a href="l08-gis-ii.html#cb54-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-19"><a href="l08-gis-ii.html#cb54-19" aria-hidden="true" tabindex="-1"></a>graph01</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="l08-gis-ii.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># xlim=c(-12,80); ylim=c(10,50)</span></span>
+<span id="cb53-2"><a href="l08-gis-ii.html#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="l08-gis-ii.html#cb53-3" aria-hidden="true" tabindex="-1"></a>wc_filtered <span class="ot">&lt;-</span> worldcities <span class="sc">%&gt;%</span></span>
+<span id="cb53-4"><a href="l08-gis-ii.html#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(lat, <span class="dv">10</span>, <span class="dv">50</span>), <span class="fu">between</span>(lng, <span class="sc">-</span><span class="dv">12</span>, <span class="dv">80</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb53-5"><a href="l08-gis-ii.html#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(population))</span>
+<span id="cb53-6"><a href="l08-gis-ii.html#cb53-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb53-7"><a href="l08-gis-ii.html#cb53-7" aria-hidden="true" tabindex="-1"></a>top_cities <span class="ot">&lt;-</span> worldcities <span class="sc">%&gt;%</span></span>
+<span id="cb53-8"><a href="l08-gis-ii.html#cb53-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(lat, <span class="dv">10</span>, <span class="dv">50</span>), <span class="fu">between</span>(lng, <span class="sc">-</span><span class="dv">12</span>, <span class="dv">80</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb53-9"><a href="l08-gis-ii.html#cb53-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(population)) <span class="sc">%&gt;%</span></span>
+<span id="cb53-10"><a href="l08-gis-ii.html#cb53-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, <span class="at">wt =</span> population)</span>
+<span id="cb53-11"><a href="l08-gis-ii.html#cb53-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb53-12"><a href="l08-gis-ii.html#cb53-12" aria-hidden="true" tabindex="-1"></a>graph01 <span class="ot">&lt;-</span> baseplot <span class="sc">+</span> </span>
+<span id="cb53-13"><a href="l08-gis-ii.html#cb53-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> wc_filtered, <span class="fu">aes</span>(<span class="at">x=</span>lng, <span class="at">y=</span>lat, <span class="at">size=</span>population), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">col=</span><span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb53-14"><a href="l08-gis-ii.html#cb53-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range=</span><span class="fu">c</span>(<span class="fl">0.01</span>, <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb53-15"><a href="l08-gis-ii.html#cb53-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> top_cities, <span class="fu">aes</span>(<span class="at">x=</span>lng, <span class="at">y=</span>lat), <span class="at">col=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb53-16"><a href="l08-gis-ii.html#cb53-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> top_cities, <span class="fu">aes</span>(<span class="at">x=</span>lng, <span class="at">y=</span>lat, <span class="at">label =</span> city), <span class="at">force =</span> <span class="dv">2</span>, <span class="at">segment.alpha =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb53-17"><a href="l08-gis-ii.html#cb53-17" aria-hidden="true" tabindex="-1"></a>  themeParameters</span>
+<span id="cb53-18"><a href="l08-gis-ii.html#cb53-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-19"><a href="l08-gis-ii.html#cb53-19" aria-hidden="true" tabindex="-1"></a>graph01</span></code></pre></div>
 <pre><code>## Scale on map varies by more than 10%, scale bar may be inaccurate</code></pre>
-<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p>There are plenty ofo things that can be done in orde rto improve the overall look of your maps. One of the things to know an dremember is that yoou can save your map into a separate image file (PNG, TIFF, of JPG — for raster images; SVG or PDF for vector images). The most simple saving command looks like the following:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="l08-gis-ii.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Our_Map.png&quot;</span>, <span class="at">plot=</span>graph01, <span class="at">width =</span> <span class="dv">420</span>, <span class="at">height =</span> <span class="dv">297</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">dpi =</span> <span class="st">&quot;retina&quot;</span>)</span>
-<span id="cb56-2"><a href="l08-gis-ii.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Our_Map.svg&quot;</span>, <span class="at">plot=</span>graph01)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="l08-gis-ii.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Our_Map.png&quot;</span>, <span class="at">plot=</span>graph01, <span class="at">width =</span> <span class="dv">420</span>, <span class="at">height =</span> <span class="dv">297</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">dpi =</span> <span class="st">&quot;retina&quot;</span>)</span>
+<span id="cb55-2"><a href="l08-gis-ii.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Our_Map.svg&quot;</span>, <span class="at">plot=</span>graph01)</span></code></pre></div>
 <p>By the way, in order to add an image file to your notebook, all you need to use id the following line of code (you add it on a separate line, <strong>not</strong> enclosing it in <code>'''{r} ... '''</code> !):</p>
 <pre><code>![](path_t_your_file.png)</code></pre>
 <p>So, this would be our raster map:</p>
 <p><img src="Our_Map.png" /></p>
 <p>And this will be our SVG (vector) map:</p>
 <p><img src="Our_Map.svg" /></p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="l08-gis-ii.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(grid) <span class="co"># grid library cuts out the plot from the graph</span></span>
-<span id="cb58-2"><a href="l08-gis-ii.html#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-3"><a href="l08-gis-ii.html#cb58-3" aria-hidden="true" tabindex="-1"></a>gt <span class="ot">&lt;-</span> <span class="fu">ggplot_gtable</span>(<span class="fu">ggplot_build</span>(graph01))</span>
-<span id="cb58-4"><a href="l08-gis-ii.html#cb58-4" aria-hidden="true" tabindex="-1"></a>ge <span class="ot">&lt;-</span> <span class="fu">subset</span>(gt<span class="sc">$</span>layout, name <span class="sc">==</span> <span class="st">&quot;panel&quot;</span>)</span>
-<span id="cb58-5"><a href="l08-gis-ii.html#cb58-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-6"><a href="l08-gis-ii.html#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;graph01.png&quot;</span>),</span>
-<span id="cb58-7"><a href="l08-gis-ii.html#cb58-7" aria-hidden="true" tabindex="-1"></a>       <span class="co"># the following line focuses on the graph</span></span>
-<span id="cb58-8"><a href="l08-gis-ii.html#cb58-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">plot=</span><span class="fu">grid.draw</span>(gt[ge<span class="sc">$</span>t<span class="sc">:</span>ge<span class="sc">$</span>b, ge<span class="sc">$</span>l<span class="sc">:</span>ge<span class="sc">$</span>r]),</span>
-<span id="cb58-9"><a href="l08-gis-ii.html#cb58-9" aria-hidden="true" tabindex="-1"></a>       <span class="co"># width and height should be experimentally adjusted to remove white space</span></span>
-<span id="cb58-10"><a href="l08-gis-ii.html#cb58-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">dpi=</span><span class="dv">300</span>,<span class="at">width=</span><span class="fl">8.85</span>,<span class="at">height=</span><span class="fl">4.45</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="l08-gis-ii.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(grid) <span class="co"># grid library cuts out the plot from the graph</span></span>
+<span id="cb57-2"><a href="l08-gis-ii.html#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="l08-gis-ii.html#cb57-3" aria-hidden="true" tabindex="-1"></a>gt <span class="ot">&lt;-</span> <span class="fu">ggplot_gtable</span>(<span class="fu">ggplot_build</span>(graph01))</span>
+<span id="cb57-4"><a href="l08-gis-ii.html#cb57-4" aria-hidden="true" tabindex="-1"></a>ge <span class="ot">&lt;-</span> <span class="fu">subset</span>(gt<span class="sc">$</span>layout, name <span class="sc">==</span> <span class="st">&quot;panel&quot;</span>)</span>
+<span id="cb57-5"><a href="l08-gis-ii.html#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="l08-gis-ii.html#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">file=</span><span class="fu">paste0</span>(<span class="st">&quot;graph01.png&quot;</span>),</span>
+<span id="cb57-7"><a href="l08-gis-ii.html#cb57-7" aria-hidden="true" tabindex="-1"></a>       <span class="co"># the following line focuses on the graph</span></span>
+<span id="cb57-8"><a href="l08-gis-ii.html#cb57-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">plot=</span><span class="fu">grid.draw</span>(gt[ge<span class="sc">$</span>t<span class="sc">:</span>ge<span class="sc">$</span>b, ge<span class="sc">$</span>l<span class="sc">:</span>ge<span class="sc">$</span>r]),</span>
+<span id="cb57-9"><a href="l08-gis-ii.html#cb57-9" aria-hidden="true" tabindex="-1"></a>       <span class="co"># width and height should be experimentally adjusted to remove white space</span></span>
+<span id="cb57-10"><a href="l08-gis-ii.html#cb57-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">dpi=</span><span class="dv">300</span>,<span class="at">width=</span><span class="fl">8.85</span>,<span class="at">height=</span><span class="fl">4.45</span>)</span></code></pre></div>
 <p><img src="graph01.png" /></p>
 <p><strong>TASK:</strong> Create similar maps for at least two other regions (continents or clusters of countries) of your choice. Focus on how your map looks. Experiment with visual improvements; try to add more information and data.</p>
 </div>
 </div>
-<div id="interactive-maps" class="section level2" number="8.4">
-<h2><span class="header-section-number">8.4</span> Interactive Maps</h2>
+<div id="other-base-maps-ggmap" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Other base maps: <code>ggmap</code></h2>
+<p><code>ggmap</code> allows us to use maps offered by different providers (for detailed overview, see: <a href="https://cfss.uchicago.edu/notes/raster-maps-with-ggmap/" class="uri">https://cfss.uchicago.edu/notes/raster-maps-with-ggmap/</a>). Let’s take a look at a few examples of maps provided by <em>Stamen</em>. (Others are: Google and Open Street Maps)</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="l08-gis-ii.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmdata)</span></code></pre></div>
+<pre><code>## Data (c) OpenStreetMap contributors, ODbL 1.0. https://www.openstreetmap.org/copyright</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="l08-gis-ii.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmap)</span>
+<span id="cb60-2"><a href="l08-gis-ii.html#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="l08-gis-ii.html#cb60-3" aria-hidden="true" tabindex="-1"></a>place <span class="ot">&lt;-</span> <span class="st">&quot;Vienna Austria&quot;</span></span>
+<span id="cb60-4"><a href="l08-gis-ii.html#cb60-4" aria-hidden="true" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> <span class="fu">opq</span>(place)<span class="sc">$</span>bbox <span class="sc">%&gt;%</span> <span class="fu">strsplit</span>(<span class="st">&quot;,&quot;</span>) <span class="sc">%&gt;%</span> unlist <span class="sc">%&gt;%</span> as.double</span>
+<span id="cb60-5"><a href="l08-gis-ii.html#cb60-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-6"><a href="l08-gis-ii.html#cb60-6" aria-hidden="true" tabindex="-1"></a>bb_vienna <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb60-7"><a href="l08-gis-ii.html#cb60-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">left =</span> bbox[<span class="dv">2</span>],</span>
+<span id="cb60-8"><a href="l08-gis-ii.html#cb60-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">bottom =</span> bbox[<span class="dv">1</span>],</span>
+<span id="cb60-9"><a href="l08-gis-ii.html#cb60-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">right =</span> bbox[<span class="dv">4</span>],</span>
+<span id="cb60-10"><a href="l08-gis-ii.html#cb60-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">top =</span> bbox[<span class="dv">3</span>]</span>
+<span id="cb60-11"><a href="l08-gis-ii.html#cb60-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb60-12"><a href="l08-gis-ii.html#cb60-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-13"><a href="l08-gis-ii.html#cb60-13" aria-hidden="true" tabindex="-1"></a>vienna_stamen <span class="ot">&lt;-</span> <span class="fu">get_stamenmap</span>(</span>
+<span id="cb60-14"><a href="l08-gis-ii.html#cb60-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">bbox =</span> <span class="fu">c</span>(bb_vienna),</span>
+<span id="cb60-15"><a href="l08-gis-ii.html#cb60-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">zoom =</span> <span class="dv">11</span></span>
+<span id="cb60-16"><a href="l08-gis-ii.html#cb60-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Source : http://tile.stamen.com/terrain/11/1116/709.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/11/1117/709.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/11/1118/709.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/11/1116/710.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/11/1117/710.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/11/1118/710.png</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="l08-gis-ii.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggmap</span>(vienna_stamen)</span></code></pre></div>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><em>Stamen</em> includes the following types of maps: “terrain,” “terrain-background,” “terrain-labels,” “terrain-lines,” “toner,” “toner-2010,” “toner-2011,” “toner-background,” “toner-hybrid,” “toner-labels,” “toner-lines,” “toner-lite,” “watercolor.” The <code>zoom</code> parameter determines how detailed your base map will be: from 0 to 18 (high zoom levels — 12 and higher — will require more tiles downloaded, which will take more time).</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="l08-gis-ii.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggmap</span>(<span class="fu">get_stamenmap</span>(<span class="at">bbox =</span> <span class="fu">c</span>(bb_vienna), <span class="at">zoom =</span> <span class="dv">12</span>, <span class="at">maptype=</span><span class="st">&quot;terrain&quot;</span>))</span></code></pre></div>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2232/1418.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2233/1418.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2234/1418.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2235/1418.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2236/1418.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2232/1419.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2233/1419.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2234/1419.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2235/1419.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2236/1419.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2232/1420.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2233/1420.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2234/1420.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2235/1420.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2236/1420.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2232/1421.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2233/1421.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2234/1421.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2235/1421.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/terrain/12/2236/1421.png</code></pre>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="l08-gis-ii.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggmap</span>(<span class="fu">get_stamenmap</span>(<span class="at">bbox =</span> <span class="fu">c</span>(bb_vienna), <span class="at">zoom =</span> <span class="dv">12</span>, <span class="at">maptype=</span><span class="st">&quot;toner&quot;</span>))</span></code></pre></div>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2232/1418.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2233/1418.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2234/1418.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2235/1418.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2236/1418.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2232/1419.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2233/1419.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2234/1419.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2235/1419.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2236/1419.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2232/1420.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2233/1420.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2234/1420.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2235/1420.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2236/1420.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2232/1421.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2233/1421.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2234/1421.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2235/1421.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/12/2236/1421.png</code></pre>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="l08-gis-ii.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggmap</span>(<span class="fu">get_stamenmap</span>(<span class="at">bbox =</span> <span class="fu">c</span>(bb_vienna), <span class="at">zoom =</span> <span class="dv">11</span>, <span class="at">maptype=</span><span class="st">&quot;toner-lines&quot;</span>))</span></code></pre></div>
+<pre><code>## Source : http://tile.stamen.com/toner-lines/11/1116/709.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner-lines/11/1117/709.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner-lines/11/1118/709.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner-lines/11/1116/710.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner-lines/11/1117/710.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner-lines/11/1118/710.png</code></pre>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="l08-gis-ii.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggmap</span>(<span class="fu">get_stamenmap</span>(<span class="at">bbox =</span> <span class="fu">c</span>(bb_vienna), <span class="at">zoom =</span> <span class="dv">12</span>, <span class="at">maptype=</span><span class="st">&quot;watercolor&quot;</span>))</span></code></pre></div>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2232/1418.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2233/1418.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2234/1418.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2235/1418.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2236/1418.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2232/1419.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2233/1419.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2234/1419.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2235/1419.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2236/1419.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2232/1420.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2233/1420.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2234/1420.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2235/1420.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2236/1420.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2232/1421.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2233/1421.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2234/1421.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2235/1421.jpg</code></pre>
+<pre><code>## Source : http://tile.stamen.com/watercolor/12/2236/1421.jpg</code></pre>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 </div>
 <div id="artistic-maps" class="section level2" number="8.5">
 <h2><span class="header-section-number">8.5</span> Artistic Maps</h2>
-<p>You might have seen beautiful maps of cities that are used as decorations. The following code (adapted—simplified—from a blog post by Taras Kaduk, see <em>Additional Materials</em>) creates a nice looking map of Vienna. Your task will be to tweak this code and create two maps of cities of your choice.</p>
+<p>You might have seen beautiful maps of cities that are used as decorations. The following code (simplified from a blog post by Taras Kaduk, see <em>Additional Materials</em>) creates a nice looking map of Vienna. <strong>Your task</strong> will be to tweak this code and create two maps of cities of your choice.
+You may also consult Esteban Moro’s similar blogpost (see <em>Additional Materials</em>).</p>
 <p><img src="files/L11/Wien_Map.png" /></p>
-<p>It is better to run the following code as a script, not as a part of your notebook. You can then simply include your generated map into your notebook as image. You can also include the entire working code in the notebook: with these parameters — <code>{r eval=FALSE, include=TRUE}</code> — the code will be included, displayed in the final notebook, but it will not be executed during knitting.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="l08-gis-ii.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb59-2"><a href="l08-gis-ii.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmdata)</span>
-<span id="cb59-3"><a href="l08-gis-ii.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb59-4"><a href="l08-gis-ii.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb59-5"><a href="l08-gis-ii.html#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lwgeom)</span>
-<span id="cb59-6"><a href="l08-gis-ii.html#cb59-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-7"><a href="l08-gis-ii.html#cb59-7" aria-hidden="true" tabindex="-1"></a>fileName <span class="ot">&lt;-</span> <span class="st">&quot;./path_to_save/Wien&quot;</span></span>
-<span id="cb59-8"><a href="l08-gis-ii.html#cb59-8" aria-hidden="true" tabindex="-1"></a>city  <span class="ot">&lt;-</span> <span class="st">&quot;Wien&quot;</span> <span class="co"># for map</span></span>
-<span id="cb59-9"><a href="l08-gis-ii.html#cb59-9" aria-hidden="true" tabindex="-1"></a>place <span class="ot">&lt;-</span> <span class="st">&quot;Vienna Austrria&quot;</span> <span class="co"># for search</span></span>
-<span id="cb59-10"><a href="l08-gis-ii.html#cb59-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-11"><a href="l08-gis-ii.html#cb59-11" aria-hidden="true" tabindex="-1"></a>highway_sizes <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
-<span id="cb59-12"><a href="l08-gis-ii.html#cb59-12" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>highway, <span class="sc">~</span>highway_group, <span class="sc">~</span>size,</span>
-<span id="cb59-13"><a href="l08-gis-ii.html#cb59-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;motorway&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="fl">0.5</span>,</span>
-<span id="cb59-14"><a href="l08-gis-ii.html#cb59-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;motorway_link&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="fl">0.3</span>,</span>
-<span id="cb59-15"><a href="l08-gis-ii.html#cb59-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;primary&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="fl">0.5</span>,</span>
-<span id="cb59-16"><a href="l08-gis-ii.html#cb59-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;primary_link&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="fl">0.3</span>,</span>
-<span id="cb59-17"><a href="l08-gis-ii.html#cb59-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;secondary&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="fl">0.3</span>,</span>
-<span id="cb59-18"><a href="l08-gis-ii.html#cb59-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;secondary_link&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="fl">0.3</span>,</span>
-<span id="cb59-19"><a href="l08-gis-ii.html#cb59-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;tertiary&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="fl">0.3</span>,</span>
-<span id="cb59-20"><a href="l08-gis-ii.html#cb59-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;tertiary_link&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="fl">0.3</span>,</span>
-<span id="cb59-21"><a href="l08-gis-ii.html#cb59-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;residential&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="fl">0.2</span>,</span>
-<span id="cb59-22"><a href="l08-gis-ii.html#cb59-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;living_street&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="fl">0.2</span>,</span>
-<span id="cb59-23"><a href="l08-gis-ii.html#cb59-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;unclassified&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="fl">0.2</span>,</span>
-<span id="cb59-24"><a href="l08-gis-ii.html#cb59-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;service&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="fl">0.2</span>,</span>
-<span id="cb59-25"><a href="l08-gis-ii.html#cb59-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;footway&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="fl">0.2</span></span>
-<span id="cb59-26"><a href="l08-gis-ii.html#cb59-26" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb59-27"><a href="l08-gis-ii.html#cb59-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-28"><a href="l08-gis-ii.html#cb59-28" aria-hidden="true" tabindex="-1"></a>streets_osm <span class="ot">&lt;-</span> <span class="fu">opq</span>(place) <span class="sc">%&gt;%</span></span>
-<span id="cb59-29"><a href="l08-gis-ii.html#cb59-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">&quot;highway&quot;</span>, <span class="at">value =</span> highway_sizes<span class="sc">$</span>highway) <span class="sc">%&gt;%</span></span>
-<span id="cb59-30"><a href="l08-gis-ii.html#cb59-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">osmdata_sf</span>()</span>
-<span id="cb59-31"><a href="l08-gis-ii.html#cb59-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-32"><a href="l08-gis-ii.html#cb59-32" aria-hidden="true" tabindex="-1"></a>streets <span class="ot">&lt;-</span> streets_osm<span class="sc">$</span>osm_lines <span class="sc">%&gt;%</span> </span>
-<span id="cb59-33"><a href="l08-gis-ii.html#cb59-33" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(osm_id, name, name.en, highway, maxspeed, oneway, surface) <span class="sc">%&gt;%</span> </span>
-<span id="cb59-34"><a href="l08-gis-ii.html#cb59-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">length =</span> <span class="fu">as.numeric</span>(<span class="fu">st_length</span>(.))) <span class="sc">%&gt;%</span> </span>
-<span id="cb59-35"><a href="l08-gis-ii.html#cb59-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(highway_sizes, <span class="at">by=</span><span class="st">&quot;highway&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb59-36"><a href="l08-gis-ii.html#cb59-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(highway_group <span class="sc">!=</span> <span class="st">&quot;small&quot;</span> <span class="sc">|</span> length <span class="sc">&gt;=</span> <span class="fu">quantile</span>(length, <span class="at">probs =</span> <span class="fl">0.25</span>))</span>
-<span id="cb59-37"><a href="l08-gis-ii.html#cb59-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-38"><a href="l08-gis-ii.html#cb59-38" aria-hidden="true" tabindex="-1"></a>railways_osm <span class="ot">&lt;-</span> <span class="fu">opq</span>(place) <span class="sc">%&gt;%</span></span>
-<span id="cb59-39"><a href="l08-gis-ii.html#cb59-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">&quot;railway&quot;</span>, <span class="at">value=</span><span class="st">&quot;rail&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb59-40"><a href="l08-gis-ii.html#cb59-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">osmdata_sf</span>()</span>
-<span id="cb59-41"><a href="l08-gis-ii.html#cb59-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-42"><a href="l08-gis-ii.html#cb59-42" aria-hidden="true" tabindex="-1"></a>railways <span class="ot">&lt;-</span> railways_osm<span class="sc">$</span>osm_lines <span class="sc">%&gt;%</span> </span>
-<span id="cb59-43"><a href="l08-gis-ii.html#cb59-43" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>()</span>
-<span id="cb59-44"><a href="l08-gis-ii.html#cb59-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-45"><a href="l08-gis-ii.html#cb59-45" aria-hidden="true" tabindex="-1"></a>river_osm <span class="ot">&lt;-</span> <span class="fu">opq</span>(place) <span class="sc">%&gt;%</span></span>
-<span id="cb59-46"><a href="l08-gis-ii.html#cb59-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">&quot;waterway&quot;</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="st">&quot;river&quot;</span>, <span class="st">&quot;riverbank&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb59-47"><a href="l08-gis-ii.html#cb59-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">osmdata_sf</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb59-48"><a href="l08-gis-ii.html#cb59-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unname_osmdata_sf</span>()</span>
-<span id="cb59-49"><a href="l08-gis-ii.html#cb59-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-50"><a href="l08-gis-ii.html#cb59-50" aria-hidden="true" tabindex="-1"></a>water_osm <span class="ot">&lt;-</span> <span class="fu">opq</span>(place) <span class="sc">%&gt;%</span></span>
-<span id="cb59-51"><a href="l08-gis-ii.html#cb59-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">&quot;natural&quot;</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="st">&quot;water&quot;</span>, <span class="st">&quot;wetland&quot;</span>, <span class="st">&quot;bay&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb59-52"><a href="l08-gis-ii.html#cb59-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">osmdata_sf</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb59-53"><a href="l08-gis-ii.html#cb59-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unname_osmdata_sf</span>()</span>
-<span id="cb59-54"><a href="l08-gis-ii.html#cb59-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-55"><a href="l08-gis-ii.html#cb59-55" aria-hidden="true" tabindex="-1"></a>water <span class="ot">&lt;-</span> <span class="fu">c</span>(water_osm, river_osm) <span class="sc">%&gt;%</span> </span>
-<span id="cb59-56"><a href="l08-gis-ii.html#cb59-56" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>osm_multipolygons <span class="sc">%&gt;%</span> </span>
-<span id="cb59-57"><a href="l08-gis-ii.html#cb59-57" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(osm_id, name) <span class="sc">%&gt;%</span> </span>
-<span id="cb59-58"><a href="l08-gis-ii.html#cb59-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">area =</span> <span class="fu">st_area</span>(.)) <span class="sc">%&gt;%</span> </span>
-<span id="cb59-59"><a href="l08-gis-ii.html#cb59-59" aria-hidden="true" tabindex="-1"></a>  <span class="co"># this filter gets rid of tiny isolated lakes et cetera</span></span>
-<span id="cb59-60"><a href="l08-gis-ii.html#cb59-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(area <span class="sc">&gt;=</span> <span class="fu">quantile</span>(area, <span class="at">probs =</span> <span class="fl">0.75</span>))</span>
-<span id="cb59-61"><a href="l08-gis-ii.html#cb59-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-62"><a href="l08-gis-ii.html#cb59-62" aria-hidden="true" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> <span class="fu">opq</span>(place)<span class="sc">$</span>bbox <span class="sc">%&gt;%</span> <span class="fu">strsplit</span>(<span class="st">&quot;,&quot;</span>) <span class="sc">%&gt;%</span> unlist <span class="sc">%&gt;%</span> as.double</span>
-<span id="cb59-63"><a href="l08-gis-ii.html#cb59-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-64"><a href="l08-gis-ii.html#cb59-64" aria-hidden="true" tabindex="-1"></a>blankbg <span class="ot">&lt;-</span><span class="fu">theme</span>(<span class="at">axis.line=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb59-65"><a href="l08-gis-ii.html#cb59-65" aria-hidden="true" tabindex="-1"></a>                <span class="at">axis.text.x=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb59-66"><a href="l08-gis-ii.html#cb59-66" aria-hidden="true" tabindex="-1"></a>                <span class="at">axis.text.y=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb59-67"><a href="l08-gis-ii.html#cb59-67" aria-hidden="true" tabindex="-1"></a>                <span class="at">axis.ticks=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb59-68"><a href="l08-gis-ii.html#cb59-68" aria-hidden="true" tabindex="-1"></a>                <span class="at">axis.title.x=</span><span class="fu">element_blank</span>(), </span>
-<span id="cb59-69"><a href="l08-gis-ii.html#cb59-69" aria-hidden="true" tabindex="-1"></a>                <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb59-70"><a href="l08-gis-ii.html#cb59-70" aria-hidden="true" tabindex="-1"></a>                <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
-<span id="cb59-71"><a href="l08-gis-ii.html#cb59-71" aria-hidden="true" tabindex="-1"></a>                <span class="at">plot.background=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb59-72"><a href="l08-gis-ii.html#cb59-72" aria-hidden="true" tabindex="-1"></a>                <span class="at">panel.grid.minor=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb59-73"><a href="l08-gis-ii.html#cb59-73" aria-hidden="true" tabindex="-1"></a>                <span class="at">panel.background=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb59-74"><a href="l08-gis-ii.html#cb59-74" aria-hidden="true" tabindex="-1"></a>                <span class="at">panel.grid.major=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb59-75"><a href="l08-gis-ii.html#cb59-75" aria-hidden="true" tabindex="-1"></a>                <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(<span class="at">t=</span><span class="dv">2</span>,<span class="at">r=</span><span class="dv">2</span>,<span class="at">b=</span><span class="dv">2</span>,<span class="at">l=</span><span class="dv">2</span>), <span class="st">&quot;cm&quot;</span>),</span>
-<span id="cb59-76"><a href="l08-gis-ii.html#cb59-76" aria-hidden="true" tabindex="-1"></a>                <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">&quot;grey20&quot;</span>, <span class="at">size =</span> <span class="dv">92</span>, <span class="at">hjust =</span> .<span class="dv">5</span>, <span class="at">face =</span> <span class="st">&quot;plain&quot;</span>, </span>
-<span id="cb59-77"><a href="l08-gis-ii.html#cb59-77" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">family =</span> <span class="st">&quot;Willow&quot;</span>),</span>
-<span id="cb59-78"><a href="l08-gis-ii.html#cb59-78" aria-hidden="true" tabindex="-1"></a>                <span class="at">panel.border =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb59-79"><a href="l08-gis-ii.html#cb59-79" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb59-80"><a href="l08-gis-ii.html#cb59-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-81"><a href="l08-gis-ii.html#cb59-81" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb59-82"><a href="l08-gis-ii.html#cb59-82" aria-hidden="true" tabindex="-1"></a>  blankbg <span class="sc">+</span></span>
-<span id="cb59-83"><a href="l08-gis-ii.html#cb59-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
-<span id="cb59-84"><a href="l08-gis-ii.html#cb59-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> water, <span class="at">fill =</span> <span class="st">&quot;lightsteelblue2&quot;</span>, <span class="at">lwd =</span> <span class="dv">0</span>, <span class="at">alpha =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb59-85"><a href="l08-gis-ii.html#cb59-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> railways, <span class="at">color=</span><span class="st">&quot;grey30&quot;</span>, <span class="at">size=</span>.<span class="dv">2</span>, <span class="at">linetype=</span><span class="st">&quot;dotdash&quot;</span>, <span class="at">alpha=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb59-86"><a href="l08-gis-ii.html#cb59-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> streets <span class="sc">%&gt;%</span> <span class="fu">filter</span>(highway_group <span class="sc">==</span> <span class="st">&quot;small&quot;</span>), <span class="at">size =</span> .<span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;grey40&quot;</span>) <span class="sc">+</span></span>
-<span id="cb59-87"><a href="l08-gis-ii.html#cb59-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> streets <span class="sc">%&gt;%</span> <span class="fu">filter</span>(highway_group <span class="sc">==</span> <span class="st">&quot;medium&quot;</span>), <span class="at">size =</span> .<span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;grey35&quot;</span>) <span class="sc">+</span></span>
-<span id="cb59-88"><a href="l08-gis-ii.html#cb59-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> streets <span class="sc">%&gt;%</span><span class="fu">filter</span>(highway_group <span class="sc">==</span> <span class="st">&quot;large&quot;</span>), <span class="at">size =</span> .<span class="dv">5</span>, <span class="at">color =</span> <span class="st">&quot;grey30&quot;</span>) <span class="sc">+</span></span>
-<span id="cb59-89"><a href="l08-gis-ii.html#cb59-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">caption =</span> city) <span class="sc">+</span></span>
-<span id="cb59-90"><a href="l08-gis-ii.html#cb59-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(bbox[<span class="dv">2</span>], bbox[<span class="dv">4</span>]), <span class="at">ylim =</span> <span class="fu">c</span>(bbox[<span class="dv">1</span>], bbox[<span class="dv">3</span>]), <span class="at">expand =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb59-91"><a href="l08-gis-ii.html#cb59-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-92"><a href="l08-gis-ii.html#cb59-92" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(fileName,<span class="st">&quot;_Map.png&quot;</span>), <span class="at">plot=</span>p, <span class="at">width =</span> <span class="dv">297</span>, <span class="at">height =</span> <span class="dv">420</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">dpi =</span> <span class="st">&quot;retina&quot;</span>)</span></code></pre></div>
+<p>It is better to run the following code as a script, not as a part of your notebook. You can then simply include your generated maps into your notebooks as images. You can also include the entire working code in the notebook: with these parameters — <code>{r eval=FALSE, include=TRUE}</code> — the code will be included, displayed in the final notebook, but it will not be executed during knitting.</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="l08-gis-ii.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb138-2"><a href="l08-gis-ii.html#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmdata)</span>
+<span id="cb138-3"><a href="l08-gis-ii.html#cb138-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb138-4"><a href="l08-gis-ii.html#cb138-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb138-5"><a href="l08-gis-ii.html#cb138-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lwgeom)</span>
+<span id="cb138-6"><a href="l08-gis-ii.html#cb138-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-7"><a href="l08-gis-ii.html#cb138-7" aria-hidden="true" tabindex="-1"></a>fileName <span class="ot">&lt;-</span> <span class="st">&quot;./path_to_save/Wien&quot;</span></span>
+<span id="cb138-8"><a href="l08-gis-ii.html#cb138-8" aria-hidden="true" tabindex="-1"></a>city  <span class="ot">&lt;-</span> <span class="st">&quot;Wien&quot;</span> <span class="co"># for map</span></span>
+<span id="cb138-9"><a href="l08-gis-ii.html#cb138-9" aria-hidden="true" tabindex="-1"></a>place <span class="ot">&lt;-</span> <span class="st">&quot;Vienna Austria&quot;</span> <span class="co"># for search</span></span>
+<span id="cb138-10"><a href="l08-gis-ii.html#cb138-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-11"><a href="l08-gis-ii.html#cb138-11" aria-hidden="true" tabindex="-1"></a>highway_sizes <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb138-12"><a href="l08-gis-ii.html#cb138-12" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>highway, <span class="sc">~</span>highway_group, <span class="sc">~</span>size,</span>
+<span id="cb138-13"><a href="l08-gis-ii.html#cb138-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;motorway&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="fl">0.5</span>,</span>
+<span id="cb138-14"><a href="l08-gis-ii.html#cb138-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;motorway_link&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="fl">0.3</span>,</span>
+<span id="cb138-15"><a href="l08-gis-ii.html#cb138-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;primary&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="fl">0.5</span>,</span>
+<span id="cb138-16"><a href="l08-gis-ii.html#cb138-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;primary_link&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="fl">0.3</span>,</span>
+<span id="cb138-17"><a href="l08-gis-ii.html#cb138-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;secondary&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="fl">0.3</span>,</span>
+<span id="cb138-18"><a href="l08-gis-ii.html#cb138-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;secondary_link&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="fl">0.3</span>,</span>
+<span id="cb138-19"><a href="l08-gis-ii.html#cb138-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;tertiary&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="fl">0.3</span>,</span>
+<span id="cb138-20"><a href="l08-gis-ii.html#cb138-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;tertiary_link&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="fl">0.3</span>,</span>
+<span id="cb138-21"><a href="l08-gis-ii.html#cb138-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;residential&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="fl">0.2</span>,</span>
+<span id="cb138-22"><a href="l08-gis-ii.html#cb138-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;living_street&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="fl">0.2</span>,</span>
+<span id="cb138-23"><a href="l08-gis-ii.html#cb138-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;unclassified&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="fl">0.2</span>,</span>
+<span id="cb138-24"><a href="l08-gis-ii.html#cb138-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;service&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="fl">0.2</span>,</span>
+<span id="cb138-25"><a href="l08-gis-ii.html#cb138-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;footway&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="fl">0.2</span></span>
+<span id="cb138-26"><a href="l08-gis-ii.html#cb138-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb138-27"><a href="l08-gis-ii.html#cb138-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-28"><a href="l08-gis-ii.html#cb138-28" aria-hidden="true" tabindex="-1"></a>streets_osm <span class="ot">&lt;-</span> <span class="fu">opq</span>(place) <span class="sc">%&gt;%</span></span>
+<span id="cb138-29"><a href="l08-gis-ii.html#cb138-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">&quot;highway&quot;</span>, <span class="at">value =</span> highway_sizes<span class="sc">$</span>highway) <span class="sc">%&gt;%</span></span>
+<span id="cb138-30"><a href="l08-gis-ii.html#cb138-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">osmdata_sf</span>()</span>
+<span id="cb138-31"><a href="l08-gis-ii.html#cb138-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-32"><a href="l08-gis-ii.html#cb138-32" aria-hidden="true" tabindex="-1"></a>streets <span class="ot">&lt;-</span> streets_osm<span class="sc">$</span>osm_lines <span class="sc">%&gt;%</span> </span>
+<span id="cb138-33"><a href="l08-gis-ii.html#cb138-33" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(osm_id, name, name.en, highway, maxspeed, oneway, surface) <span class="sc">%&gt;%</span> </span>
+<span id="cb138-34"><a href="l08-gis-ii.html#cb138-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">length =</span> <span class="fu">as.numeric</span>(<span class="fu">st_length</span>(.))) <span class="sc">%&gt;%</span> </span>
+<span id="cb138-35"><a href="l08-gis-ii.html#cb138-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(highway_sizes, <span class="at">by=</span><span class="st">&quot;highway&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb138-36"><a href="l08-gis-ii.html#cb138-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(highway_group <span class="sc">!=</span> <span class="st">&quot;small&quot;</span> <span class="sc">|</span> length <span class="sc">&gt;=</span> <span class="fu">quantile</span>(length, <span class="at">probs =</span> <span class="fl">0.25</span>))</span>
+<span id="cb138-37"><a href="l08-gis-ii.html#cb138-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-38"><a href="l08-gis-ii.html#cb138-38" aria-hidden="true" tabindex="-1"></a>railways_osm <span class="ot">&lt;-</span> <span class="fu">opq</span>(place) <span class="sc">%&gt;%</span></span>
+<span id="cb138-39"><a href="l08-gis-ii.html#cb138-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">&quot;railway&quot;</span>, <span class="at">value=</span><span class="st">&quot;rail&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb138-40"><a href="l08-gis-ii.html#cb138-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">osmdata_sf</span>()</span>
+<span id="cb138-41"><a href="l08-gis-ii.html#cb138-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-42"><a href="l08-gis-ii.html#cb138-42" aria-hidden="true" tabindex="-1"></a>railways <span class="ot">&lt;-</span> railways_osm<span class="sc">$</span>osm_lines <span class="sc">%&gt;%</span> </span>
+<span id="cb138-43"><a href="l08-gis-ii.html#cb138-43" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>()</span>
+<span id="cb138-44"><a href="l08-gis-ii.html#cb138-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-45"><a href="l08-gis-ii.html#cb138-45" aria-hidden="true" tabindex="-1"></a>river_osm <span class="ot">&lt;-</span> <span class="fu">opq</span>(place) <span class="sc">%&gt;%</span></span>
+<span id="cb138-46"><a href="l08-gis-ii.html#cb138-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">&quot;waterway&quot;</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="st">&quot;river&quot;</span>, <span class="st">&quot;riverbank&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb138-47"><a href="l08-gis-ii.html#cb138-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">osmdata_sf</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb138-48"><a href="l08-gis-ii.html#cb138-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unname_osmdata_sf</span>()</span>
+<span id="cb138-49"><a href="l08-gis-ii.html#cb138-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-50"><a href="l08-gis-ii.html#cb138-50" aria-hidden="true" tabindex="-1"></a>water_osm <span class="ot">&lt;-</span> <span class="fu">opq</span>(place) <span class="sc">%&gt;%</span></span>
+<span id="cb138-51"><a href="l08-gis-ii.html#cb138-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">&quot;natural&quot;</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="st">&quot;water&quot;</span>, <span class="st">&quot;wetland&quot;</span>, <span class="st">&quot;bay&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb138-52"><a href="l08-gis-ii.html#cb138-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">osmdata_sf</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb138-53"><a href="l08-gis-ii.html#cb138-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unname_osmdata_sf</span>()</span>
+<span id="cb138-54"><a href="l08-gis-ii.html#cb138-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-55"><a href="l08-gis-ii.html#cb138-55" aria-hidden="true" tabindex="-1"></a>water <span class="ot">&lt;-</span> <span class="fu">c</span>(water_osm, river_osm) <span class="sc">%&gt;%</span> </span>
+<span id="cb138-56"><a href="l08-gis-ii.html#cb138-56" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>osm_multipolygons <span class="sc">%&gt;%</span> </span>
+<span id="cb138-57"><a href="l08-gis-ii.html#cb138-57" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(osm_id, name) <span class="sc">%&gt;%</span> </span>
+<span id="cb138-58"><a href="l08-gis-ii.html#cb138-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">area =</span> <span class="fu">st_area</span>(.)) <span class="sc">%&gt;%</span> </span>
+<span id="cb138-59"><a href="l08-gis-ii.html#cb138-59" aria-hidden="true" tabindex="-1"></a>  <span class="co"># this filter gets rid of tiny isolated lakes et cetera</span></span>
+<span id="cb138-60"><a href="l08-gis-ii.html#cb138-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(area <span class="sc">&gt;=</span> <span class="fu">quantile</span>(area, <span class="at">probs =</span> <span class="fl">0.75</span>))</span>
+<span id="cb138-61"><a href="l08-gis-ii.html#cb138-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-62"><a href="l08-gis-ii.html#cb138-62" aria-hidden="true" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> <span class="fu">opq</span>(place)<span class="sc">$</span>bbox <span class="sc">%&gt;%</span> <span class="fu">strsplit</span>(<span class="st">&quot;,&quot;</span>) <span class="sc">%&gt;%</span> unlist <span class="sc">%&gt;%</span> as.double</span>
+<span id="cb138-63"><a href="l08-gis-ii.html#cb138-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-64"><a href="l08-gis-ii.html#cb138-64" aria-hidden="true" tabindex="-1"></a>blankbg <span class="ot">&lt;-</span><span class="fu">theme</span>(<span class="at">axis.line=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb138-65"><a href="l08-gis-ii.html#cb138-65" aria-hidden="true" tabindex="-1"></a>                <span class="at">axis.text.x=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb138-66"><a href="l08-gis-ii.html#cb138-66" aria-hidden="true" tabindex="-1"></a>                <span class="at">axis.text.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb138-67"><a href="l08-gis-ii.html#cb138-67" aria-hidden="true" tabindex="-1"></a>                <span class="at">axis.ticks=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb138-68"><a href="l08-gis-ii.html#cb138-68" aria-hidden="true" tabindex="-1"></a>                <span class="at">axis.title.x=</span><span class="fu">element_blank</span>(), </span>
+<span id="cb138-69"><a href="l08-gis-ii.html#cb138-69" aria-hidden="true" tabindex="-1"></a>                <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb138-70"><a href="l08-gis-ii.html#cb138-70" aria-hidden="true" tabindex="-1"></a>                <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb138-71"><a href="l08-gis-ii.html#cb138-71" aria-hidden="true" tabindex="-1"></a>                <span class="at">plot.background=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb138-72"><a href="l08-gis-ii.html#cb138-72" aria-hidden="true" tabindex="-1"></a>                <span class="at">panel.grid.minor=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb138-73"><a href="l08-gis-ii.html#cb138-73" aria-hidden="true" tabindex="-1"></a>                <span class="at">panel.background=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb138-74"><a href="l08-gis-ii.html#cb138-74" aria-hidden="true" tabindex="-1"></a>                <span class="at">panel.grid.major=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb138-75"><a href="l08-gis-ii.html#cb138-75" aria-hidden="true" tabindex="-1"></a>                <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(<span class="at">t=</span><span class="dv">2</span>,<span class="at">r=</span><span class="dv">2</span>,<span class="at">b=</span><span class="dv">2</span>,<span class="at">l=</span><span class="dv">2</span>), <span class="st">&quot;cm&quot;</span>),</span>
+<span id="cb138-76"><a href="l08-gis-ii.html#cb138-76" aria-hidden="true" tabindex="-1"></a>                <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">&quot;grey20&quot;</span>, <span class="at">size =</span> <span class="dv">92</span>, <span class="at">hjust =</span> .<span class="dv">5</span>, <span class="at">face =</span> <span class="st">&quot;plain&quot;</span>, </span>
+<span id="cb138-77"><a href="l08-gis-ii.html#cb138-77" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">family =</span> <span class="st">&quot;Willow&quot;</span>),</span>
+<span id="cb138-78"><a href="l08-gis-ii.html#cb138-78" aria-hidden="true" tabindex="-1"></a>                <span class="at">panel.border =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb138-79"><a href="l08-gis-ii.html#cb138-79" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb138-80"><a href="l08-gis-ii.html#cb138-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-81"><a href="l08-gis-ii.html#cb138-81" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb138-82"><a href="l08-gis-ii.html#cb138-82" aria-hidden="true" tabindex="-1"></a>  blankbg <span class="sc">+</span></span>
+<span id="cb138-83"><a href="l08-gis-ii.html#cb138-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb138-84"><a href="l08-gis-ii.html#cb138-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> water, <span class="at">fill =</span> <span class="st">&quot;lightsteelblue2&quot;</span>, <span class="at">lwd =</span> <span class="dv">0</span>, <span class="at">alpha =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb138-85"><a href="l08-gis-ii.html#cb138-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> railways, <span class="at">color=</span><span class="st">&quot;grey30&quot;</span>, <span class="at">size=</span>.<span class="dv">2</span>, <span class="at">linetype=</span><span class="st">&quot;dotdash&quot;</span>, <span class="at">alpha=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb138-86"><a href="l08-gis-ii.html#cb138-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> streets <span class="sc">%&gt;%</span> <span class="fu">filter</span>(highway_group <span class="sc">==</span> <span class="st">&quot;small&quot;</span>), <span class="at">size =</span> .<span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;grey40&quot;</span>) <span class="sc">+</span></span>
+<span id="cb138-87"><a href="l08-gis-ii.html#cb138-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> streets <span class="sc">%&gt;%</span> <span class="fu">filter</span>(highway_group <span class="sc">==</span> <span class="st">&quot;medium&quot;</span>), <span class="at">size =</span> .<span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;grey35&quot;</span>) <span class="sc">+</span></span>
+<span id="cb138-88"><a href="l08-gis-ii.html#cb138-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> streets <span class="sc">%&gt;%</span><span class="fu">filter</span>(highway_group <span class="sc">==</span> <span class="st">&quot;large&quot;</span>), <span class="at">size =</span> .<span class="dv">5</span>, <span class="at">color =</span> <span class="st">&quot;grey30&quot;</span>) <span class="sc">+</span></span>
+<span id="cb138-89"><a href="l08-gis-ii.html#cb138-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">caption =</span> city) <span class="sc">+</span></span>
+<span id="cb138-90"><a href="l08-gis-ii.html#cb138-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(bbox[<span class="dv">2</span>], bbox[<span class="dv">4</span>]), <span class="at">ylim =</span> <span class="fu">c</span>(bbox[<span class="dv">1</span>], bbox[<span class="dv">3</span>]), <span class="at">expand =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb138-91"><a href="l08-gis-ii.html#cb138-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-92"><a href="l08-gis-ii.html#cb138-92" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(fileName,<span class="st">&quot;_Map.png&quot;</span>), <span class="at">plot=</span>p, <span class="at">width =</span> <span class="dv">297</span>, <span class="at">height =</span> <span class="dv">420</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">dpi =</span> <span class="st">&quot;retina&quot;</span>)</span></code></pre></div>
 </div>
 <div id="HW08" class="section level2" number="8.6">
 <h2><span class="header-section-number">8.6</span> Homework</h2>
 <ul>
 <li>Create at least two maps for regions (continents or clusters of countries) of your choice. Focus on how your map looks. Experiment with visual improvements; try to add more information and data.</li>
-<li>Create a couple of artistic maps for cities of your choice</li>
+<li>Create a couple of artistic maps for cities of your choice. Experiment with different elements — perhaps you can add additional data (points on places that are important to you; some other types of data, etc.)</li>
 </ul>
 <p>Submit your knitted notebook.</p>
 </div>
 <div id="additional-materials" class="section level2" number="8.7">
 <h2><span class="header-section-number">8.7</span> Additional Materials</h2>
 <ul>
-<li>Kaduk (2021, Jan. 18). Taras Kaduk: Print Personalized Street Maps Using R. Retrieved from <a href="https://taraskaduk.com/posts/2021-01-18-print-street-maps/" class="uri">https://taraskaduk.com/posts/2021-01-18-print-street-maps/</a></li>
+<li>Kaduk, Taras (2021, Jan. 18). <em>Print Personalized Street Maps Using R</em>. Retrieved from: <a href="https://taraskaduk.com/posts/2021-01-18-print-street-maps/" class="uri">https://taraskaduk.com/posts/2021-01-18-print-street-maps/</a></li>
+<li>Moro, Esteban (2020, Oct. 19). <em>Personal Art Map with R</em>. Retrieved from: <a href="http://estebanmoro.org/post/2020-10-19-personal-art-map-with-r/" class="uri">http://estebanmoro.org/post/2020-10-19-personal-art-map-with-r/</a></li>
+<li>Davis, Erin R. (2019, Jul. 19). <em>The Beautiful Hidden Logic of Cities</em>. Retrieved from: <a href="https://erdavis.com/2019/07/27/the-beautiful-hidden-logic-of-cities/" class="uri">https://erdavis.com/2019/07/27/the-beautiful-hidden-logic-of-cities/</a></li>
 </ul>
 </div>
 <div id="SH08" class="section level2" number="8.8">
