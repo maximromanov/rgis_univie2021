@@ -661,7 +661,8 @@ install.packages(&quot;raster&quot;, &quot;rgdal&quot;)</code></pre>
 <span id="cb50-13"><a href="l08-gis-ii.html#cb50-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-14"><a href="l08-gis-ii.html#cb50-14" aria-hidden="true" tabindex="-1"></a>themeParameters <span class="ot">&lt;-</span> <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> waterColor),</span>
 <span id="cb50-15"><a href="l08-gis-ii.html#cb50-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb50-16"><a href="l08-gis-ii.html#cb50-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<span id="cb50-16"><a href="l08-gis-ii.html#cb50-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb50-17"><a href="l08-gis-ii.html#cb50-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> waterColor, <span class="at">linetype =</span> <span class="st">&quot;dotted&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>))</span></code></pre></div>
 <p>Now we can build the same map with just this:</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="l08-gis-ii.html#cb51-1" aria-hidden="true" tabindex="-1"></a>baseplot <span class="sc">+</span> themeParameters</span></code></pre></div>
 <pre><code>## Scale on map varies by more than 10%, scale bar may be inaccurate</code></pre>
@@ -696,14 +697,35 @@ install.packages(&quot;raster&quot;, &quot;rgdal&quot;)</code></pre>
 <span id="cb55-10"><a href="l08-gis-ii.html#cb55-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, <span class="at">wt =</span> population)</span>
 <span id="cb55-11"><a href="l08-gis-ii.html#cb55-11" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb55-12"><a href="l08-gis-ii.html#cb55-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-13"><a href="l08-gis-ii.html#cb55-13" aria-hidden="true" tabindex="-1"></a>baseplot <span class="sc">+</span> </span>
+<span id="cb55-13"><a href="l08-gis-ii.html#cb55-13" aria-hidden="true" tabindex="-1"></a>graph01 <span class="ot">&lt;-</span> baseplot <span class="sc">+</span> </span>
 <span id="cb55-14"><a href="l08-gis-ii.html#cb55-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> wc_filtered, <span class="fu">aes</span>(<span class="at">x=</span>lng, <span class="at">y=</span>lat, <span class="at">size=</span>population), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">col=</span><span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
 <span id="cb55-15"><a href="l08-gis-ii.html#cb55-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range=</span><span class="fu">c</span>(<span class="fl">0.01</span>, <span class="dv">2</span>)) <span class="sc">+</span></span>
 <span id="cb55-16"><a href="l08-gis-ii.html#cb55-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> top_cities, <span class="fu">aes</span>(<span class="at">x=</span>lng, <span class="at">y=</span>lat), <span class="at">col=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb55-17"><a href="l08-gis-ii.html#cb55-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> top_cities, <span class="fu">aes</span>(<span class="at">x=</span>lng, <span class="at">y=</span>lat, <span class="at">label =</span> city), <span class="at">force =</span> <span class="dv">2</span>, <span class="at">segment.alpha =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
-<span id="cb55-18"><a href="l08-gis-ii.html#cb55-18" aria-hidden="true" tabindex="-1"></a>  themeParameters</span></code></pre></div>
+<span id="cb55-18"><a href="l08-gis-ii.html#cb55-18" aria-hidden="true" tabindex="-1"></a>  themeParameters</span>
+<span id="cb55-19"><a href="l08-gis-ii.html#cb55-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-20"><a href="l08-gis-ii.html#cb55-20" aria-hidden="true" tabindex="-1"></a>graph01</span></code></pre></div>
 <pre><code>## Scale on map varies by more than 10%, scale bar may be inaccurate</code></pre>
 <p><img src="RGIS2021S_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>There are plenty ofo things that can be done in orde rto improve the overall look of your maps. One of the things to know an dremember is that yoou can save your map into a separate image file (PNG, TIFF, of JPG — for raster images; SVG or PDF for vector images.) The most simple saving command looks like the following:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="l08-gis-ii.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Our_Map.png&quot;</span>, <span class="at">plot=</span>graph01, <span class="at">width =</span> <span class="dv">420</span>, <span class="at">height =</span> <span class="dv">297</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">dpi =</span> <span class="st">&quot;retina&quot;</span>)</span></code></pre></div>
+<pre><code>## Scale on map varies by more than 10%, scale bar may be inaccurate</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="l08-gis-ii.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Our_Map.svg&quot;</span>, <span class="at">plot=</span>graph01)</span></code></pre></div>
+<pre><code>## Saving 7 x 5 in image
+## Scale on map varies by more than 10%, scale bar may be inaccurate</code></pre>
+<p>By the way, in order to add an image file to your notebook, all you need to use id the following line of code (you add it on a separate line, <strong>not</strong> enclosing it in <code>\</code>``{r} … ``` ` !):</p>
+<pre><code>![](path_t_your_file.png)</code></pre>
+<pre><code>library(grid) # grid library cuts out the plot from the graph
+
+gt &lt;- ggplot_gtable(ggplot_build(graph01))
+ge &lt;- subset(gt$layout, name == &quot;panel&quot;)
+
+ggsave(file=paste0(&quot;graph01.png&quot;),
+       # the following line focuses on the graph
+       plot=grid.draw(gt[ge$t:ge$b, ge$l:ge$r]),
+       # width and height should be experimentally adjusted to remove white space
+       dpi=300,width=8.85,height=4.45)</code></pre>
+<p><img src="graph01.png" /></p>
 </div>
 </div>
 <div id="HW08" class="section level2" number="8.3">
