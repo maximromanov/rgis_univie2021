@@ -661,12 +661,49 @@ install.packages(&quot;raster&quot;, &quot;rgdal&quot;)</code></pre>
 <span id="cb50-13"><a href="l08-gis-ii.html#cb50-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-14"><a href="l08-gis-ii.html#cb50-14" aria-hidden="true" tabindex="-1"></a>themeParameters <span class="ot">&lt;-</span> <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> waterColor),</span>
 <span id="cb50-15"><a href="l08-gis-ii.html#cb50-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb50-16"><a href="l08-gis-ii.html#cb50-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x=</span><span class="fu">element_blank</span>())</span>
-<span id="cb50-17"><a href="l08-gis-ii.html#cb50-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-18"><a href="l08-gis-ii.html#cb50-18" aria-hidden="true" tabindex="-1"></a>baseplot <span class="sc">+</span> themeParameters</span></code></pre></div>
+<span id="cb50-16"><a href="l08-gis-ii.html#cb50-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<p>Now we can build the same map with just this:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="l08-gis-ii.html#cb51-1" aria-hidden="true" tabindex="-1"></a>baseplot <span class="sc">+</span> themeParameters</span></code></pre></div>
 <pre><code>## Scale on map varies by more than 10%, scale bar may be inaccurate</code></pre>
-<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p>Let’s add some data. You can download <a href="./files/L11_worldcities.csv.zip">this dataset with cities of the world</a>.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="l08-gis-ii.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb53-2"><a href="l08-gis-ii.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb53-3"><a href="l08-gis-ii.html#cb53-3" aria-hidden="true" tabindex="-1"></a>worldcities <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/L11_worldcities.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   city = col_character(),
+##   city_ascii = col_character(),
+##   lat = col_double(),
+##   lng = col_double(),
+##   country = col_character(),
+##   iso2 = col_character(),
+##   iso3 = col_character(),
+##   admin_name = col_character(),
+##   capital = col_character(),
+##   population = col_double(),
+##   id = col_double()
+## )</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="l08-gis-ii.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># xlim=c(-12,80); ylim=c(10,50)</span></span>
+<span id="cb55-2"><a href="l08-gis-ii.html#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="l08-gis-ii.html#cb55-3" aria-hidden="true" tabindex="-1"></a>wc_filtered <span class="ot">&lt;-</span> worldcities <span class="sc">%&gt;%</span></span>
+<span id="cb55-4"><a href="l08-gis-ii.html#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(lat, <span class="dv">10</span>, <span class="dv">50</span>), <span class="fu">between</span>(lng, <span class="sc">-</span><span class="dv">12</span>, <span class="dv">80</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb55-5"><a href="l08-gis-ii.html#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(population))</span>
+<span id="cb55-6"><a href="l08-gis-ii.html#cb55-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb55-7"><a href="l08-gis-ii.html#cb55-7" aria-hidden="true" tabindex="-1"></a>top_cities <span class="ot">&lt;-</span> worldcities <span class="sc">%&gt;%</span></span>
+<span id="cb55-8"><a href="l08-gis-ii.html#cb55-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(lat, <span class="dv">10</span>, <span class="dv">50</span>), <span class="fu">between</span>(lng, <span class="sc">-</span><span class="dv">12</span>, <span class="dv">80</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb55-9"><a href="l08-gis-ii.html#cb55-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(population)) <span class="sc">%&gt;%</span></span>
+<span id="cb55-10"><a href="l08-gis-ii.html#cb55-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, <span class="at">wt =</span> population)</span>
+<span id="cb55-11"><a href="l08-gis-ii.html#cb55-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb55-12"><a href="l08-gis-ii.html#cb55-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-13"><a href="l08-gis-ii.html#cb55-13" aria-hidden="true" tabindex="-1"></a>baseplot <span class="sc">+</span> </span>
+<span id="cb55-14"><a href="l08-gis-ii.html#cb55-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> wc_filtered, <span class="fu">aes</span>(<span class="at">x=</span>lng, <span class="at">y=</span>lat, <span class="at">size=</span>population), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">col=</span><span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb55-15"><a href="l08-gis-ii.html#cb55-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range=</span><span class="fu">c</span>(<span class="fl">0.01</span>, <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb55-16"><a href="l08-gis-ii.html#cb55-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> top_cities, <span class="fu">aes</span>(<span class="at">x=</span>lng, <span class="at">y=</span>lat), <span class="at">col=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb55-17"><a href="l08-gis-ii.html#cb55-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> top_cities, <span class="fu">aes</span>(<span class="at">x=</span>lng, <span class="at">y=</span>lat, <span class="at">label =</span> city), <span class="at">force =</span> <span class="dv">2</span>, <span class="at">segment.alpha =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb55-18"><a href="l08-gis-ii.html#cb55-18" aria-hidden="true" tabindex="-1"></a>  themeParameters</span></code></pre></div>
+<pre><code>## Scale on map varies by more than 10%, scale bar may be inaccurate</code></pre>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 </div>
 </div>
 <div id="HW08" class="section level2" number="8.3">
