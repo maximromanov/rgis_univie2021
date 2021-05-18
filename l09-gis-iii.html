@@ -303,10 +303,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2" data-path="l09-gis-iii.html"><a href="l09-gis-iii.html#maps"><i class="fa fa-check"></i><b>9.2</b> Maps</a>
 <ul>
 <li class="chapter" data-level="9.2.1" data-path="l09-gis-iii.html"><a href="l09-gis-iii.html#choropleth-population-of-vienna-over-time"><i class="fa fa-check"></i><b>9.2.1</b> Choropleth: Population of Vienna over time</a></li>
-<li class="chapter" data-level="9.2.2" data-path="l09-gis-iii.html"><a href="l09-gis-iii.html#dots-population-growth---us-population-by-city-hw-by-county"><i class="fa fa-check"></i><b>9.2.2</b> Dots: Population Growth - US population, by city, (HW: by county)</a></li>
+<li class="chapter" data-level="9.2.2" data-path="l09-gis-iii.html"><a href="l09-gis-iii.html#dots-population-growth---us-population-by-city"><i class="fa fa-check"></i><b>9.2.2</b> Dots: Population Growth - US population (by city)</a></li>
 <li class="chapter" data-level="9.2.3" data-path="l09-gis-iii.html"><a href="l09-gis-iii.html#graphs-population-growth-by-state"><i class="fa fa-check"></i><b>9.2.3</b> Graphs: Population Growth by State</a></li>
-<li class="chapter" data-level="9.2.4" data-path="l09-gis-iii.html"><a href="l09-gis-iii.html#many-maps-population-by-city-growth-of-the-us-hw-by-county"><i class="fa fa-check"></i><b>9.2.4</b> Many Maps: Population by city — growth of the US (HW: by county)</a></li>
-<li class="chapter" data-level="9.2.5" data-path="l09-gis-iii.html"><a href="l09-gis-iii.html#animated-maps-population-by-city-growth-of-the-us-hw-by-county"><i class="fa fa-check"></i><b>9.2.5</b> Animated Maps: Population by city — growth of the US (HW: by county)</a></li>
+<li class="chapter" data-level="9.2.4" data-path="l09-gis-iii.html"><a href="l09-gis-iii.html#many-maps-population-by-city-growth-of-the-us"><i class="fa fa-check"></i><b>9.2.4</b> Many Maps: Population by city — growth of the US</a></li>
+<li class="chapter" data-level="9.2.5" data-path="l09-gis-iii.html"><a href="l09-gis-iii.html#animated-maps-population-by-city-growth-of-the-us"><i class="fa fa-check"></i><b>9.2.5</b> Animated Maps: Population by city — growth of the US</a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="l09-gis-iii.html"><a href="l09-gis-iii.html#HW09"><i class="fa fa-check"></i><b>9.3</b> Homework</a></li>
 <li class="chapter" data-level="9.4" data-path="l09-gis-iii.html"><a href="l09-gis-iii.html#SH09"><i class="fa fa-check"></i><b>9.4</b> Submitting homework</a></li>
@@ -544,8 +544,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://rkabacoff.github.io/datavis/GeoMaps.html" class="uri">https://rkabacoff.github.io/datavis/GeoMaps.html</a></li>
 </ul>
 </div>
-<div id="dots-population-growth---us-population-by-city-hw-by-county" class="section level3" number="9.2.2">
-<h3><span class="header-section-number">9.2.2</span> Dots: Population Growth - US population, by city, (HW: by county)</h3>
+<div id="dots-population-growth---us-population-by-city" class="section level3" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> Dots: Population Growth - US population (by city)</h3>
 <p>In some (or, probably, most) cases, it might be better to avoid choropleth maps. Instead, we can use dots sized with specific parameters. But first, let’s prepare our base layer.</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="l09-gis-iii.html#cb68-1" aria-hidden="true" tabindex="-1"></a>waterColor <span class="ot">=</span> <span class="st">&quot;lightsteelblue2&quot;</span></span>
 <span id="cb68-2"><a href="l09-gis-iii.html#cb68-2" aria-hidden="true" tabindex="-1"></a>xlim<span class="ot">=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">140</span>, <span class="sc">-</span><span class="dv">50</span>); ylim<span class="ot">=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">55</span>)</span>
@@ -611,17 +611,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   &#39;code&#39; column of the specified grid and will be removed: IT</code></pre>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="l09-gis-iii.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;us_facet_map.png&quot;</span>, <span class="at">plot=</span>graph01, <span class="at">width =</span> <span class="dv">400</span>, <span class="at">height =</span> <span class="dv">200</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">dpi =</span> <span class="st">&quot;retina&quot;</span>)</span></code></pre></div>
 <p><img src="us_facet_map.png" /></p>
-<p><strong>Homework:</strong> check documentation on <code>geofacet</code> (<a href="https://cran.r-project.org/web/packages/geofacet/vignettes/geofacet.html" class="uri">https://cran.r-project.org/web/packages/geofacet/vignettes/geofacet.html</a>). The package has an interface to develop custom grid. Develop a grid for Viennese districts and plot the growth of their population using your custom grid. (Grid designer is available here: <a href="https://hafen.github.io/grid-designer/" class="uri">https://hafen.github.io/grid-designer/</a>)</p>
+<p><strong>Homework:</strong> check documentation on <code>geofacet</code> (<a href="https://cran.r-project.org/web/packages/geofacet/vignettes/geofacet.html" class="uri">https://cran.r-project.org/web/packages/geofacet/vignettes/geofacet.html</a>). The package has an interface to develop custom grid. Develop a grid for Viennese districts and plot the growth of their population using your custom grid.</p>
+<p>Grid designer is available here: <a href="https://hafen.github.io/grid-designer/" class="uri">https://hafen.github.io/grid-designer/</a>. You will need some data for an easy start:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="l09-gis-iii.html#cb78-1" aria-hidden="true" tabindex="-1"></a>wien_starting_grid <span class="ot">&lt;-</span> distcenters <span class="sc">%&gt;%</span></span>
+<span id="cb78-2"><a href="l09-gis-iii.html#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">row =</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">23</span>), <span class="at">col=</span><span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">23</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb78-3"><a href="l09-gis-iii.html#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">code =</span> id, <span class="at">name =</span> label) <span class="sc">%&gt;%</span></span>
+<span id="cb78-4"><a href="l09-gis-iii.html#cb78-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(row,col,code,name)</span></code></pre></div>
+<p>You can start it with the following line of code:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="l09-gis-iii.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grid_design</span>(<span class="at">data =</span> wien_starting_grid, <span class="at">img =</span> <span class="st">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Vienna%2C_administrative_divisions_-_Nmbrs.svg/2880px-Vienna%2C_administrative_divisions_-_Nmbrs.svg.png&quot;</span>)</span></code></pre></div>
+<p><img src="data_temp/bezirke-wien.png" /></p>
 <p><strong>Optional</strong>: complete the same task for the <code>europop</code> dataset (library <code>europop</code>).</p>
 </div>
-<div id="many-maps-population-by-city-growth-of-the-us-hw-by-county" class="section level3" number="9.2.4">
-<h3><span class="header-section-number">9.2.4</span> Many Maps: Population by city — growth of the US (HW: by county)</h3>
+<div id="many-maps-population-by-city-growth-of-the-us" class="section level3" number="9.2.4">
+<h3><span class="header-section-number">9.2.4</span> Many Maps: Population by city — growth of the US</h3>
 <p>You might need to generate multiple high-resolution maps, instead of a set of tiny faceted maps. For this purpose loops are very helpful. They are a powerful tool and one should know how to use them. Below is an example of a very simple <code>for</code> loop. The our loop prints single letters—one after another—from a built-in vector/variable <code>letters.</code> (as you might remember from the early worksheets, <code>letters</code> is a built-in vector of English letters.)</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="l09-gis-iii.html#cb78-1" aria-hidden="true" tabindex="-1"></a>string <span class="ot">&lt;-</span> <span class="st">&quot;This is letter&quot;</span></span>
-<span id="cb78-2"><a href="l09-gis-iii.html#cb78-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-3"><a href="l09-gis-iii.html#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(l <span class="cf">in</span> letters){</span>
-<span id="cb78-4"><a href="l09-gis-iii.html#cb78-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(string, l))</span>
-<span id="cb78-5"><a href="l09-gis-iii.html#cb78-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="l09-gis-iii.html#cb80-1" aria-hidden="true" tabindex="-1"></a>string <span class="ot">&lt;-</span> <span class="st">&quot;This is letter&quot;</span></span>
+<span id="cb80-2"><a href="l09-gis-iii.html#cb80-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-3"><a href="l09-gis-iii.html#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(l <span class="cf">in</span> letters){</span>
+<span id="cb80-4"><a href="l09-gis-iii.html#cb80-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(string, l))</span>
+<span id="cb80-5"><a href="l09-gis-iii.html#cb80-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;This is letter a&quot;
 ## [1] &quot;This is letter b&quot;
 ## [1] &quot;This is letter c&quot;
@@ -648,14 +656,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] &quot;This is letter x&quot;
 ## [1] &quot;This is letter y&quot;
 ## [1] &quot;This is letter z&quot;</code></pre>
-<p>We can use the same strategy to loop over some table of our data and generate maps based on the changing parameter. For example, we want to generate maps of U.S. cities, where each map would show us data forr a specific decade. Let’s try a simple example first: let’s generate headers for our rfuture maps.</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="l09-gis-iii.html#cb80-1" aria-hidden="true" tabindex="-1"></a>us_data <span class="ot">&lt;-</span> historydata<span class="sc">::</span>us_cities_pop</span>
-<span id="cb80-2"><a href="l09-gis-iii.html#cb80-2" aria-hidden="true" tabindex="-1"></a>decades <span class="ot">&lt;-</span> <span class="fu">unique</span>(us_data<span class="sc">$</span>year)</span>
-<span id="cb80-3"><a href="l09-gis-iii.html#cb80-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-4"><a href="l09-gis-iii.html#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (d <span class="cf">in</span> decades){</span>
-<span id="cb80-5"><a href="l09-gis-iii.html#cb80-5" aria-hidden="true" tabindex="-1"></a>  header <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;U.S. cities in &quot;</span>, d)</span>
-<span id="cb80-6"><a href="l09-gis-iii.html#cb80-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(header)</span>
-<span id="cb80-7"><a href="l09-gis-iii.html#cb80-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>We can use the same strategy to loop over some table of our data and generate maps based on the changing parameter. For example, we want to generate maps of U.S. cities, where each map would show us data forr a specific decade. Let’s try a simple example first: let’s generate headers for our future maps.</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="l09-gis-iii.html#cb82-1" aria-hidden="true" tabindex="-1"></a>us_data <span class="ot">&lt;-</span> historydata<span class="sc">::</span>us_cities_pop</span>
+<span id="cb82-2"><a href="l09-gis-iii.html#cb82-2" aria-hidden="true" tabindex="-1"></a>decades <span class="ot">&lt;-</span> <span class="fu">unique</span>(us_data<span class="sc">$</span>year)</span>
+<span id="cb82-3"><a href="l09-gis-iii.html#cb82-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-4"><a href="l09-gis-iii.html#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (d <span class="cf">in</span> decades){</span>
+<span id="cb82-5"><a href="l09-gis-iii.html#cb82-5" aria-hidden="true" tabindex="-1"></a>  header <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;U.S. cities in &quot;</span>, d)</span>
+<span id="cb82-6"><a href="l09-gis-iii.html#cb82-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(header)</span>
+<span id="cb82-7"><a href="l09-gis-iii.html#cb82-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;U.S. cities in 1790&quot;
 ## [1] &quot;U.S. cities in 1800&quot;
 ## [1] &quot;U.S. cities in 1810&quot;
@@ -680,43 +688,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] &quot;U.S. cities in 2000&quot;
 ## [1] &quot;U.S. cities in 2010&quot;</code></pre>
 <p>Now we can modify this code so that it generates maps:</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="l09-gis-iii.html#cb82-1" aria-hidden="true" tabindex="-1"></a>us_data <span class="ot">&lt;-</span> historydata<span class="sc">::</span>us_cities_pop</span>
-<span id="cb82-2"><a href="l09-gis-iii.html#cb82-2" aria-hidden="true" tabindex="-1"></a>decades <span class="ot">&lt;-</span> <span class="fu">unique</span>(us_data<span class="sc">$</span>year)</span>
-<span id="cb82-3"><a href="l09-gis-iii.html#cb82-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb82-4"><a href="l09-gis-iii.html#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (d <span class="cf">in</span> decades){</span>
-<span id="cb82-5"><a href="l09-gis-iii.html#cb82-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb82-6"><a href="l09-gis-iii.html#cb82-6" aria-hidden="true" tabindex="-1"></a>  header <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;U.S. cities in &quot;</span>, d)</span>
-<span id="cb82-7"><a href="l09-gis-iii.html#cb82-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb82-8"><a href="l09-gis-iii.html#cb82-8" aria-hidden="true" tabindex="-1"></a>  dataTemp <span class="ot">&lt;-</span> us_data <span class="sc">%&gt;%</span></span>
-<span id="cb82-9"><a href="l09-gis-iii.html#cb82-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> d)</span>
-<span id="cb82-10"><a href="l09-gis-iii.html#cb82-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb82-11"><a href="l09-gis-iii.html#cb82-11" aria-hidden="true" tabindex="-1"></a>  mapTemp <span class="ot">&lt;-</span> baseplot <span class="sc">+</span> </span>
-<span id="cb82-12"><a href="l09-gis-iii.html#cb82-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> dataTemp, <span class="fu">aes</span>(<span class="at">x=</span>lon, <span class="at">y=</span>lat, <span class="at">size=</span>population), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb82-13"><a href="l09-gis-iii.html#cb82-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb82-14"><a href="l09-gis-iii.html#cb82-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span>header, <span class="at">x =</span><span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
-<span id="cb82-15"><a href="l09-gis-iii.html#cb82-15" aria-hidden="true" tabindex="-1"></a>    themeParameters</span>
-<span id="cb82-16"><a href="l09-gis-iii.html#cb82-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb82-17"><a href="l09-gis-iii.html#cb82-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggsave</span>(<span class="fu">paste0</span>(<span class="st">&quot;us_map_&quot;</span>, d, <span class="st">&quot;.png&quot;</span>), <span class="at">plot=</span>mapTemp, <span class="at">width =</span> <span class="dv">400</span>, <span class="at">height =</span> <span class="dv">200</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">dpi =</span> <span class="st">&quot;retina&quot;</span>)</span>
-<span id="cb82-18"><a href="l09-gis-iii.html#cb82-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb82-19"><a href="l09-gis-iii.html#cb82-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## Warning: Removed 63 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 41 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 67 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 300 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 114 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 70 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 79 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 99 rows containing missing values (geom_point).
-
-## Warning: Removed 99 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 161 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 214 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 408 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 527 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 534 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 787 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 403 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 130 rows containing missing values (geom_point).</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="l09-gis-iii.html#cb84-1" aria-hidden="true" tabindex="-1"></a>us_data <span class="ot">&lt;-</span> historydata<span class="sc">::</span>us_cities_pop</span>
+<span id="cb84-2"><a href="l09-gis-iii.html#cb84-2" aria-hidden="true" tabindex="-1"></a>decades <span class="ot">&lt;-</span> <span class="fu">unique</span>(us_data<span class="sc">$</span>year)</span>
+<span id="cb84-3"><a href="l09-gis-iii.html#cb84-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-4"><a href="l09-gis-iii.html#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (d <span class="cf">in</span> decades){</span>
+<span id="cb84-5"><a href="l09-gis-iii.html#cb84-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb84-6"><a href="l09-gis-iii.html#cb84-6" aria-hidden="true" tabindex="-1"></a>  header <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;U.S. cities in &quot;</span>, d)</span>
+<span id="cb84-7"><a href="l09-gis-iii.html#cb84-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb84-8"><a href="l09-gis-iii.html#cb84-8" aria-hidden="true" tabindex="-1"></a>  dataTemp <span class="ot">&lt;-</span> us_data <span class="sc">%&gt;%</span></span>
+<span id="cb84-9"><a href="l09-gis-iii.html#cb84-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> d)</span>
+<span id="cb84-10"><a href="l09-gis-iii.html#cb84-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb84-11"><a href="l09-gis-iii.html#cb84-11" aria-hidden="true" tabindex="-1"></a>  mapTemp <span class="ot">&lt;-</span> baseplot <span class="sc">+</span> </span>
+<span id="cb84-12"><a href="l09-gis-iii.html#cb84-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> dataTemp, <span class="fu">aes</span>(<span class="at">x=</span>lon, <span class="at">y=</span>lat, <span class="at">size=</span>population), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb84-13"><a href="l09-gis-iii.html#cb84-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb84-14"><a href="l09-gis-iii.html#cb84-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span>header, <span class="at">x =</span><span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb84-15"><a href="l09-gis-iii.html#cb84-15" aria-hidden="true" tabindex="-1"></a>    themeParameters</span>
+<span id="cb84-16"><a href="l09-gis-iii.html#cb84-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb84-17"><a href="l09-gis-iii.html#cb84-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggsave</span>(<span class="fu">paste0</span>(<span class="st">&quot;us_map_&quot;</span>, d, <span class="st">&quot;.png&quot;</span>), <span class="at">plot=</span>mapTemp, <span class="at">width =</span> <span class="dv">400</span>, <span class="at">height =</span> <span class="dv">200</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>, <span class="at">dpi =</span> <span class="st">&quot;retina&quot;</span>)</span>
+<span id="cb84-18"><a href="l09-gis-iii.html#cb84-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-19"><a href="l09-gis-iii.html#cb84-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Here are some results:</p>
 <p><img src="us_map_1800.png" /></p>
 <p><img src="us_map_1850.png" /></p>
@@ -725,59 +715,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="us_map_2000.png" /></p>
 <p><strong>Homework:</strong> generate similar maps from <code>europop</code> data.</p>
 </div>
-<div id="animated-maps-population-by-city-growth-of-the-us-hw-by-county" class="section level3" number="9.2.5">
-<h3><span class="header-section-number">9.2.5</span> Animated Maps: Population by city — growth of the US (HW: by county)</h3>
+<div id="animated-maps-population-by-city-growth-of-the-us" class="section level3" number="9.2.5">
+<h3><span class="header-section-number">9.2.5</span> Animated Maps: Population by city — growth of the US</h3>
 <p>One last ting for today: animated maps. Package <code>gganimate</code> is a great tool fo rcreating animated graphs and maps.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="l09-gis-iii.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&#39;gganimate&#39;)</span></span>
-<span id="cb99-2"><a href="l09-gis-iii.html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="l09-gis-iii.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&#39;gganimate&#39;)</span></span>
+<span id="cb85-2"><a href="l09-gis-iii.html#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span></code></pre></div>
 <pre><code>## Warning: package &#39;gganimate&#39; was built under R version 4.0.2</code></pre>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="l09-gis-iii.html#cb101-1" aria-hidden="true" tabindex="-1"></a>us_data <span class="ot">&lt;-</span> historydata<span class="sc">::</span>us_cities_pop</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="l09-gis-iii.html#cb87-1" aria-hidden="true" tabindex="-1"></a>us_data <span class="ot">&lt;-</span> historydata<span class="sc">::</span>us_cities_pop</span></code></pre></div>
 <p>Let’s start with a static plot, but first we need to prepare data. If our data is not prepared properly, our results may be very weird. Like on the map below:</p>
 <p><img src="usMap_Animated_Problem.gif" /></p>
 <p>Essentially, to avoid that we need to prepare data for each frame of our future animation. Our data is given for every 10th year (1790, 1800, 1810, etc.). <code>gganimiate</code> tries to fill in the blanks by creation transition frames. In other words, only every 10th frame shows the real data. There are multiple ways of how this issue can be solved. In the code below we create values for missing years — the value of each 10th year is assigned to years 11, 12, 13, etc. We use a <code>for</code>-loop for this.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="l09-gis-iii.html#cb102-1" aria-hidden="true" tabindex="-1"></a>waterColor <span class="ot">=</span> <span class="st">&quot;lightsteelblue2&quot;</span></span>
-<span id="cb102-2"><a href="l09-gis-iii.html#cb102-2" aria-hidden="true" tabindex="-1"></a>xlim<span class="ot">=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">130</span>, <span class="sc">-</span><span class="dv">60</span>); ylim<span class="ot">=</span><span class="fu">c</span>(<span class="dv">23</span>,<span class="dv">52</span>)</span>
-<span id="cb102-3"><a href="l09-gis-iii.html#cb102-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-4"><a href="l09-gis-iii.html#cb102-4" aria-hidden="true" tabindex="-1"></a>us_data_filtered <span class="ot">&lt;-</span> us_data <span class="sc">%&gt;%</span></span>
-<span id="cb102-5"><a href="l09-gis-iii.html#cb102-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(lon, xlim[<span class="dv">1</span>], xlim[<span class="dv">2</span>])) <span class="sc">%&gt;%</span></span>
-<span id="cb102-6"><a href="l09-gis-iii.html#cb102-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(lat, ylim[<span class="dv">1</span>], ylim[<span class="dv">2</span>]))</span>
-<span id="cb102-7"><a href="l09-gis-iii.html#cb102-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-8"><a href="l09-gis-iii.html#cb102-8" aria-hidden="true" tabindex="-1"></a>us_data_filtered_enriched <span class="ot">&lt;-</span> us_data_filtered</span>
-<span id="cb102-9"><a href="l09-gis-iii.html#cb102-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-10"><a href="l09-gis-iii.html#cb102-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (n <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">9</span>)){</span>
-<span id="cb102-11"><a href="l09-gis-iii.html#cb102-11" aria-hidden="true" tabindex="-1"></a>  temp <span class="ot">&lt;-</span> us_data_filtered <span class="sc">%&gt;%</span></span>
-<span id="cb102-12"><a href="l09-gis-iii.html#cb102-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">year =</span> year <span class="sc">+</span> n)</span>
-<span id="cb102-13"><a href="l09-gis-iii.html#cb102-13" aria-hidden="true" tabindex="-1"></a>  us_data_filtered_enriched <span class="ot">&lt;-</span> <span class="fu">add_row</span>(us_data_filtered_enriched, temp)</span>
-<span id="cb102-14"><a href="l09-gis-iii.html#cb102-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb102-15"><a href="l09-gis-iii.html#cb102-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-16"><a href="l09-gis-iii.html#cb102-16" aria-hidden="true" tabindex="-1"></a>us_data_filtered_enriched <span class="ot">&lt;-</span> us_data_filtered_enriched <span class="sc">%&gt;%</span></span>
-<span id="cb102-17"><a href="l09-gis-iii.html#cb102-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&lt;=</span> <span class="dv">2010</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="l09-gis-iii.html#cb88-1" aria-hidden="true" tabindex="-1"></a>waterColor <span class="ot">=</span> <span class="st">&quot;lightsteelblue2&quot;</span></span>
+<span id="cb88-2"><a href="l09-gis-iii.html#cb88-2" aria-hidden="true" tabindex="-1"></a>xlim<span class="ot">=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">130</span>, <span class="sc">-</span><span class="dv">60</span>); ylim<span class="ot">=</span><span class="fu">c</span>(<span class="dv">23</span>,<span class="dv">52</span>)</span>
+<span id="cb88-3"><a href="l09-gis-iii.html#cb88-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-4"><a href="l09-gis-iii.html#cb88-4" aria-hidden="true" tabindex="-1"></a>us_data_filtered <span class="ot">&lt;-</span> us_data <span class="sc">%&gt;%</span></span>
+<span id="cb88-5"><a href="l09-gis-iii.html#cb88-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(lon, xlim[<span class="dv">1</span>], xlim[<span class="dv">2</span>])) <span class="sc">%&gt;%</span></span>
+<span id="cb88-6"><a href="l09-gis-iii.html#cb88-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(lat, ylim[<span class="dv">1</span>], ylim[<span class="dv">2</span>]))</span>
+<span id="cb88-7"><a href="l09-gis-iii.html#cb88-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-8"><a href="l09-gis-iii.html#cb88-8" aria-hidden="true" tabindex="-1"></a>us_data_filtered_enriched <span class="ot">&lt;-</span> us_data_filtered</span>
+<span id="cb88-9"><a href="l09-gis-iii.html#cb88-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-10"><a href="l09-gis-iii.html#cb88-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (n <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">9</span>)){</span>
+<span id="cb88-11"><a href="l09-gis-iii.html#cb88-11" aria-hidden="true" tabindex="-1"></a>  temp <span class="ot">&lt;-</span> us_data_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb88-12"><a href="l09-gis-iii.html#cb88-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">year =</span> year <span class="sc">+</span> n)</span>
+<span id="cb88-13"><a href="l09-gis-iii.html#cb88-13" aria-hidden="true" tabindex="-1"></a>  us_data_filtered_enriched <span class="ot">&lt;-</span> <span class="fu">add_row</span>(us_data_filtered_enriched, temp)</span>
+<span id="cb88-14"><a href="l09-gis-iii.html#cb88-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb88-15"><a href="l09-gis-iii.html#cb88-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-16"><a href="l09-gis-iii.html#cb88-16" aria-hidden="true" tabindex="-1"></a>us_data_filtered_enriched <span class="ot">&lt;-</span> us_data_filtered_enriched <span class="sc">%&gt;%</span></span>
+<span id="cb88-17"><a href="l09-gis-iii.html#cb88-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&lt;=</span> <span class="dv">2010</span>)</span></code></pre></div>
 <p>Now, the plot:</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="l09-gis-iii.html#cb103-1" aria-hidden="true" tabindex="-1"></a>baseplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> world) <span class="sc">+</span></span>
-<span id="cb103-2"><a href="l09-gis-iii.html#cb103-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
-<span id="cb103-3"><a href="l09-gis-iii.html#cb103-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_sf</span>(<span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim, <span class="at">expand =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb103-4"><a href="l09-gis-iii.html#cb103-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb103-5"><a href="l09-gis-iii.html#cb103-5" aria-hidden="true" tabindex="-1"></a>themeParameters <span class="ot">&lt;-</span> <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> waterColor),</span>
-<span id="cb103-6"><a href="l09-gis-iii.html#cb103-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb103-7"><a href="l09-gis-iii.html#cb103-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb103-8"><a href="l09-gis-iii.html#cb103-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.x=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb103-9"><a href="l09-gis-iii.html#cb103-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.ticks.x=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb103-10"><a href="l09-gis-iii.html#cb103-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.y=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb103-11"><a href="l09-gis-iii.html#cb103-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb103-12"><a href="l09-gis-iii.html#cb103-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> waterColor, <span class="at">linetype =</span> <span class="st">&quot;dotted&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>))</span>
-<span id="cb103-13"><a href="l09-gis-iii.html#cb103-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb103-14"><a href="l09-gis-iii.html#cb103-14" aria-hidden="true" tabindex="-1"></a>usMap <span class="ot">&lt;-</span> baseplot <span class="sc">+</span></span>
-<span id="cb103-15"><a href="l09-gis-iii.html#cb103-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> us_data_filtered_enriched, <span class="fu">aes</span>(<span class="at">x=</span>lon, <span class="at">y=</span>lat, <span class="at">size =</span> population), <span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb103-16"><a href="l09-gis-iii.html#cb103-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb103-17"><a href="l09-gis-iii.html#cb103-17" aria-hidden="true" tabindex="-1"></a>  themeParameters</span>
-<span id="cb103-18"><a href="l09-gis-iii.html#cb103-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb103-19"><a href="l09-gis-iii.html#cb103-19" aria-hidden="true" tabindex="-1"></a>usMap</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="l09-gis-iii.html#cb89-1" aria-hidden="true" tabindex="-1"></a>baseplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> world) <span class="sc">+</span></span>
+<span id="cb89-2"><a href="l09-gis-iii.html#cb89-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb89-3"><a href="l09-gis-iii.html#cb89-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_sf</span>(<span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim, <span class="at">expand =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb89-4"><a href="l09-gis-iii.html#cb89-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-5"><a href="l09-gis-iii.html#cb89-5" aria-hidden="true" tabindex="-1"></a>usMap <span class="ot">&lt;-</span> baseplot <span class="sc">+</span></span>
+<span id="cb89-6"><a href="l09-gis-iii.html#cb89-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> us_data_filtered_enriched, <span class="fu">aes</span>(<span class="at">x=</span>lon, <span class="at">y=</span>lat, <span class="at">size =</span> population), <span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb89-7"><a href="l09-gis-iii.html#cb89-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb89-8"><a href="l09-gis-iii.html#cb89-8" aria-hidden="true" tabindex="-1"></a>  themeParameters</span>
+<span id="cb89-9"><a href="l09-gis-iii.html#cb89-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-10"><a href="l09-gis-iii.html#cb89-10" aria-hidden="true" tabindex="-1"></a>usMap</span></code></pre></div>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
 <p>Now, the following code animates our map. And the last line saves our animation into a file. Check documentation for <code>gganimate</code> for many other options for saving animations. <strong>NB:</strong> Keep in mind that this process make take a while, so you do not want to rerun it every time you knit your notebook!</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="l09-gis-iii.html#cb104-1" aria-hidden="true" tabindex="-1"></a>usMapAnimated <span class="ot">&lt;-</span> usMap <span class="sc">+</span></span>
-<span id="cb104-2"><a href="l09-gis-iii.html#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_time</span>(year) <span class="sc">+</span></span>
-<span id="cb104-3"><a href="l09-gis-iii.html#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Growth of the US cities: {frame_time}&quot;</span>)</span>
-<span id="cb104-4"><a href="l09-gis-iii.html#cb104-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-5"><a href="l09-gis-iii.html#cb104-5" aria-hidden="true" tabindex="-1"></a><span class="fu">anim_save</span>(<span class="st">&quot;usMap_Animated.gif&quot;</span>, <span class="at">animation=</span>usMapAnimated, <span class="at">end_pause =</span> <span class="dv">10</span>, <span class="at">rewind =</span> <span class="cn">FALSE</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">res =</span> <span class="dv">300</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="l09-gis-iii.html#cb90-1" aria-hidden="true" tabindex="-1"></a>usMapAnimated <span class="ot">&lt;-</span> usMap <span class="sc">+</span></span>
+<span id="cb90-2"><a href="l09-gis-iii.html#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_time</span>(year) <span class="sc">+</span></span>
+<span id="cb90-3"><a href="l09-gis-iii.html#cb90-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Growth of the US cities: {frame_time}&quot;</span>)</span>
+<span id="cb90-4"><a href="l09-gis-iii.html#cb90-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-5"><a href="l09-gis-iii.html#cb90-5" aria-hidden="true" tabindex="-1"></a><span class="fu">anim_save</span>(<span class="st">&quot;usMap_Animated.gif&quot;</span>, <span class="at">animation=</span>usMapAnimated, <span class="at">end_pause =</span> <span class="dv">10</span>, <span class="at">rewind =</span> <span class="cn">FALSE</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">res =</span> <span class="dv">300</span>)</span></code></pre></div>
 <p>This is our animated map, which we saved into a gif file.</p>
 <p><img src="usMap_Animated.gif" /></p>
 <p><strong>Homework:</strong> Animate any of the maps that you are tasked to prepare above.</p>
