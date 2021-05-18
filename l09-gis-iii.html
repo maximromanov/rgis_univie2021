@@ -440,7 +440,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb51-8"><a href="l09-gis-iii.html#cb51-8" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">&quot;medium&quot;</span>, <span class="at">returnclass =</span> <span class="st">&quot;sf&quot;</span>)</span></code></pre></div>
 <div id="TAG09" class="section level3" number="9.1.1">
 <h3><span class="header-section-number">9.1.1</span> Goals</h3>
-<p>Basic strategirs for mapping categorical and continuous data.</p>
+<p>Basic strategies for mapping data.</p>
 </div>
 <div id="SOFT09" class="section level3" number="9.1.2">
 <h3><span class="header-section-number">9.1.2</span> Software</h3>
@@ -732,170 +732,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb99-2"><a href="l09-gis-iii.html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span></code></pre></div>
 <pre><code>## Warning: package &#39;gganimate&#39; was built under R version 4.0.2</code></pre>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="l09-gis-iii.html#cb101-1" aria-hidden="true" tabindex="-1"></a>us_data <span class="ot">&lt;-</span> historydata<span class="sc">::</span>us_cities_pop</span></code></pre></div>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="l09-gis-iii.html#cb102-1" aria-hidden="true" tabindex="-1"></a>baseplot <span class="sc">+</span></span>
-<span id="cb102-2"><a href="l09-gis-iii.html#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> us_data, <span class="fu">aes</span>(<span class="at">x=</span>lon, <span class="at">y=</span>lat, <span class="at">size =</span> population), <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb102-3"><a href="l09-gis-iii.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="dv">5</span>)) <span class="sc">+</span> </span>
-<span id="cb102-4"><a href="l09-gis-iii.html#cb102-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Here comes the gganimate specific bits</span></span>
-<span id="cb102-5"><a href="l09-gis-iii.html#cb102-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Year: {frame_time}&#39;</span>, <span class="at">x =</span> <span class="st">&#39;&#39;</span>, <span class="at">y =</span> <span class="st">&#39;&#39;</span>) <span class="sc">+</span></span>
-<span id="cb102-6"><a href="l09-gis-iii.html#cb102-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_time</span>(year) <span class="sc">+</span></span>
-<span id="cb102-7"><a href="l09-gis-iii.html#cb102-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ease_aes</span>(<span class="st">&#39;linear&#39;</span>) <span class="sc">+</span></span>
-<span id="cb102-8"><a href="l09-gis-iii.html#cb102-8" aria-hidden="true" tabindex="-1"></a>  themeParameters</span></code></pre></div>
-<pre><code>## Rendering [--------------------------------------------] at 4.2 fps ~ eta: 24s
-## Rendering [&gt;-------------------------------------------] at 4.1 fps ~ eta: 24s
-## Rendering [&gt;---------------------------------------------] at 4 fps ~ eta: 25s
-## Rendering [=&gt;------------------------------------------] at 4.1 fps ~ eta: 24s
-## Rendering [=&gt;------------------------------------------] at 4.1 fps ~ eta: 23s
-## Rendering [==&gt;-------------------------------------------] at 4 fps ~ eta: 23s
-## Rendering [==&gt;-----------------------------------------] at 4.1 fps ~ eta: 23s
-## Rendering [===&gt;------------------------------------------] at 4 fps ~ eta: 23s
-## Rendering [===&gt;----------------------------------------] at 3.9 fps ~ eta: 23s
-## Rendering [====&gt;-----------------------------------------] at 4 fps ~ eta: 23s
-## Rendering [====&gt;---------------------------------------] at 3.9 fps ~ eta: 23s
-## Rendering [====&gt;---------------------------------------] at 3.9 fps ~ eta: 22s
-## Rendering [=====&gt;--------------------------------------] at 3.9 fps ~ eta: 22s
-## Rendering [=====&gt;----------------------------------------] at 4 fps ~ eta: 22s
-## Rendering [======&gt;---------------------------------------] at 4 fps ~ eta: 21s
-## Rendering [=======&gt;--------------------------------------] at 4 fps ~ eta: 21s
-## Rendering [========&gt;-------------------------------------] at 4 fps ~ eta: 20s
-## Rendering [=========&gt;------------------------------------] at 4 fps ~ eta: 20s
-## Rendering [=========&gt;------------------------------------] at 4 fps ~ eta: 19s
-## Rendering [==========&gt;-----------------------------------] at 4 fps ~ eta: 19s
-## Rendering [===========&gt;----------------------------------] at 4 fps ~ eta: 19s
-## Rendering [===========&gt;----------------------------------] at 4 fps ~ eta: 18s</code></pre>
-<pre><code>## Warning: Removed 63 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [============&gt;---------------------------------] at 4 fps ~ eta: 18s</code></pre>
-<pre><code>## Warning: Removed 63 rows containing missing values (geom_point).
-
-## Warning: Removed 63 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [=============&gt;--------------------------------] at 4 fps ~ eta: 18s</code></pre>
-<pre><code>## Warning: Removed 63 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [=============&gt;--------------------------------] at 4 fps ~ eta: 17s</code></pre>
-<pre><code>## Warning: Removed 41 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [==============&gt;-------------------------------] at 4 fps ~ eta: 17s</code></pre>
-<pre><code>## Warning: Removed 41 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 41 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [===============&gt;------------------------------] at 4 fps ~ eta: 17s</code></pre>
-<pre><code>## Warning: Removed 41 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [===============&gt;------------------------------] at 4 fps ~ eta: 16s</code></pre>
-<pre><code>## Warning: Removed 41 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [===============&gt;----------------------------] at 3.9 fps ~ eta: 16s</code></pre>
-<pre><code>## Warning: Removed 67 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [================&gt;-----------------------------] at 4 fps ~ eta: 16s</code></pre>
-<pre><code>## Warning: Removed 67 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [================&gt;---------------------------] at 3.9 fps ~ eta: 16s</code></pre>
-<pre><code>## Warning: Removed 67 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [================&gt;---------------------------] at 3.9 fps ~ eta: 15s</code></pre>
-<pre><code>## Warning: Removed 67 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [=================&gt;--------------------------] at 3.9 fps ~ eta: 15s</code></pre>
-<pre><code>## Warning: Removed 67 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 300 rows containing missing values (geom_point).
-
-## Warning: Removed 300 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [==================&gt;-------------------------] at 3.9 fps ~ eta: 15s</code></pre>
-<pre><code>## Warning: Removed 300 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [==================&gt;-------------------------] at 3.9 fps ~ eta: 14s</code></pre>
-<pre><code>## Warning: Removed 300 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [===================&gt;------------------------] at 3.9 fps ~ eta: 14s</code></pre>
-<pre><code>## Warning: Removed 114 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 114 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [====================&gt;-----------------------] at 3.9 fps ~ eta: 14s</code></pre>
-<pre><code>## Warning: Removed 114 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [====================&gt;-----------------------] at 3.9 fps ~ eta: 13s</code></pre>
-<pre><code>## Warning: Removed 114 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [=====================&gt;----------------------] at 3.9 fps ~ eta: 13s</code></pre>
-<pre><code>## Warning: Removed 70 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 70 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [=====================&gt;----------------------] at 3.8 fps ~ eta: 13s</code></pre>
-<pre><code>## Warning: Removed 70 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [======================&gt;---------------------] at 3.8 fps ~ eta: 12s</code></pre>
-<pre><code>## Warning: Removed 70 rows containing missing values (geom_point).
-
-## Warning: Removed 70 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [=======================&gt;--------------------] at 3.8 fps ~ eta: 12s</code></pre>
-<pre><code>## Warning: Removed 79 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 79 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [========================&gt;-------------------] at 3.8 fps ~ eta: 12s</code></pre>
-<pre><code>## Warning: Removed 79 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [========================&gt;-------------------] at 3.8 fps ~ eta: 11s</code></pre>
-<pre><code>## Warning: Removed 79 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [=========================&gt;------------------] at 3.8 fps ~ eta: 11s</code></pre>
-<pre><code>## Warning: Removed 79 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 99 rows containing missing values (geom_point).
-
-## Warning: Removed 99 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [==========================&gt;-----------------] at 3.8 fps ~ eta: 10s</code></pre>
-<pre><code>## Warning: Removed 99 rows containing missing values (geom_point).
-
-## Warning: Removed 99 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [===========================&gt;----------------] at 3.8 fps ~ eta: 10s</code></pre>
-<pre><code>## Warning: Removed 99 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [===========================&gt;----------------] at 3.7 fps ~ eta: 10s</code></pre>
-<pre><code>## Warning: Removed 99 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [============================&gt;---------------] at 3.7 fps ~ eta: 9s</code></pre>
-<pre><code>## Warning: Removed 99 rows containing missing values (geom_point).
-
-## Warning: Removed 99 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 161 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [=============================&gt;--------------] at 3.7 fps ~ eta: 9s</code></pre>
-<pre><code>## Warning: Removed 161 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [=============================&gt;--------------] at 3.7 fps ~ eta: 8s</code></pre>
-<pre><code>## Warning: Removed 161 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [==============================&gt;-------------] at 3.7 fps ~ eta: 8s</code></pre>
-<pre><code>## Warning: Removed 161 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [==============================&gt;-------------] at 3.6 fps ~ eta: 8s</code></pre>
-<pre><code>## Warning: Removed 161 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [===============================&gt;------------] at 3.6 fps ~ eta: 8s</code></pre>
-<pre><code>## Warning: Removed 214 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [===============================&gt;------------] at 3.6 fps ~ eta: 7s</code></pre>
-<pre><code>## Warning: Removed 214 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [================================&gt;-----------] at 3.6 fps ~ eta: 7s</code></pre>
-<pre><code>## Warning: Removed 214 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 214 rows containing missing values (geom_point).
-
-## Warning: Removed 214 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [=================================&gt;----------] at 3.6 fps ~ eta: 6s</code></pre>
-<pre><code>## Warning: Removed 408 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 408 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [==================================&gt;---------] at 3.6 fps ~ eta: 6s</code></pre>
-<pre><code>## Warning: Removed 408 rows containing missing values (geom_point).
-
-## Warning: Removed 408 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [===================================&gt;--------] at 3.6 fps ~ eta: 5s</code></pre>
-<pre><code>## Warning: Removed 527 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 527 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [====================================&gt;-------] at 3.6 fps ~ eta: 5s</code></pre>
-<pre><code>## Warning: Removed 527 rows containing missing values (geom_point).
-
-## Warning: Removed 527 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [====================================&gt;-------] at 3.5 fps ~ eta: 4s</code></pre>
-<pre><code>## Warning: Removed 534 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [=====================================&gt;------] at 3.5 fps ~ eta: 4s</code></pre>
-<pre><code>## Warning: Removed 534 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 534 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [======================================&gt;-----] at 3.5 fps ~ eta: 3s</code></pre>
-<pre><code>## Warning: Removed 534 rows containing missing values (geom_point).
-
-## Warning: Removed 534 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [=======================================&gt;----] at 3.5 fps ~ eta: 3s</code></pre>
-<pre><code>## Warning: Removed 787 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 787 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [=======================================&gt;----] at 3.5 fps ~ eta: 2s</code></pre>
-<pre><code>## Warning: Removed 787 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [========================================&gt;---] at 3.5 fps ~ eta: 2s</code></pre>
-<pre><code>## Warning: Removed 787 rows containing missing values (geom_point).
-
-## Warning: Removed 787 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [=========================================&gt;--] at 3.5 fps ~ eta: 1s</code></pre>
-<pre><code>## Warning: Removed 403 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [=========================================&gt;--] at 3.4 fps ~ eta: 1s</code></pre>
-<pre><code>## Warning: Removed 403 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [==========================================&gt;-] at 3.4 fps ~ eta: 1s</code></pre>
-<pre><code>## Warning: Removed 403 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 403 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [===========================================&gt;] at 3.4 fps ~ eta: 0s</code></pre>
-<pre><code>## Warning: Removed 130 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Rendering [============================================] at 3.4 fps ~ eta: 0s</code></pre>
-<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-53-1.gif" /><!-- --></p>
+<p>Let’s start with a static plot, but first we need to prepare data. If our data is not prepared properly, our results may be very weird. Like on the map below:</p>
+<p><img src="usMap_Animated_Problem.gif" /></p>
+<p>Essentially, to avoid that we need to prepare data for each frame of our future animation. Our data is given for every 10th year (1790, 1800, 1810, etc.). <code>gganimiate</code> tries to fill in the blanks by creation transition frames. In other words, only every 10th frame shows the real data. There are multiple ways of how this issue can be solved. In the code below we create values for missing years — the value of each 10th year is assigned to years 11, 12, 13, etc. We use a <code>for</code>-loop for this.</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="l09-gis-iii.html#cb102-1" aria-hidden="true" tabindex="-1"></a>waterColor <span class="ot">=</span> <span class="st">&quot;lightsteelblue2&quot;</span></span>
+<span id="cb102-2"><a href="l09-gis-iii.html#cb102-2" aria-hidden="true" tabindex="-1"></a>xlim<span class="ot">=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">130</span>, <span class="sc">-</span><span class="dv">60</span>); ylim<span class="ot">=</span><span class="fu">c</span>(<span class="dv">23</span>,<span class="dv">52</span>)</span>
+<span id="cb102-3"><a href="l09-gis-iii.html#cb102-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-4"><a href="l09-gis-iii.html#cb102-4" aria-hidden="true" tabindex="-1"></a>us_data_filtered <span class="ot">&lt;-</span> us_data <span class="sc">%&gt;%</span></span>
+<span id="cb102-5"><a href="l09-gis-iii.html#cb102-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(lon, xlim[<span class="dv">1</span>], xlim[<span class="dv">2</span>])) <span class="sc">%&gt;%</span></span>
+<span id="cb102-6"><a href="l09-gis-iii.html#cb102-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(lat, ylim[<span class="dv">1</span>], ylim[<span class="dv">2</span>]))</span>
+<span id="cb102-7"><a href="l09-gis-iii.html#cb102-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-8"><a href="l09-gis-iii.html#cb102-8" aria-hidden="true" tabindex="-1"></a>us_data_filtered_enriched <span class="ot">&lt;-</span> us_data_filtered</span>
+<span id="cb102-9"><a href="l09-gis-iii.html#cb102-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-10"><a href="l09-gis-iii.html#cb102-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (n <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">9</span>)){</span>
+<span id="cb102-11"><a href="l09-gis-iii.html#cb102-11" aria-hidden="true" tabindex="-1"></a>  temp <span class="ot">&lt;-</span> us_data_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb102-12"><a href="l09-gis-iii.html#cb102-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">year =</span> year <span class="sc">+</span> n)</span>
+<span id="cb102-13"><a href="l09-gis-iii.html#cb102-13" aria-hidden="true" tabindex="-1"></a>  us_data_filtered_enriched <span class="ot">&lt;-</span> <span class="fu">add_row</span>(us_data_filtered_enriched, temp)</span>
+<span id="cb102-14"><a href="l09-gis-iii.html#cb102-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb102-15"><a href="l09-gis-iii.html#cb102-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-16"><a href="l09-gis-iii.html#cb102-16" aria-hidden="true" tabindex="-1"></a>us_data_filtered_enriched <span class="ot">&lt;-</span> us_data_filtered_enriched <span class="sc">%&gt;%</span></span>
+<span id="cb102-17"><a href="l09-gis-iii.html#cb102-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&lt;=</span> <span class="dv">2010</span>)</span></code></pre></div>
+<p>Now, the plot:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="l09-gis-iii.html#cb103-1" aria-hidden="true" tabindex="-1"></a>baseplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> world) <span class="sc">+</span></span>
+<span id="cb103-2"><a href="l09-gis-iii.html#cb103-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb103-3"><a href="l09-gis-iii.html#cb103-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_sf</span>(<span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim, <span class="at">expand =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb103-4"><a href="l09-gis-iii.html#cb103-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-5"><a href="l09-gis-iii.html#cb103-5" aria-hidden="true" tabindex="-1"></a>themeParameters <span class="ot">&lt;-</span> <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> waterColor),</span>
+<span id="cb103-6"><a href="l09-gis-iii.html#cb103-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb103-7"><a href="l09-gis-iii.html#cb103-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb103-8"><a href="l09-gis-iii.html#cb103-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.x=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb103-9"><a href="l09-gis-iii.html#cb103-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.ticks.x=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb103-10"><a href="l09-gis-iii.html#cb103-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb103-11"><a href="l09-gis-iii.html#cb103-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb103-12"><a href="l09-gis-iii.html#cb103-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> waterColor, <span class="at">linetype =</span> <span class="st">&quot;dotted&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>))</span>
+<span id="cb103-13"><a href="l09-gis-iii.html#cb103-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-14"><a href="l09-gis-iii.html#cb103-14" aria-hidden="true" tabindex="-1"></a>usMap <span class="ot">&lt;-</span> baseplot <span class="sc">+</span></span>
+<span id="cb103-15"><a href="l09-gis-iii.html#cb103-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> us_data_filtered_enriched, <span class="fu">aes</span>(<span class="at">x=</span>lon, <span class="at">y=</span>lat, <span class="at">size =</span> population), <span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb103-16"><a href="l09-gis-iii.html#cb103-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb103-17"><a href="l09-gis-iii.html#cb103-17" aria-hidden="true" tabindex="-1"></a>  themeParameters</span>
+<span id="cb103-18"><a href="l09-gis-iii.html#cb103-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-19"><a href="l09-gis-iii.html#cb103-19" aria-hidden="true" tabindex="-1"></a>usMap</span></code></pre></div>
+<p>Now, the following code animates our map. And the last line saves our animation into a file. Check documentation for <code>gganimate</code> for many other options for saving animations. <strong>NB:</strong> Keep in mind that this process make take a while, so you do not want to rerun it every time you knit your notebook!</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="l09-gis-iii.html#cb104-1" aria-hidden="true" tabindex="-1"></a>usMapAnimated <span class="ot">&lt;-</span> usMap <span class="sc">+</span></span>
+<span id="cb104-2"><a href="l09-gis-iii.html#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_time</span>(year) <span class="sc">+</span></span>
+<span id="cb104-3"><a href="l09-gis-iii.html#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Growth of the US cities: {frame_time}&quot;</span>)</span>
+<span id="cb104-4"><a href="l09-gis-iii.html#cb104-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-5"><a href="l09-gis-iii.html#cb104-5" aria-hidden="true" tabindex="-1"></a><span class="fu">anim_save</span>(<span class="st">&quot;usMap_Animated.gif&quot;</span>, <span class="at">animation=</span>usMapAnimated, <span class="at">end_pause =</span> <span class="dv">10</span>, <span class="at">rewind =</span> <span class="cn">FALSE</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">res =</span> <span class="dv">300</span>)</span></code></pre></div>
+<p>This is our animated map, which we saved into a gif file.</p>
+<p><img src="usMap_Animated.gif" /></p>
+<p><strong>Homework:</strong> Animate any of the maps that you are tasked to prepare above.</p>
 </div>
 </div>
 <div id="HW09" class="section level2" number="9.3">
