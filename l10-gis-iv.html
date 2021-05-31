@@ -325,15 +325,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.4.5" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#the-network"><i class="fa fa-check"></i><b>10.4.5</b> The Network</a></li>
 <li class="chapter" data-level="10.4.6" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#measures-of-centrality"><i class="fa fa-check"></i><b>10.4.6</b> Measures of centrality</a></li>
 <li class="chapter" data-level="10.4.7" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#the-shortest-path"><i class="fa fa-check"></i><b>10.4.7</b> The Shortest Path</a></li>
+<li class="chapter" data-level="10.4.8" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#clusters-andor-communities"><i class="fa fa-check"></i><b>10.4.8</b> Clusters and/or Communities</a></li>
+<li class="chapter" data-level="10.4.9" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#sparsifying-a-network"><i class="fa fa-check"></i><b>10.4.9</b> Sparsifying a Network</a></li>
+<li class="chapter" data-level="10.4.10" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#other-networks-on-maps"><i class="fa fa-check"></i><b>10.4.10</b> Other networks on maps</a></li>
 </ul></li>
-<li class="chapter" data-level="10.5" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#sparsifying-a-network"><i class="fa fa-check"></i><b>10.5</b> Sparsifying a Network</a>
-<ul>
-<li class="chapter" data-level="10.5.1" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#clusters-andor-communities"><i class="fa fa-check"></i><b>10.5.1</b> Clusters and/or Communities</a></li>
-<li class="chapter" data-level="10.5.2" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#other-networks-on-maps"><i class="fa fa-check"></i><b>10.5.2</b> Other networks on maps</a></li>
-</ul></li>
-<li class="chapter" data-level="10.6" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#AM10"><i class="fa fa-check"></i><b>10.6</b> Additional Materials on Networks in R</a></li>
-<li class="chapter" data-level="10.7" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#HW10"><i class="fa fa-check"></i><b>10.7</b> Homework</a></li>
-<li class="chapter" data-level="10.8" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#SH10"><i class="fa fa-check"></i><b>10.8</b> Submitting homework</a></li>
+<li class="chapter" data-level="10.5" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#AM10"><i class="fa fa-check"></i><b>10.5</b> Additional Materials on Networks in R</a></li>
+<li class="chapter" data-level="10.6" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#HW10"><i class="fa fa-check"></i><b>10.6</b> Homework</a></li>
+<li class="chapter" data-level="10.7" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#SH10"><i class="fa fa-check"></i><b>10.7</b> Submitting homework</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="l11-gis-v.html"><a href="l11-gis-v.html"><i class="fa fa-check"></i><b>11</b> L11: GIS V</a>
 <ul>
@@ -459,7 +457,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>R, RStudio
 <ul>
-<li><code>igraph</code> and a few other new libraries</li>
+<li><code>igraph</code> and a few other new libraries
+<ul>
+<li><strong>NB:</strong> <code>igraph</code> is the main SNA library. There are other packages we can use to visualize graphs (<code>ggraph</code>, for example), but most calculations and the overall analysis is still to be performed with <code>igraph</code>. You can get an overview of its contents with <code>library(help="igraph")</code>. More information: <a href="https://igraph.org/r/" class="uri">https://igraph.org/r/</a>; full documentation: <a href="https://igraph.org/r/doc/igraph.pdf" class="uri">https://igraph.org/r/doc/igraph.pdf</a></li>
+</ul></li>
+</ul></li>
+<li>Data:
+<ul>
+<li>Our practice datasets will include two data sets on Islamic history: 1) the route network of the islamic world around 9-10th centuries (<a href="https://althurayya.github.io/" class="uri">https://althurayya.github.io/</a>); and bio-geographical data collected from 30,000 medieval biographies (Source: “The History of Islam” (<em>Taʾrīḫ al-islām</em>) of al-Ḏahabī (748/1348 CE)): <a href="https://maximromanov.github.io/rgis_univie2021/data_temp/althurayya.zip">Islamic_World_Data.zip</a></li>
 </ul></li>
 </ul>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="l10-gis-iv.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># General ones </span></span>
@@ -700,10 +705,10 @@ edges
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="l10-gis-iv.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
 <span id="cb102-2"><a href="l10-gis-iv.html#cb102-2" aria-hidden="true" tabindex="-1"></a>iwNetwork <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(<span class="at">d=</span>edges, <span class="at">vertices=</span>nodes, <span class="at">directed=</span><span class="cn">FALSE</span>)</span>
 <span id="cb102-3"><a href="l10-gis-iv.html#cb102-3" aria-hidden="true" tabindex="-1"></a>iwNetwork</span></code></pre></div>
-<pre><code>## IGRAPH 0e4e071 UNW- 1692 2053 -- 
+<pre><code>## IGRAPH fd1ffa8 UNW- 1692 2053 -- 
 ## + attr: name (v/c), names_eng_translit (v/c), region_URI (v/c),
 ## | top_type (v/c), lon (v/n), lat (v/n), weight (e/n)
-## + edges from 0e4e071 (vertex names):
+## + edges from fd1ffa8 (vertex names):
 ##  [1] NABULUS_352E322N_S --RIHA_354E318N_S         
 ##  [2] AMMAN_359E319N_S   --ZARQA_360E320N_S        
 ##  [3] ZARQA_360E320N_S   --ADHRIAT_360E326N_S      
@@ -728,7 +733,7 @@ edges
 </ul>
 <p><code>igraph</code> objects provide us with an easy access to nodes, edges, and their attributes with the following commands:</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="l10-gis-iv.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">E</span>(iwNetwork), <span class="dv">20</span>)</span></code></pre></div>
-<pre><code>## + 20/2053 edges from 0e4e071 (vertex names):
+<pre><code>## + 20/2053 edges from fd1ffa8 (vertex names):
 ##  [1] NABULUS_352E322N_S   --RIHA_354E318N_S         
 ##  [2] AMMAN_359E319N_S     --ZARQA_360E320N_S        
 ##  [3] ZARQA_360E320N_S     --ADHRIAT_360E326N_S      
@@ -741,7 +746,7 @@ edges
 ## [10] JASIM_360E329N_S     --ROUTPOINT0121_362E333N_O
 ## + ... omitted several edges</code></pre>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="l10-gis-iv.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">V</span>(iwNetwork), <span class="dv">20</span>)</span></code></pre></div>
-<pre><code>## + 20/1692 vertices, named, from 0e4e071:
+<pre><code>## + 20/1692 vertices, named, from fd1ffa8:
 ##  [1] QAHIRA_312E300N_S      WASHQA_003W421N_S      BALANSIYYA_004W394N_S 
 ##  [4] SHAQR_004W391N_S       QANT_004W383N_S        SHATIBA_005W389N_S    
 ##  [7] SARAQUSA_009W416N_S    MURSIYA_011W379N_S     TUTILA_016W420N_S     
@@ -1139,11 +1144,15 @@ edges
 <span id="cb148-20"><a href="l10-gis-iv.html#cb148-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylim=</span><span class="fu">c</span>(<span class="fu">min</span>(annotData<span class="sc">$</span>lat)<span class="sc">-</span><span class="dv">3</span>, <span class="fu">max</span>(annotData<span class="sc">$</span>lat)<span class="sc">+</span><span class="dv">3</span>),</span>
 <span id="cb148-21"><a href="l10-gis-iv.html#cb148-21" aria-hidden="true" tabindex="-1"></a>                 <span class="at">expand=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="RGIS2021S_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
-<p>As you can see, the results are quite what we wanted. This is is not the easiest approach to implement, it will give you full control over modeling different processes within your geographical networks. (<strong>Important:</strong> the data used in this section is not complete; “terrain” and “safety” classifications are random, except for this specific example.)</p>
+<p>As you can see, the results are quite what we wanted. This is is not the easiest approach to implement, but it will give you full control over modeling different processes within your geographical networks. (<strong>Important:</strong> the data used in this section is not complete; “terrain” and “safety” classifications are random, except for this specific example.)</p>
 </div>
+<div id="clusters-andor-communities" class="section level3" number="10.4.8">
+<h3><span class="header-section-number">10.4.8</span> Clusters and/or Communities</h3>
+<p>A way to find large components of any network is to apply some cluster analysis algorithms. There are many different algorithms which are included in <code>igraph</code>. One needs to understand how they work and for which purposes they have been developed. For our current context, the following algorithms are most fitting. Please, check the</p>
+<p>…</p>
 </div>
-<div id="sparsifying-a-network" class="section level2" number="10.5">
-<h2><span class="header-section-number">10.5</span> Sparsifying a Network</h2>
+<div id="sparsifying-a-network" class="section level3" number="10.4.9">
+<h3><span class="header-section-number">10.4.9</span> Sparsifying a Network</h3>
 <p>In some cases your network may be too dense. This will effecively mean that you will not be able to get anything useful from social network analysis methods. What one needs to do in this case is to make the network more sparse. There is a number of ways how one can do this. Ideally, one needs to remodel the network by revising parameters that go into the weights of edges. The simplest way to “sparsify” a network is by deleting edges whose weight is below a certain threshold. In the example below (from Kateto), edges whose value is below <code>mean</code> are deleted from the network. As a result the network should break down into more distinct communities (or, actually, disconnected components).</p>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="l10-gis-iv.html#cb149-1" aria-hidden="true" tabindex="-1"></a>cut.off <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">E</span>(iwNetwork)<span class="sc">$</span>weight)</span>
 <span id="cb149-2"><a href="l10-gis-iv.html#cb149-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1182,18 +1191,14 @@ edges
 <span id="cb152-27"><a href="l10-gis-iv.html#cb152-27" aria-hidden="true" tabindex="-1"></a>       <span class="co"># width and height should be experimentally adjusted to remove white space</span></span>
 <span id="cb152-28"><a href="l10-gis-iv.html#cb152-28" aria-hidden="true" tabindex="-1"></a>       <span class="at">dpi=</span><span class="dv">300</span>,<span class="at">width=</span><span class="fl">8.4</span>,<span class="at">height=</span><span class="fl">4.65</span>)</span></code></pre></div>
 <p><img src="files/networks/IW_sparse_75f.png" /></p>
-<div id="clusters-andor-communities" class="section level3" number="10.5.1">
-<h3><span class="header-section-number">10.5.1</span> Clusters and/or Communities</h3>
-<p>Another way to find large components of any network is with cluster analysis algorithms. There are many different algorithms which are included in <code>igraph</code>. One needs to understand how they work and for which purposes they have been developed. For our current context, the following algorithms are most fitting. Please, check the</p>
-<p>…</p>
 </div>
-<div id="other-networks-on-maps" class="section level3" number="10.5.2">
-<h3><span class="header-section-number">10.5.2</span> Other networks on maps</h3>
+<div id="other-networks-on-maps" class="section level3" number="10.4.10">
+<h3><span class="header-section-number">10.4.10</span> Other networks on maps</h3>
 <p>…</p>
 </div>
 </div>
-<div id="AM10" class="section level2" number="10.6">
-<h2><span class="header-section-number">10.6</span> Additional Materials on Networks in R</h2>
+<div id="AM10" class="section level2" number="10.5">
+<h2><span class="header-section-number">10.5</span> Additional Materials on Networks in R</h2>
 <ul>
 <li><p>Katherine Ognyanova (2017-2018). <em>Static and dynamic network visualization with R</em>. <a href="https://kateto.net/network-visualization" class="uri">https://kateto.net/network-visualization</a>.</p></li>
 <li><p><em>Chapter 6</em> in: Arnold, Taylor, and Lauren Tilton. 2015. <em>Humanities Data in R</em>. New York, NY: Springer Science+Business Media.</p></li>
@@ -1207,12 +1212,12 @@ edges
 </ul></li>
 </ul>
 </div>
-<div id="HW10" class="section level2" number="10.7">
-<h2><span class="header-section-number">10.7</span> Homework</h2>
+<div id="HW10" class="section level2" number="10.6">
+<h2><span class="header-section-number">10.6</span> Homework</h2>
 <p>Submit your knitted notebook.</p>
 </div>
-<div id="SH10" class="section level2" number="10.8">
-<h2><span class="header-section-number">10.8</span> Submitting homework</h2>
+<div id="SH10" class="section level2" number="10.7">
+<h2><span class="header-section-number">10.7</span> Submitting homework</h2>
 <ul>
 <li>Homework assignment must be submitted by the beginning of the next class;</li>
 <li>Email your homework to the instructor as attachments.
