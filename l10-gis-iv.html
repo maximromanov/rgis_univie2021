@@ -316,9 +316,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#mapping-networks"><i class="fa fa-check"></i><b>10.1</b> Mapping Networks</a></li>
 <li class="chapter" data-level="10.2" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#TAG10"><i class="fa fa-check"></i><b>10.2</b> Goals</a></li>
 <li class="chapter" data-level="10.3" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#SOFT10"><i class="fa fa-check"></i><b>10.3</b> Software</a></li>
-<li class="chapter" data-level="10.4" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#networks"><i class="fa fa-check"></i><b>10.4</b> Networks</a>
+<li class="chapter" data-level="10.4" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#networks-graphs"><i class="fa fa-check"></i><b>10.4</b> Networks (Graphs)</a>
 <ul>
-<li class="chapter" data-level="10.4.1" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#basic-concepts"><i class="fa fa-check"></i><b>10.4.1</b> Basic Concepts</a></li>
+<li class="chapter" data-level="10.4.1" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#basic-concepts-and-ideas"><i class="fa fa-check"></i><b>10.4.1</b> Basic Concepts and Ideas</a></li>
 <li class="chapter" data-level="10.4.2" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#data-for-networks-nodes-and-edges"><i class="fa fa-check"></i><b>10.4.2</b> Data for Networks: Nodes and Edges</a></li>
 <li class="chapter" data-level="10.4.3" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#modeling-a-network"><i class="fa fa-check"></i><b>10.4.3</b> Modeling a Network</a></li>
 <li class="chapter" data-level="10.4.4" data-path="l10-gis-iv.html"><a href="l10-gis-iv.html#most-common-analytical-procedures-some-recipes"><i class="fa fa-check"></i><b>10.4.4</b> Most common analytical procedures: some recipes</a></li>
@@ -485,72 +485,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb93-15"><a href="l10-gis-iv.html#cb93-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearthdata)</span>
 <span id="cb93-16"><a href="l10-gis-iv.html#cb93-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(grid) <span class="co"># grid library cuts out the plot from the graph</span></span></code></pre></div>
 </div>
-<div id="networks" class="section level2" number="10.4">
-<h2><span class="header-section-number">10.4</span> Networks</h2>
-<div id="basic-concepts" class="section level3" number="10.4.1">
-<h3><span class="header-section-number">10.4.1</span> Basic Concepts</h3>
-<ul>
-<li>Example networks:
-<ul>
-<li>make a simple network of Vienna districts</li>
-<li>explain how networks could work on hypothetical people living in different Viennese districts
-<ul>
-<li>person, district, dates (1800-2000), political views (Party 1, Party 2, Party 1)</li>
-</ul></li>
-<li>need some very small network, through which I can explain things.</li>
-<li>Data on Vienna: <a href="https://www.geschichtewiki.wien.gv.at/Personen_Zeitleiste" class="uri">https://www.geschichtewiki.wien.gv.at/Personen_Zeitleiste</a> ; <a href="http://www.dasrotewien.at/" class="uri">http://www.dasrotewien.at/</a></li>
-</ul></li>
-<li>Basics of networks:
-<ul>
-<li>nodes and edges</li>
-<li>the roles of nodes and edges</li>
-<li>Main measures:
-<ul>
-<li>centrality</li>
-<li>betweenness</li>
-<li>clusters and cliques</li>
-</ul></li>
-<li>A note on: unimodal (only one types of nodes), bimodal, and multimodal networks
-<ul>
-<li>gist of it: one should always find ways to convert data into unimodal networks, as this is the type of networks that most algorithms are designed to work with;
-<ul>
-<li>bimodal network can be converted into unimodal one by converting the second type of nodes into edges and their values.
-<ul>
-<li>bimodal network: nodes are individuals and cities, edges — connections of individuals to cities; connections of cities to cities; connections of individuals to individuals (potentially)</li>
-<li>unimodal: nodes are individuals; edges are shared cities individuals are connected with/to. Thus, in this case, connections between two individuals become a shared city they are connected to; the weight of this connection may be based on a number of shared cities. In other words, the connection between two individuals that share ten same cities will be stronger than between individuals that share only one; and there will be no connection between individuals who share no common cities.</li>
-<li>unimodal network: one type of nodes; one type of connections; that said, the weight of connections may be aggregated from multiple parameters. For example, we have three individuals who share the city of Vienna as their connection; however, person 1 and person 2 also share something else — a district; the period of their lives overlap, etc., while person 1 and person 3 lived in different districts and their lives did not overlap chronologically. Thus, the weight of the edge between person 1 and 2 will be larger, than between 1 and 3 and two and 3. Yet, if there is also person 4, who has no connection to Vienna, his/her connection to P1, P2, and P3 will be nonexistent, unless we consider other parameters for the edges (shared lifetime, for example; or, larger geographical entities, etc.)</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
-<div id="data-for-networks-nodes-and-edges" class="section level3" number="10.4.2">
-<h3><span class="header-section-number">10.4.2</span> Data for Networks: Nodes and Edges</h3>
-<ul>
-<li>Nodes</li>
-<li>Edges</li>
-</ul>
-</div>
-<div id="modeling-a-network" class="section level3" number="10.4.3">
-<h3><span class="header-section-number">10.4.3</span> Modeling a Network</h3>
-<div id="wien-network" class="section level4" number="10.4.3.1">
-<h4><span class="header-section-number">10.4.3.1</span> Wien Network</h4>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="l10-gis-iv.html#cb94-1" aria-hidden="true" tabindex="-1"></a>wien <span class="ot">&lt;-</span> <span class="fu">graph_from_literal</span>(</span>
+<div id="networks-graphs" class="section level2" number="10.4">
+<h2><span class="header-section-number">10.4</span> Networks (Graphs)</h2>
+<div id="basic-concepts-and-ideas" class="section level3" number="10.4.1">
+<h3><span class="header-section-number">10.4.1</span> Basic Concepts and Ideas</h3>
+<div id="nodes-vertices-points" class="section level4" number="10.4.1.1">
+<h4><span class="header-section-number">10.4.1.1</span> Nodes (Vertices, Points)</h4>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="l10-gis-iv.html#cb94-1" aria-hidden="true" tabindex="-1"></a>graphObject <span class="ot">&lt;-</span> <span class="fu">graph_from_literal</span>(</span>
 <span id="cb94-2"><a href="l10-gis-iv.html#cb94-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>,</span>
 <span id="cb94-3"><a href="l10-gis-iv.html#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">20</span>, <span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">23</span>)</span>
 <span id="cb94-4"><a href="l10-gis-iv.html#cb94-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb94-5"><a href="l10-gis-iv.html#cb94-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5</span>)</span>
-<span id="cb94-6"><a href="l10-gis-iv.html#cb94-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wien)</span></code></pre></div>
+<span id="cb94-6"><a href="l10-gis-iv.html#cb94-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(graphObject)</span></code></pre></div>
 <p><img src="RGIS2021S_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="l10-gis-iv.html#cb95-1" aria-hidden="true" tabindex="-1"></a>wien <span class="ot">&lt;-</span> <span class="fu">graph_from_literal</span>(</span>
-<span id="cb95-2"><a href="l10-gis-iv.html#cb95-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">--</span><span class="dv">2</span><span class="sc">:</span><span class="dv">3</span><span class="sc">:</span><span class="dv">4</span><span class="sc">:</span><span class="dv">6</span><span class="sc">:</span><span class="dv">7</span><span class="sc">:</span><span class="dv">8</span><span class="sc">:</span><span class="dv">9</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>,</span>
+</div>
+<div id="edges-links" class="section level4" number="10.4.1.2">
+<h4><span class="header-section-number">10.4.1.2</span> Edges (Links)</h4>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="l10-gis-iv.html#cb95-1" aria-hidden="true" tabindex="-1"></a>graphObject <span class="ot">&lt;-</span> <span class="fu">graph_from_literal</span>(</span>
+<span id="cb95-2"><a href="l10-gis-iv.html#cb95-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">--</span><span class="dv">2</span><span class="sc">:</span><span class="dv">3</span><span class="sc">:</span><span class="dv">4</span><span class="sc">:</span><span class="dv">6</span><span class="sc">:</span><span class="dv">7</span><span class="sc">:</span><span class="dv">8</span><span class="sc">:</span><span class="dv">9</span>, <span class="dv">2</span><span class="sc">--</span><span class="dv">1</span><span class="sc">:</span><span class="dv">20</span><span class="sc">:</span><span class="dv">22</span><span class="sc">:</span><span class="dv">11</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>,</span>
 <span id="cb95-3"><a href="l10-gis-iv.html#cb95-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">20</span>, <span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">23</span>)</span>
 <span id="cb95-4"><a href="l10-gis-iv.html#cb95-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb95-5"><a href="l10-gis-iv.html#cb95-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5</span>)</span>
-<span id="cb95-6"><a href="l10-gis-iv.html#cb95-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wien)</span></code></pre></div>
+<span id="cb95-6"><a href="l10-gis-iv.html#cb95-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(graphObject)</span></code></pre></div>
 <p><img src="RGIS2021S_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="l10-gis-iv.html#cb96-1" aria-hidden="true" tabindex="-1"></a>wien <span class="ot">&lt;-</span> <span class="fu">graph_from_literal</span>(</span>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="l10-gis-iv.html#cb96-1" aria-hidden="true" tabindex="-1"></a>graphObject <span class="ot">&lt;-</span> <span class="fu">graph_from_literal</span>(</span>
 <span id="cb96-2"><a href="l10-gis-iv.html#cb96-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">--</span><span class="dv">2</span><span class="sc">:</span><span class="dv">3</span><span class="sc">:</span><span class="dv">4</span><span class="sc">:</span><span class="dv">6</span><span class="sc">:</span><span class="dv">7</span><span class="sc">:</span><span class="dv">8</span><span class="sc">:</span><span class="dv">9</span>, <span class="dv">2</span><span class="sc">--</span><span class="dv">1</span><span class="sc">:</span><span class="dv">20</span><span class="sc">:</span><span class="dv">22</span><span class="sc">:</span><span class="dv">11</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">3</span><span class="sc">--</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span><span class="sc">:</span><span class="dv">11</span><span class="sc">:</span><span class="dv">10</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">4</span><span class="sc">--</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span><span class="sc">:</span><span class="dv">10</span><span class="sc">:</span><span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>,</span>
 <span id="cb96-3"><a href="l10-gis-iv.html#cb96-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">5</span><span class="sc">--</span><span class="dv">6</span><span class="sc">:</span><span class="dv">4</span><span class="sc">:</span><span class="dv">10</span><span class="sc">:</span><span class="dv">12</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">6</span><span class="sc">--</span><span class="dv">1</span><span class="sc">:</span><span class="dv">4</span><span class="sc">:</span><span class="dv">5</span><span class="sc">:</span><span class="dv">12</span><span class="sc">:</span><span class="dv">15</span>,<span class="dv">6-7</span>, <span class="dv">7</span><span class="sc">--</span><span class="dv">1</span><span class="sc">:</span><span class="dv">6</span><span class="sc">:</span><span class="dv">15</span><span class="sc">:</span><span class="dv">16</span><span class="sc">:</span><span class="dv">8</span>, <span class="dv">8</span><span class="sc">--</span><span class="dv">1</span><span class="sc">:</span><span class="dv">7</span><span class="sc">:</span><span class="dv">16</span><span class="sc">:</span><span class="dv">17</span><span class="sc">:</span><span class="dv">9</span>,</span>
 <span id="cb96-4"><a href="l10-gis-iv.html#cb96-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">9</span><span class="sc">--</span><span class="dv">1</span><span class="sc">:</span><span class="dv">8</span><span class="sc">:</span><span class="dv">17</span><span class="sc">:</span><span class="dv">19</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">10</span><span class="sc">--</span><span class="dv">3</span><span class="sc">:</span><span class="dv">11</span><span class="sc">:</span><span class="dv">23</span><span class="sc">:</span><span class="dv">12</span><span class="sc">:</span><span class="dv">5</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">11</span><span class="sc">--</span><span class="dv">2</span><span class="sc">:</span><span class="dv">22</span><span class="sc">:</span><span class="dv">10</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">12</span><span class="sc">--</span><span class="dv">5</span><span class="sc">:</span><span class="dv">10</span><span class="sc">:</span><span class="dv">23</span><span class="sc">:</span><span class="dv">13</span><span class="sc">:</span><span class="dv">15</span><span class="sc">:</span><span class="dv">6</span>,</span>
@@ -559,22 +517,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb96-7"><a href="l10-gis-iv.html#cb96-7" aria-hidden="true" tabindex="-1"></a>  <span class="dv">22</span><span class="sc">--</span><span class="dv">2</span><span class="sc">:</span><span class="dv">20</span><span class="sc">:</span><span class="dv">21</span><span class="sc">:</span><span class="dv">11</span>, <span class="dv">23</span><span class="sc">--</span><span class="dv">10</span><span class="sc">:</span><span class="dv">13</span><span class="sc">:</span><span class="dv">12</span>)</span>
 <span id="cb96-8"><a href="l10-gis-iv.html#cb96-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb96-9"><a href="l10-gis-iv.html#cb96-9" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5</span>)</span>
-<span id="cb96-10"><a href="l10-gis-iv.html#cb96-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wien)</span></code></pre></div>
+<span id="cb96-10"><a href="l10-gis-iv.html#cb96-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(graphObject)</span></code></pre></div>
 <p><img src="RGIS2021S_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+</div>
+<div id="major-measures" class="section level4" number="10.4.1.3">
+<h4><span class="header-section-number">10.4.1.3</span> Major measures</h4>
 <div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="l10-gis-iv.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># centrality measures</span></span>
-<span id="cb97-2"><a href="l10-gis-iv.html#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(wien)<span class="sc">$</span>degree <span class="ot">&lt;-</span> <span class="fu">degree</span>(wien, <span class="at">mode=</span><span class="st">&quot;all&quot;</span>)</span>
-<span id="cb97-3"><a href="l10-gis-iv.html#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(wien)<span class="sc">$</span>centr_degree <span class="ot">&lt;-</span> <span class="fu">centr_degree</span>(wien, <span class="at">mode=</span><span class="st">&quot;all&quot;</span>, <span class="at">normalized=</span>T)<span class="sc">$</span>res</span>
-<span id="cb97-4"><a href="l10-gis-iv.html#cb97-4" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(wien)<span class="sc">$</span>centr_eigen <span class="ot">&lt;-</span> <span class="fu">centr_eigen</span>(wien, <span class="at">directed=</span>F, <span class="at">normalized=</span>F)<span class="sc">$</span>vector</span>
-<span id="cb97-5"><a href="l10-gis-iv.html#cb97-5" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(wien)<span class="sc">$</span>betweenness <span class="ot">&lt;-</span> <span class="fu">betweenness</span>(wien, <span class="at">directed=</span>F)</span>
-<span id="cb97-6"><a href="l10-gis-iv.html#cb97-6" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(wien)<span class="sc">$</span>centr_betw <span class="ot">&lt;-</span> <span class="fu">centr_betw</span>(wien, <span class="at">directed=</span>F, <span class="at">normalized=</span>T)<span class="sc">$</span>res</span>
-<span id="cb97-7"><a href="l10-gis-iv.html#cb97-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb97-8"><a href="l10-gis-iv.html#cb97-8" aria-hidden="true" tabindex="-1"></a><span class="co"># clustering (selected algorithms) some of these alrgorithms may take a while to run on large graphs</span></span>
-<span id="cb97-9"><a href="l10-gis-iv.html#cb97-9" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(wien)<span class="sc">$</span>cl_walktrap <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">cluster_walktrap</span>(wien)<span class="sc">$</span>membership)</span>
-<span id="cb97-10"><a href="l10-gis-iv.html#cb97-10" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(wien)<span class="sc">$</span>cl_louvain <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">cluster_louvain</span>(wien)<span class="sc">$</span>membership)</span></code></pre></div>
-<p>Degree centrality:</p>
+<span id="cb97-2"><a href="l10-gis-iv.html#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(graphObject)<span class="sc">$</span>degree <span class="ot">&lt;-</span> <span class="fu">degree</span>(graphObject, <span class="at">mode=</span><span class="st">&quot;all&quot;</span>)</span>
+<span id="cb97-3"><a href="l10-gis-iv.html#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(graphObject)<span class="sc">$</span>centr_degree <span class="ot">&lt;-</span> <span class="fu">centr_degree</span>(graphObject, <span class="at">mode=</span><span class="st">&quot;all&quot;</span>, <span class="at">normalized=</span>T)<span class="sc">$</span>res</span>
+<span id="cb97-4"><a href="l10-gis-iv.html#cb97-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-5"><a href="l10-gis-iv.html#cb97-5" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(graphObject)<span class="sc">$</span>centr_eigen <span class="ot">&lt;-</span> <span class="fu">centr_eigen</span>(graphObject, <span class="at">directed=</span>F, <span class="at">normalized=</span>F)<span class="sc">$</span>vector</span>
+<span id="cb97-6"><a href="l10-gis-iv.html#cb97-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-7"><a href="l10-gis-iv.html#cb97-7" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(graphObject)<span class="sc">$</span>betweenness <span class="ot">&lt;-</span> <span class="fu">betweenness</span>(graphObject, <span class="at">directed=</span>F)</span>
+<span id="cb97-8"><a href="l10-gis-iv.html#cb97-8" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(graphObject)<span class="sc">$</span>centr_betw <span class="ot">&lt;-</span> <span class="fu">centr_betw</span>(graphObject, <span class="at">directed=</span>F, <span class="at">normalized=</span>T)<span class="sc">$</span>res</span>
+<span id="cb97-9"><a href="l10-gis-iv.html#cb97-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-10"><a href="l10-gis-iv.html#cb97-10" aria-hidden="true" tabindex="-1"></a><span class="co"># clustering (selected algorithms) some of these alrgorithms may take a while to run on large graphs</span></span>
+<span id="cb97-11"><a href="l10-gis-iv.html#cb97-11" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(graphObject)<span class="sc">$</span>cl_walktrap <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">cluster_walktrap</span>(graphObject)<span class="sc">$</span>membership)</span>
+<span id="cb97-12"><a href="l10-gis-iv.html#cb97-12" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(graphObject)<span class="sc">$</span>cl_louvain <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">cluster_louvain</span>(graphObject)<span class="sc">$</span>membership)</span></code></pre></div>
+</div>
+<div id="degree-centrality" class="section level4" number="10.4.1.4">
+<h4><span class="header-section-number">10.4.1.4</span> Degree centrality:</h4>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="l10-gis-iv.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5</span>)</span>
 <span id="cb98-2"><a href="l10-gis-iv.html#cb98-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-3"><a href="l10-gis-iv.html#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(wien, <span class="st">&#39;igraph&#39;</span>, <span class="at">algorithm =</span> <span class="st">&#39;with_fr&#39;</span>) <span class="sc">+</span></span>
+<span id="cb98-3"><a href="l10-gis-iv.html#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(graphObject, <span class="st">&#39;igraph&#39;</span>, <span class="at">algorithm =</span> <span class="st">&#39;with_fr&#39;</span>) <span class="sc">+</span></span>
 <span id="cb98-4"><a href="l10-gis-iv.html#cb98-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">width=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb98-5"><a href="l10-gis-iv.html#cb98-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size=</span>degree, <span class="at">color=</span>degree), <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb98-6"><a href="l10-gis-iv.html#cb98-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_label</span>(<span class="fu">aes</span>(<span class="at">label=</span>name), <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">repel=</span><span class="cn">TRUE</span>, <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
@@ -583,9 +548,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb98-9"><a href="l10-gis-iv.html#cb98-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_gradient</span>(<span class="at">low=</span><span class="st">&quot;black&quot;</span>, <span class="at">high=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
 <span id="cb98-10"><a href="l10-gis-iv.html#cb98-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">10</span>))</span></code></pre></div>
 <p><img src="RGIS2021S_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+</div>
+<div id="betweenness-betweenness-centrality" class="section level4" number="10.4.1.5">
+<h4><span class="header-section-number">10.4.1.5</span> Betweenness / Betweenness centrality:</h4>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="l10-gis-iv.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5</span>)</span>
 <span id="cb99-2"><a href="l10-gis-iv.html#cb99-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-3"><a href="l10-gis-iv.html#cb99-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(wien, <span class="st">&#39;igraph&#39;</span>, <span class="at">algorithm =</span> <span class="st">&#39;with_fr&#39;</span>) <span class="sc">+</span></span>
+<span id="cb99-3"><a href="l10-gis-iv.html#cb99-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(graphObject, <span class="st">&#39;igraph&#39;</span>, <span class="at">algorithm =</span> <span class="st">&#39;with_fr&#39;</span>) <span class="sc">+</span></span>
 <span id="cb99-4"><a href="l10-gis-iv.html#cb99-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">width=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb99-5"><a href="l10-gis-iv.html#cb99-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size=</span>betweenness, <span class="at">color=</span>betweenness), <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb99-6"><a href="l10-gis-iv.html#cb99-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_label</span>(<span class="fu">aes</span>(<span class="at">label=</span>name), <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">repel=</span><span class="cn">TRUE</span>, <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
@@ -594,9 +562,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb99-9"><a href="l10-gis-iv.html#cb99-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_gradient</span>(<span class="at">low=</span><span class="st">&quot;black&quot;</span>, <span class="at">high=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
 <span id="cb99-10"><a href="l10-gis-iv.html#cb99-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">10</span>))</span></code></pre></div>
 <p><img src="RGIS2021S_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+</div>
+<div id="eigenvector-centrality" class="section level4" number="10.4.1.6">
+<h4><span class="header-section-number">10.4.1.6</span> Eigenvector centrality:</h4>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="l10-gis-iv.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5</span>)</span>
 <span id="cb100-2"><a href="l10-gis-iv.html#cb100-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-3"><a href="l10-gis-iv.html#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(wien, <span class="st">&#39;igraph&#39;</span>, <span class="at">algorithm =</span> <span class="st">&#39;with_fr&#39;</span>) <span class="sc">+</span></span>
+<span id="cb100-3"><a href="l10-gis-iv.html#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(graphObject, <span class="st">&#39;igraph&#39;</span>, <span class="at">algorithm =</span> <span class="st">&#39;with_fr&#39;</span>) <span class="sc">+</span></span>
 <span id="cb100-4"><a href="l10-gis-iv.html#cb100-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">width=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb100-5"><a href="l10-gis-iv.html#cb100-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size=</span>centr_eigen, <span class="at">color=</span>centr_eigen), <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb100-6"><a href="l10-gis-iv.html#cb100-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_label</span>(<span class="fu">aes</span>(<span class="at">label=</span>name), <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">repel=</span><span class="cn">TRUE</span>, <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
@@ -605,9 +576,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb100-9"><a href="l10-gis-iv.html#cb100-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_gradient</span>(<span class="at">low=</span><span class="st">&quot;black&quot;</span>, <span class="at">high=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
 <span id="cb100-10"><a href="l10-gis-iv.html#cb100-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">10</span>))</span></code></pre></div>
 <p><img src="RGIS2021S_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+</div>
+<div id="clusteringcommunities" class="section level4" number="10.4.1.7">
+<h4><span class="header-section-number">10.4.1.7</span> Clustering/Communities:</h4>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="l10-gis-iv.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5</span>)</span>
 <span id="cb101-2"><a href="l10-gis-iv.html#cb101-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-3"><a href="l10-gis-iv.html#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(wien, <span class="st">&#39;igraph&#39;</span>, <span class="at">algorithm =</span> <span class="st">&#39;with_fr&#39;</span>) <span class="sc">+</span></span>
+<span id="cb101-3"><a href="l10-gis-iv.html#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(graphObject, <span class="st">&#39;igraph&#39;</span>, <span class="at">algorithm =</span> <span class="st">&#39;with_fr&#39;</span>) <span class="sc">+</span></span>
 <span id="cb101-4"><a href="l10-gis-iv.html#cb101-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">width=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb101-5"><a href="l10-gis-iv.html#cb101-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_encircle</span>(<span class="at">s_shape=</span>.<span class="dv">1</span>, <span class="at">expand=</span><span class="fl">0.01</span>, <span class="at">alpha=</span>.<span class="dv">25</span>, <span class="at">col=</span><span class="st">&quot;black&quot;</span>, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">group=</span>cl_louvain, <span class="at">fill=</span>cl_louvain))<span class="sc">+</span></span>
 <span id="cb101-6"><a href="l10-gis-iv.html#cb101-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>cl_louvain, <span class="at">size=</span>degree), <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
@@ -617,7 +591,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="RGIS2021S_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="l10-gis-iv.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5</span>)</span>
 <span id="cb102-2"><a href="l10-gis-iv.html#cb102-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-3"><a href="l10-gis-iv.html#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(wien, <span class="st">&#39;igraph&#39;</span>, <span class="at">algorithm =</span> <span class="st">&#39;with_fr&#39;</span>) <span class="sc">+</span></span>
+<span id="cb102-3"><a href="l10-gis-iv.html#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(graphObject, <span class="st">&#39;igraph&#39;</span>, <span class="at">algorithm =</span> <span class="st">&#39;with_fr&#39;</span>) <span class="sc">+</span></span>
 <span id="cb102-4"><a href="l10-gis-iv.html#cb102-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">width=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb102-5"><a href="l10-gis-iv.html#cb102-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_encircle</span>(<span class="at">s_shape=</span>.<span class="dv">1</span>, <span class="at">expand=</span><span class="fl">0.01</span>, <span class="at">alpha=</span>.<span class="dv">25</span>, <span class="at">col=</span><span class="st">&quot;black&quot;</span>, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">group=</span>cl_walktrap, <span class="at">fill=</span>cl_walktrap))<span class="sc">+</span></span>
 <span id="cb102-6"><a href="l10-gis-iv.html#cb102-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>cl_walktrap, <span class="at">size=</span>degree), <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
@@ -626,6 +600,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb102-9"><a href="l10-gis-iv.html#cb102-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_graph</span>()</span></code></pre></div>
 <p><img src="RGIS2021S_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
 </div>
+</div>
+<div id="data-for-networks-nodes-and-edges" class="section level3" number="10.4.2">
+<h3><span class="header-section-number">10.4.2</span> Data for Networks: Nodes and Edges</h3>
+<p><img src="files/networks/example_nodes.png" /></p>
+<p><img src="files/networks/example_edges.png" /></p>
+</div>
+<div id="modeling-a-network" class="section level3" number="10.4.3">
+<h3><span class="header-section-number">10.4.3</span> Modeling a Network</h3>
+<p>Hypothetical example: people with different political views living in Vienna.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<ul>
+<li><strong>Data (tabular)</strong>: person, residence district, frequented districts, dates (1800-2000), political views;</li>
+<li><strong>Possible Networks</strong>:
+<ul>
+<li>Option 1: <em>nodes</em>: persons; <em>edges</em>: residence districts (<em>this one will not be a geographical network</em>); <em>edges weights</em>: no weights;</li>
+<li>Option 2: <em>nodes</em>: districts; <em>edges</em>: people (edges between the residence district and frequented districts: 1–2, 2–3, 1–3); <em>edges weights</em>: the number of same edges;</li>
+<li>Option 3: <em>nodes</em>: districts; <em>edges</em>: political views (edges between the residence district and frequented districts of people with shared political views: 1–2, 2–3, 1–3); <em>edges weights</em>: the number of same edges;</li>
+<li>Option 4: <em>and so on…</em></li>
+</ul></li>
+</ul>
+<p><strong>A note on unimodal (only one types of nodes), bimodal, and multimodal networks:</strong></p>
+<p><img src="https://i2.wp.com/www.scottbot.net/HIAL/wp-content/uploads/2011/12/NetBooksAuthorsEdges.png" /></p>
+<p><img src="https://i1.wp.com/www.scottbot.net/HIAL/wp-content/uploads/2011/12/Full-Network.png" /></p>
+<ul>
+<li>one should always find ways to convert data into unimodal networks, as this is the type of networks that most algorithms are designed to work with;</li>
+<li>a bimodal network should be converted into a unimodal network (or, perhaps, a series of unimodal networks) where the second type of nodes becomes edges and their weights.</li>
+<li>for example: a bimodal network: nodes are individuals and cities, edges—connections of individuals to cities; connections of cities to cities; connections of individuals to individuals (potentially); <em>unimodal networks</em>: nodes are individuals; edges are shared cities with which individuals are connected. Thus, in this case, a connection between two individuals become the city that they havein common; the weight of this connection may be based on a number of shared cities. In other words, the connection between two individuals that share ten same cities will be stronger than between individuals that share only one; and there will be no connection between individuals who have no cities in common.</li>
+<li><strong>unimodal network</strong>: one type of nodes; one type of connections; that said, the weight of connections may be aggregated from multiple parameters. For example, we have three individuals who share the city of Vienna as their connection; however, person 1 and person 2 also share something else—a district; the period of their lives overlap, etc., while person 1 and person 3 lived in different districts and their lives did not overlap chronologically. Thus, the weight of the edge between person 1 and 2 will be larger, than between 1 and 3 and two and 3. Yet, if there is also person 4, who has no connection to Vienna, his/her connection to P1, P2, and P3 will be nonexistent, unless we consider other parameters for the edges (shared lifetime, for example; or, larger geographical entities, etc.)</li>
+</ul>
 </div>
 <div id="most-common-analytical-procedures-some-recipes" class="section level3" number="10.4.4">
 <h3><span class="header-section-number">10.4.4</span> Most common analytical procedures: some recipes</h3>
@@ -759,11 +761,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="l10-gis-iv.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
 <span id="cb111-2"><a href="l10-gis-iv.html#cb111-2" aria-hidden="true" tabindex="-1"></a>iwNetwork <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(<span class="at">d=</span>edges, <span class="at">vertices=</span>nodes, <span class="at">directed=</span><span class="cn">FALSE</span>)</span>
 <span id="cb111-3"><a href="l10-gis-iv.html#cb111-3" aria-hidden="true" tabindex="-1"></a>iwNetwork</span></code></pre></div>
-<pre><code>## IGRAPH fe700bd UNW- 1692 2053 -- 
+<pre><code>## IGRAPH b92d86f UNW- 1692 2053 -- 
 ## + attr: name (v/c), names_eng_translit (v/c), region_URI (v/c),
 ## | top_type (v/c), lon (v/n), lat (v/n), weight (e/n), meter (e/n),
 ## | terrain (e/c), safety (e/c)
-## + edges from fe700bd (vertex names):
+## + edges from b92d86f (vertex names):
 ## [1] NABULUS_352E322N_S --RIHA_354E318N_S         
 ## [2] AMMAN_359E319N_S   --ZARQA_360E320N_S        
 ## [3] ZARQA_360E320N_S   --ADHRIAT_360E326N_S      
@@ -787,7 +789,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><code>igraph</code> objects provide us with an easy access to nodes, edges, and their attributes with the following commands:</p>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="l10-gis-iv.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">E</span>(iwNetwork), <span class="dv">20</span>)</span></code></pre></div>
-<pre><code>## + 20/2053 edges from fe700bd (vertex names):
+<pre><code>## + 20/2053 edges from b92d86f (vertex names):
 ##  [1] NABULUS_352E322N_S   --RIHA_354E318N_S         
 ##  [2] AMMAN_359E319N_S     --ZARQA_360E320N_S        
 ##  [3] ZARQA_360E320N_S     --ADHRIAT_360E326N_S      
@@ -800,7 +802,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [10] JASIM_360E329N_S     --ROUTPOINT0121_362E333N_O
 ## + ... omitted several edges</code></pre>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="l10-gis-iv.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">V</span>(iwNetwork), <span class="dv">20</span>)</span></code></pre></div>
-<pre><code>## + 20/1692 vertices, named, from fe700bd:
+<pre><code>## + 20/1692 vertices, named, from b92d86f:
 ##  [1] QAHIRA_312E300N_S      WASHQA_003W421N_S      BALANSIYYA_004W394N_S 
 ##  [4] SHAQR_004W391N_S       QANT_004W383N_S        SHATIBA_005W389N_S    
 ##  [7] SARAQUSA_009W416N_S    MURSIYA_011W379N_S     TUTILA_016W420N_S     
@@ -1698,6 +1700,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Data on Vienna for a possible project: <a href="https://www.geschichtewiki.wien.gv.at/Personen_Zeitleiste" class="uri">https://www.geschichtewiki.wien.gv.at/Personen_Zeitleiste</a>; <a href="http://www.dasrotewien.at/" class="uri">http://www.dasrotewien.at/</a><a href="l10-gis-iv.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
