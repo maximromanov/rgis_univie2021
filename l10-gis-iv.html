@@ -765,11 +765,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="l10-gis-iv.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
 <span id="cb111-2"><a href="l10-gis-iv.html#cb111-2" aria-hidden="true" tabindex="-1"></a>iwNetwork <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(<span class="at">d=</span>edges, <span class="at">vertices=</span>nodes, <span class="at">directed=</span><span class="cn">FALSE</span>)</span>
 <span id="cb111-3"><a href="l10-gis-iv.html#cb111-3" aria-hidden="true" tabindex="-1"></a>iwNetwork</span></code></pre></div>
-<pre><code>## IGRAPH 4999439 UNW- 1692 2053 -- 
+<pre><code>## IGRAPH 54f6040 UNW- 1692 2053 -- 
 ## + attr: name (v/c), names_eng_translit (v/c), region_URI (v/c),
 ## | top_type (v/c), lon (v/n), lat (v/n), weight (e/n), meter (e/n),
 ## | terrain (e/c), safety (e/c)
-## + edges from 4999439 (vertex names):
+## + edges from 54f6040 (vertex names):
 ## [1] NABULUS_352E322N_S --RIHA_354E318N_S         
 ## [2] AMMAN_359E319N_S   --ZARQA_360E320N_S        
 ## [3] ZARQA_360E320N_S   --ADHRIAT_360E326N_S      
@@ -793,7 +793,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><code>igraph</code> objects provide us with an easy access to nodes, edges, and their attributes with the following commands:</p>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="l10-gis-iv.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">E</span>(iwNetwork), <span class="dv">20</span>)</span></code></pre></div>
-<pre><code>## + 20/2053 edges from 4999439 (vertex names):
+<pre><code>## + 20/2053 edges from 54f6040 (vertex names):
 ##  [1] NABULUS_352E322N_S   --RIHA_354E318N_S         
 ##  [2] AMMAN_359E319N_S     --ZARQA_360E320N_S        
 ##  [3] ZARQA_360E320N_S     --ADHRIAT_360E326N_S      
@@ -806,7 +806,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [10] JASIM_360E329N_S     --ROUTPOINT0121_362E333N_O
 ## + ... omitted several edges</code></pre>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="l10-gis-iv.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">V</span>(iwNetwork), <span class="dv">20</span>)</span></code></pre></div>
-<pre><code>## + 20/1692 vertices, named, from 4999439:
+<pre><code>## + 20/1692 vertices, named, from 54f6040:
 ##  [1] QAHIRA_312E300N_S      WASHQA_003W421N_S      BALANSIYYA_004W394N_S 
 ##  [4] SHAQR_004W391N_S       QANT_004W383N_S        SHATIBA_005W389N_S    
 ##  [7] SARAQUSA_009W416N_S    MURSIYA_011W379N_S     TUTILA_016W420N_S     
