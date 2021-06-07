@@ -24,7 +24,7 @@
 <meta name="author" content="Maxim G. Romanov" />
 
 
-<meta name="date" content="2021-06-01" />
+<meta name="date" content="2021-06-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -340,7 +340,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1.1" data-path="l11-gis-v.html"><a href="l11-gis-v.html#TAG11"><i class="fa fa-check"></i><b>11.1.1</b> Goals</a></li>
 <li class="chapter" data-level="11.1.2" data-path="l11-gis-v.html"><a href="l11-gis-v.html#SOFT11"><i class="fa fa-check"></i><b>11.1.2</b> Software</a></li>
-<li class="chapter" data-level="11.1.3" data-path="l11-gis-v.html"><a href="l11-gis-v.html#AM11"><i class="fa fa-check"></i><b>11.1.3</b> Additional Materials</a></li>
+<li class="chapter" data-level="11.1.3" data-path="l11-gis-v.html"><a href="l11-gis-v.html#main-materials"><i class="fa fa-check"></i><b>11.1.3</b> Main materials</a></li>
+<li class="chapter" data-level="11.1.4" data-path="l11-gis-v.html"><a href="l11-gis-v.html#interactive-content-with-leaflet"><i class="fa fa-check"></i><b>11.1.4</b> Interactive Content with <code>leaflet</code></a></li>
+<li class="chapter" data-level="11.1.5" data-path="l11-gis-v.html"><a href="l11-gis-v.html#AM11"><i class="fa fa-check"></i><b>11.1.5</b> Additional Materials</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="l11-gis-v.html"><a href="l11-gis-v.html#HW11"><i class="fa fa-check"></i><b>11.2</b> Homework</a></li>
 <li class="chapter" data-level="11.3" data-path="l11-gis-v.html"><a href="l11-gis-v.html#SH11"><i class="fa fa-check"></i><b>11.3</b> Submitting homework</a></li>
@@ -667,26 +669,25 @@ Budapest,Austria-Hungary,19.05326,47.50452</code></pre>
 <span id="cb15-3"><a href="l07-gis-i.html#cb15-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">full_results =</span> <span class="cn">TRUE</span>, <span class="at">custom_query=</span> <span class="fu">list</span>(<span class="at">extratags =</span> <span class="dv">1</span>))</span>
 <span id="cb15-4"><a href="l07-gis-i.html#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-5"><a href="l07-gis-i.html#cb15-5" aria-hidden="true" tabindex="-1"></a>dynasties_locations</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 40
-##   name  city  country dynasty   lat  long place_id licence osm_type osm_id
-##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;int&gt;
-## 1 Dima… Dama… Syria   Umayya…  33.5 36.3    1.08e7 Data ©… node     1.09e9
-## 2 Baġd… Bagh… Iraq    Abbasi…  33.3 44.4    2.60e8 Data ©… relation 5.64e6
-## 3 Nays… Nish… Iran    Tahiri…  36.2 58.8    2.59e8 Data ©… relation 9.52e6
-## 4 Qurṭ… Cord… Spain   Spanis…  37.9 -4.78   2.59e8 Data ©… relation 3.43e5
-## 5 al-Q… Cairo Egypt   Mamluks  30.0 31.2    2.59e8 Data ©… relation 5.47e6
-## 6 Buḫā… Bukh… Uzbeki… Samani…  39.8 64.4    1.02e8 Data ©… way      4.56e7
-## # … with 30 more variables: boundingbox &lt;list&gt;, display_name &lt;chr&gt;,
+<pre><code>## # A tibble: 6 x 39
+##   name  city  country dynasty   lat  long place_id licence osm_type  osm_id
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;int&gt;
+## 1 Dima… Dama… Syria   Umayya…  33.5 36.3    1.08e7 Data ©… node      1.09e9
+## 2 Baġd… Bagh… Iraq    Abbasi…  33.3 44.4    2.60e8 Data ©… relation  5.64e6
+## 3 Nays… Nish… Iran    Tahiri…  NA   NA     NA      &lt;NA&gt;    &lt;NA&gt;     NA     
+## 4 Qurṭ… Cord… Spain   Spanis…  37.9 -4.78   2.59e8 Data ©… relation  3.43e5
+## 5 al-Q… Cairo Egypt   Mamluks  30.0 31.2    2.59e8 Data ©… relation  5.47e6
+## 6 Buḫā… Bukh… Uzbeki… Samani…  39.8 64.4    1.02e8 Data ©… way       4.56e7
+## # … with 29 more variables: boundingbox &lt;list&gt;, display_name &lt;chr&gt;,
 ## #   class &lt;chr&gt;, type &lt;chr&gt;, importance &lt;dbl&gt;, icon &lt;chr&gt;,
 ## #   extratags.is_in &lt;chr&gt;, extratags.capital &lt;chr&gt;, extratags.wikidata &lt;chr&gt;,
 ## #   extratags.wikipedia &lt;chr&gt;, extratags.is_capital &lt;chr&gt;,
 ## #   extratags.population &lt;chr&gt;, extratags.place &lt;chr&gt;,
 ## #   extratags.linked_place &lt;chr&gt;, `extratags.capital_ISO3166-1` &lt;chr&gt;,
-## #   extratags.website &lt;chr&gt;, extratags.ele &lt;chr&gt;, `extratags.ref:ine` &lt;chr&gt;,
-## #   `extratags.ref:whc` &lt;chr&gt;, extratags.heritage &lt;chr&gt;,
-## #   `extratags.idee:name` &lt;chr&gt;, `extratags.whc:criteria` &lt;chr&gt;,
-## #   `extratags.ine:municipio` &lt;chr&gt;, `extratags.population:date` &lt;chr&gt;,
-## #   `extratags.heritage:operator` &lt;chr&gt;,
+## #   extratags.ele &lt;chr&gt;, `extratags.ref:ine` &lt;chr&gt;, `extratags.ref:whc` &lt;chr&gt;,
+## #   extratags.heritage &lt;chr&gt;, `extratags.idee:name` &lt;chr&gt;,
+## #   `extratags.whc:criteria` &lt;chr&gt;, `extratags.ine:municipio` &lt;chr&gt;,
+## #   `extratags.population:date` &lt;chr&gt;, `extratags.heritage:operator` &lt;chr&gt;,
 ## #   `extratags.whc:inscription_date` &lt;chr&gt;, extratags.rank &lt;chr&gt;,
 ## #   extratags.border_type &lt;chr&gt;, `extratags.left:province` &lt;chr&gt;,
 ## #   `extratags.right:province` &lt;chr&gt;</code></pre>
@@ -723,8 +724,8 @@ Budapest,Austria-Hungary,19.05326,47.50452</code></pre>
 <td align="left">Naysābūr</td>
 <td align="left">Nishapur</td>
 <td align="left">Iran</td>
-<td align="right">36.21059</td>
-<td align="right">58.792280</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
 <td align="left">Qurṭubaŧ</td>
@@ -758,16 +759,18 @@ Budapest,Austria-Hungary,19.05326,47.50452</code></pre>
 <span id="cb19-2"><a href="l07-gis-i.html#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">borders</span>(<span class="st">&#39;world&#39;</span>) <span class="sc">+</span></span>
 <span id="cb19-3"><a href="l07-gis-i.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">force =</span> <span class="dv">2</span>, <span class="at">segment.alpha =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
 <span id="cb19-4"><a href="l07-gis-i.html#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_void</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_label_repel).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
 <p><img src="RGIS2021S_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
 <div id="reverse-geocoding" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Reverse Geocoding</h2>
 <p>In reverse geocoding we start with coordinates and are trying to get more data on what is there at these cordinates. There is a library <code>revgeo</code> (<a href="https://github.com/mhudecheck/revgeo" class="uri">https://github.com/mhudecheck/revgeo</a>) that we can use for this purpose. This procedure may be convenient to check whether certain coordinates are within the borders of a specific country or not; this, however, again works only for the current, and not for historical data.</p>
 <p><strong>NB:</strong> there is a little glitch with the library, as it sends requests to an URL that is no longer in use. This can be fixed by using this <a href="./files/QGIS/revgeo.R.zip">script</a>. Dowload it, unzip it and add it to your code with the following line:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="l07-gis-i.html#cb20-1" aria-hidden="true" tabindex="-1"></a>pathToRevGeo <span class="ot">&lt;-</span> <span class="st">&quot;path/to/the/script/on/your/computer/revgeo.R&quot;</span></span>
-<span id="cb20-2"><a href="l07-gis-i.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(pathToRevGeo)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="l07-gis-i.html#cb22-1" aria-hidden="true" tabindex="-1"></a>pathToRevGeo <span class="ot">&lt;-</span> <span class="st">&quot;path/to/the/script/on/your/computer/revgeo.R&quot;</span></span>
+<span id="cb22-2"><a href="l07-gis-i.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(pathToRevGeo)</span></code></pre></div>
 <p>Now, we can try to get information about a place:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="l07-gis-i.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">revgeo</span>(<span class="at">longitude=</span><span class="fl">16.3637029</span>, <span class="at">latitude=</span><span class="fl">48.2155248</span>, <span class="at">provider =</span> <span class="st">&#39;photon&#39;</span>, <span class="at">output=</span><span class="st">&#39;frame&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="l07-gis-i.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">revgeo</span>(<span class="at">longitude=</span><span class="fl">16.3637029</span>, <span class="at">latitude=</span><span class="fl">48.2155248</span>, <span class="at">provider =</span> <span class="st">&#39;photon&#39;</span>, <span class="at">output=</span><span class="st">&#39;frame&#39;</span>)</span></code></pre></div>
 <pre><code>[1] &quot;Getting geocode data from Photon: https://photon.komoot.io/reverse?lon=16.3637029&amp;lat=48.2155248&quot;
   housenumber                 street city           state  zip    country
 1          11 Maria-Theresien-Straße Wien State Not Found 1090 Österreich</code></pre>

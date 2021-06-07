@@ -24,7 +24,7 @@
 <meta name="author" content="Maxim G. Romanov" />
 
 
-<meta name="date" content="2021-06-01" />
+<meta name="date" content="2021-06-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -340,7 +340,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1.1" data-path="l11-gis-v.html"><a href="l11-gis-v.html#TAG11"><i class="fa fa-check"></i><b>11.1.1</b> Goals</a></li>
 <li class="chapter" data-level="11.1.2" data-path="l11-gis-v.html"><a href="l11-gis-v.html#SOFT11"><i class="fa fa-check"></i><b>11.1.2</b> Software</a></li>
-<li class="chapter" data-level="11.1.3" data-path="l11-gis-v.html"><a href="l11-gis-v.html#AM11"><i class="fa fa-check"></i><b>11.1.3</b> Additional Materials</a></li>
+<li class="chapter" data-level="11.1.3" data-path="l11-gis-v.html"><a href="l11-gis-v.html#main-materials"><i class="fa fa-check"></i><b>11.1.3</b> Main materials</a></li>
+<li class="chapter" data-level="11.1.4" data-path="l11-gis-v.html"><a href="l11-gis-v.html#interactive-content-with-leaflet"><i class="fa fa-check"></i><b>11.1.4</b> Interactive Content with <code>leaflet</code></a></li>
+<li class="chapter" data-level="11.1.5" data-path="l11-gis-v.html"><a href="l11-gis-v.html#AM11"><i class="fa fa-check"></i><b>11.1.5</b> Additional Materials</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="l11-gis-v.html"><a href="l11-gis-v.html#HW11"><i class="fa fa-check"></i><b>11.2</b> Homework</a></li>
 <li class="chapter" data-level="11.3" data-path="l11-gis-v.html"><a href="l11-gis-v.html#SH11"><i class="fa fa-check"></i><b>11.3</b> Submitting homework</a></li>
@@ -445,47 +447,321 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><em>Coming soon</em></p>
 <div id="TAG11" class="section level3" number="11.1.1">
 <h3><span class="header-section-number">11.1.1</span> Goals</h3>
-<p>…</p>
+<ul>
+<li>Basic approaches to interactive maps (and graphs more broadly) in R
+<ul>
+<li>reference-like maps with <code>leaflet</code> and interactive graphs with <code>plotly</code>;</li>
+<li>semi-interactive and interactive dashboards with <code>flexdashboard</code>;</li>
+<li>interactive applications with <code>shiny</code>;</li>
+</ul></li>
+<li>Hosting your results:
+<ul>
+<li><code>githubpages</code> on <a href="https://github.com/" class="uri">https://github.com/</a> for semi-interactive content;</li>
+<li><code>shinyapps</code> on <a href="https://www.shinyapps.io/" class="uri">https://www.shinyapps.io/</a> for apps;</li>
+</ul></li>
+</ul>
 </div>
 <div id="SOFT11" class="section level3" number="11.1.2">
 <h3><span class="header-section-number">11.1.2</span> Software</h3>
 <ul>
-<li>R</li>
+<li><p>R and various libraries</p></li>
+<li><p>Data:</p>
+<ul>
+<li>Wien U-bahn: <a href="https://homepage.univie.ac.at/horst.prillinger/ubahn/english/timetables.html" class="uri">https://homepage.univie.ac.at/horst.prillinger/ubahn/english/timetables.html</a></li>
+</ul></li>
 </ul>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="l11-gis-v.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># General ones </span></span>
+<span id="cb174-2"><a href="l11-gis-v.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb174-3"><a href="l11-gis-v.html#cb174-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb174-4"><a href="l11-gis-v.html#cb174-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb174-5"><a href="l11-gis-v.html#cb174-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb174-6"><a href="l11-gis-v.html#cb174-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-7"><a href="l11-gis-v.html#cb174-7" aria-hidden="true" tabindex="-1"></a><span class="co"># SNA Specific</span></span>
+<span id="cb174-8"><a href="l11-gis-v.html#cb174-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb174-9"><a href="l11-gis-v.html#cb174-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggraph)</span>
+<span id="cb174-10"><a href="l11-gis-v.html#cb174-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb174-11"><a href="l11-gis-v.html#cb174-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggalt)</span>
+<span id="cb174-12"><a href="l11-gis-v.html#cb174-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-13"><a href="l11-gis-v.html#cb174-13" aria-hidden="true" tabindex="-1"></a><span class="co"># mapping</span></span>
+<span id="cb174-14"><a href="l11-gis-v.html#cb174-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
+<span id="cb174-15"><a href="l11-gis-v.html#cb174-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearthdata)</span>
+<span id="cb174-16"><a href="l11-gis-v.html#cb174-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(grid) <span class="co"># grid library cuts out the plot from the graph</span></span></code></pre></div>
 </div>
-<div id="AM11" class="section level3" number="11.1.3">
-<h3><span class="header-section-number">11.1.3</span> Additional Materials</h3>
-<p>…</p>
-<!-- ### Projection Issues -->
-<!-- ![](./files/QGIS/headGlobus.jpg) -->
-<!-- See, <https://en.wikipedia.org/wiki/List_of_map_projections>. -->
-<!-- ### A Digital Map: Layers of Goodness -->
-<!-- ![](./files/QGIS/maps_layers.jpg) -->
-<!-- * Layers: -->
-<!-- 	* Analytical Layer -->
-<!-- 	* Our Data -->
-<!-- 	* Annotation/Legend -->
-<!-- * Social Geography -->
-<!-- 	* Political Boundaries -->
-<!-- 	* Settlements, etc. -->
-<!-- * Physical Geography -->
-<!-- 	* Types of surface -->
-<!-- 	* Continents / Coastal Line -->
-<!-- 	* Elevation profile -->
-<!-- 	* Rivers, Lakes, etc. -->
-<!-- * Base Layer: Graticule -->
-<!-- ### Main Types of Data: Points, Lines, Polygons -->
-<!-- * Analytical Layer -->
-<!-- 	* Our Data -->
-<!-- 		* Points: -->
-<!-- 			* item, x**[1]**, point(lat, lon)**[2]** -->
-<!-- 		* Lines: -->
-<!-- 			* item, x**[1]**, from(lat, lon)**[2]**, to(lat, lon)**[2]** -->
-<!-- 		* Polygons: -->
-<!-- 			* item, x, area(lat, lon; lat, lon; … lat, lon)**[2]** -->
-<!-- 	* Annotation/Legend -->
-<!-- **[1]** where x is a categorical parameter; **[2]** lat/lon: decimal coordinates (not DMS) -->
-<p>…</p>
+<div id="main-materials" class="section level3" number="11.1.3">
+<h3><span class="header-section-number">11.1.3</span> Main materials</h3>
+<div id="viennese-subway-assignment" class="section level4" number="11.1.3.1">
+<h4><span class="header-section-number">11.1.3.1</span> Viennese Subway Assignment</h4>
+<p><img src="data_temp/wien_data/wien_ubahn_largemap.png" /></p>
+<p>Let’s load data. It must be prepared in such a way so that we could plot it. How should we prepare the data?</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="l11-gis-v.html#cb175-1" aria-hidden="true" tabindex="-1"></a>ubahnEdges <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;./data_temp/wien_data/wien_ubahn.csv&quot;</span>, </span>
+<span id="cb175-2"><a href="l11-gis-v.html#cb175-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;,&quot;</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb175-3"><a href="l11-gis-v.html#cb175-3" aria-hidden="true" tabindex="-1"></a>ubahnNodes <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;./data_temp/wien_data/wien_ubahn_nodes.csv&quot;</span>, </span>
+<span id="cb175-4"><a href="l11-gis-v.html#cb175-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;,&quot;</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb175-5"><a href="l11-gis-v.html#cb175-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb175-6"><a href="l11-gis-v.html#cb175-6" aria-hidden="true" tabindex="-1"></a>ubahnEdgesPlot <span class="ot">&lt;-</span> ubahnEdges <span class="sc">%&gt;%</span></span>
+<span id="cb175-7"><a href="l11-gis-v.html#cb175-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">EDGELINE =</span> LINE) <span class="sc">%&gt;%</span></span>
+<span id="cb175-8"><a href="l11-gis-v.html#cb175-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ubahnNodes, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;FROM&quot;</span><span class="ot">=</span><span class="st">&quot;STATION&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb175-9"><a href="l11-gis-v.html#cb175-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">XFROM =</span> XVAL, <span class="at">YFROM =</span> YVAL) <span class="sc">%&gt;%</span></span>
+<span id="cb175-10"><a href="l11-gis-v.html#cb175-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ubahnNodes, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;TO&quot;</span><span class="ot">=</span><span class="st">&quot;STATION&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb175-11"><a href="l11-gis-v.html#cb175-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">XTO =</span> XVAL, <span class="at">YTO =</span> YVAL)</span>
+<span id="cb175-12"><a href="l11-gis-v.html#cb175-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb175-13"><a href="l11-gis-v.html#cb175-13" aria-hidden="true" tabindex="-1"></a>ubahnNodesPlot <span class="ot">&lt;-</span> ubahnNodes</span></code></pre></div>
+<p>These are the nodes and the edges:</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="l11-gis-v.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ubahnEdges)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   FROM              TO                LINE 
+##   &lt;chr&gt;             &lt;chr&gt;             &lt;chr&gt;
+## 1 Leopoldau         Großfeldsiedlung  U1   
+## 2 Großfeldsiedlung  Aderklaaer Straße U1   
+## 3 Aderklaaer Straße Rennbahnweg       U1   
+## 4 Rennbahnweg       Kagraner Platz    U1   
+## 5 Kagraner Platz    Kagran            U1   
+## 6 Kagran            Alte Donau        U1</code></pre>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="l11-gis-v.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ubahnNodes)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   STATION           LINE   XVAL  YVAL
+##   &lt;chr&gt;             &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Aderklaaer Straße U1      315   240
+## 2 Alaudagasse       U1      220    15
+## 3 Alser Straße      U6      145   175
+## 4 Alte Donau        U1      285   210
+## 5 Alterlaa          U6      130    40
+## 6 Altes Landgut     U1      220    25</code></pre>
+<p>You can see <code>XVAL</code> and <code>YVAL</code> columns: they are coordinates of our stations (well, sort of). What we want to do is a cartogram (i.e., not a proper map) where positions of points vis-à-vis each other points to their relative positions in real space without faithfully representing it—like all subway schemes.</p>
+<p>How to get/collect these “coordinates?” You can use most image editors. A screenshot below shows the Vienna subway cartogram (the one from above) opened in Gimp (<a href="https://www.gimp.org/" class="uri">https://www.gimp.org/</a>), a free text editor for most operating systems. When you hover your mouse over any point, the program will show the position of that point in the lower left corner—those are X and Y values, which can be used as “coordinates” (they can be in pixels, in cantimeters, in millimeters — it does not matter as they will work pretty much the same in <code>ggplot</code>). Collecting those might take some time, of course.</p>
+<p><img src="data_temp/wien_data/relative_coordinates.png" /></p>
+<p>Let’s plot the U-bahn map, which we will use as our base layer:</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="l11-gis-v.html#cb180-1" aria-hidden="true" tabindex="-1"></a>colorVals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;U1&quot;</span> <span class="ot">=</span> <span class="st">&quot;red&quot;</span>, <span class="st">&quot;U2&quot;</span> <span class="ot">=</span> <span class="st">&quot;darkviolet&quot;</span>,  <span class="st">&quot;U3&quot;</span> <span class="ot">=</span> <span class="st">&quot;goldenrod3&quot;</span>,</span>
+<span id="cb180-2"><a href="l11-gis-v.html#cb180-2" aria-hidden="true" tabindex="-1"></a>               <span class="st">&quot;U4&quot;</span> <span class="ot">=</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;U6&quot;</span> <span class="ot">=</span> <span class="st">&quot;darkorange4&quot;</span>)</span>
+<span id="cb180-3"><a href="l11-gis-v.html#cb180-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb180-4"><a href="l11-gis-v.html#cb180-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb180-5"><a href="l11-gis-v.html#cb180-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">data=</span>ubahnEdgesPlot, <span class="fu">aes</span>(<span class="at">x=</span>XFROM, <span class="at">y=</span>YFROM, <span class="at">xend=</span>XTO, <span class="at">yend=</span>YTO, <span class="at">color=</span>EDGELINE), <span class="at">lwd=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb180-6"><a href="l11-gis-v.html#cb180-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>ubahnNodesPlot, <span class="fu">aes</span>(<span class="at">x=</span>XVAL, <span class="at">y=</span>YVAL), <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb180-7"><a href="l11-gis-v.html#cb180-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>ubahnNodesPlot, <span class="fu">aes</span>(<span class="at">x=</span>XVAL, <span class="at">y=</span>YVAL), <span class="at">color=</span><span class="st">&quot;white&quot;</span>, <span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb180-8"><a href="l11-gis-v.html#cb180-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data=</span>ubahnNodesPlot, <span class="fu">aes</span>(<span class="at">x=</span>XVAL, <span class="at">y=</span>YVAL, <span class="at">label=</span>STATION), <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">2</span>, <span class="at">max.overlaps=</span><span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb180-9"><a href="l11-gis-v.html#cb180-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb180-10"><a href="l11-gis-v.html#cb180-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb180-11"><a href="l11-gis-v.html#cb180-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> colorVals, <span class="at">aesthetics =</span> <span class="fu">c</span>(<span class="st">&quot;color&quot;</span>))</span></code></pre></div>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-113-1.png" width="480" /></p>
+<p>These are the names of stations:</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="l11-gis-v.html#cb181-1" aria-hidden="true" tabindex="-1"></a>ubahnNodes<span class="sc">$</span>STATION</span></code></pre></div>
+<pre><code>##  [1] &quot;Aderklaaer Straße&quot;             &quot;Alaudagasse&quot;                  
+##  [3] &quot;Alser Straße&quot;                  &quot;Alte Donau&quot;                   
+##  [5] &quot;Alterlaa&quot;                      &quot;Altes Landgut&quot;                
+##  [7] &quot;Am Schöpfwerk&quot;                 &quot;Aspern Nord&quot;                  
+##  [9] &quot;Aspernstraße&quot;                  &quot;Braunschweiggasse&quot;            
+## [11] &quot;Burggasse-Stadthalle&quot;          &quot;Donauinsel&quot;                   
+## [13] &quot;Donaumarina&quot;                   &quot;Donauspital&quot;                  
+## [15] &quot;Donaustadtbrücke&quot;              &quot;Dresdner Straße&quot;              
+## [17] &quot;Enkplatz&quot;                      &quot;Erdberg&quot;                      
+## [19] &quot;Erlaaer Straße&quot;                &quot;Floridsdorf&quot;                  
+## [21] &quot;Friedensbrücke&quot;                &quot;Gasometer&quot;                    
+## [23] &quot;Großfeldsiedlung&quot;              &quot;Gumpendorfer Straße&quot;          
+## [25] &quot;Handelskai&quot;                    &quot;Hardeggasse&quot;                  
+## [27] &quot;Hausfeldstraße&quot;                &quot;Heiligenstadt&quot;                
+## [29] &quot;Herrengasse&quot;                   &quot;Hietzing&quot;                     
+## [31] &quot;Hütteldorf&quot;                    &quot;Hütteldorfer Strasse&quot;         
+## [33] &quot;Jägerstraße&quot;                   &quot;Johnstrasse&quot;                  
+## [35] &quot;Josefstädter Straße&quot;           &quot;Kagran&quot;                       
+## [37] &quot;Kagraner Platz&quot;                &quot;Kaisermühlen-VIC&quot;             
+## [39] &quot;Kardinal-Nagl-Platz&quot;           &quot;Karlsplatz&quot;                   
+## [41] &quot;Kendlerstrasse&quot;                &quot;Keplerplatz&quot;                  
+## [43] &quot;Kettenbrückengasse&quot;            &quot;Krieau&quot;                       
+## [45] &quot;Landstrasse&quot;                   &quot;Längenfeldgasse&quot;              
+## [47] &quot;Leopoldau&quot;                     &quot;Margaretengürtel&quot;             
+## [49] &quot;Meidling Hauptstr.&quot;            &quot;Messe-Prater&quot;                 
+## [51] &quot;Michelbeuern-AKH&quot;              &quot;Museumsquartier&quot;              
+## [53] &quot;Nestroyplatz&quot;                  &quot;Neubaugasse&quot;                  
+## [55] &quot;Neue Donau&quot;                    &quot;Neulaa&quot;                       
+## [57] &quot;Niederhofstraße&quot;               &quot;Nußdorfer Straße&quot;             
+## [59] &quot;Ober St. Veit&quot;                 &quot;Oberlaa&quot;                      
+## [61] &quot;Ottakring&quot;                     &quot;Perfektastraße&quot;               
+## [63] &quot;Philadelphiabrücke&quot;            &quot;Pilgramgasse&quot;                 
+## [65] &quot;Praterstern&quot;                   &quot;Rathaus&quot;                      
+## [67] &quot;Rennbahnweg&quot;                   &quot;Reumannplatz&quot;                 
+## [69] &quot;Rochusgasse&quot;                   &quot;Rossauer Lände&quot;               
+## [71] &quot;Schlachthausgasse&quot;             &quot;Schönbrunn&quot;                   
+## [73] &quot;Schottenring&quot;                  &quot;Schottentor&quot;                  
+## [75] &quot;Schwedenplatz&quot;                 &quot;Schweglerstrasse&quot;             
+## [77] &quot;Seestadt&quot;                      &quot;Siebenhirten&quot;                 
+## [79] &quot;Simmering&quot;                     &quot;Spittelau&quot;                    
+## [81] &quot;Stadion&quot;                       &quot;Stadlau&quot;                      
+## [83] &quot;Stadtpark&quot;                     &quot;Stephansplatz&quot;                
+## [85] &quot;Stubentor&quot;                     &quot;Südtiroler Platz-Hauptbahnhof&quot;
+## [87] &quot;Taborstraße&quot;                   &quot;Taubstummengasse&quot;             
+## [89] &quot;Thaliastraße&quot;                  &quot;Troststraße&quot;                  
+## [91] &quot;Tscherttegasse&quot;                &quot;Unter St. Veit&quot;               
+## [93] &quot;Volkstheater&quot;                  &quot;Vorgartenstraße&quot;              
+## [95] &quot;Währinger Straße-Volksoper&quot;    &quot;Westbahnhof&quot;                  
+## [97] &quot;Zieglergasse&quot;                  &quot;Zippererstrasse&quot;</code></pre>
+<p>Now, we need to run the search for the shortest path from station A to station B, and then graph it.</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="l11-gis-v.html#cb183-1" aria-hidden="true" tabindex="-1"></a>ubahnNetwork <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(<span class="at">d=</span>ubahnEdges, <span class="at">vertices=</span>ubahnNodes, <span class="at">directed=</span><span class="cn">FALSE</span>)</span>
+<span id="cb183-2"><a href="l11-gis-v.html#cb183-2" aria-hidden="true" tabindex="-1"></a>shortest_path <span class="ot">&lt;-</span> <span class="fu">shortest_paths</span>(ubahnNetwork, <span class="at">from =</span> <span class="st">&quot;Zieglergasse&quot;</span>, <span class="at">to =</span> <span class="st">&quot;Taborstraße&quot;</span>)<span class="sc">$</span>vpath</span>
+<span id="cb183-3"><a href="l11-gis-v.html#cb183-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb183-4"><a href="l11-gis-v.html#cb183-4" aria-hidden="true" tabindex="-1"></a>shortest_path <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">unlist</span>(shortest_path))</span>
+<span id="cb183-5"><a href="l11-gis-v.html#cb183-5" aria-hidden="true" tabindex="-1"></a>shortest_path <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">ID =</span> shortest_path) <span class="sc">%&gt;%</span></span>
+<span id="cb183-6"><a href="l11-gis-v.html#cb183-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ubahnNodes, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;ID&quot;</span> <span class="ot">=</span> <span class="st">&quot;STATION&quot;</span>))</span>
+<span id="cb183-7"><a href="l11-gis-v.html#cb183-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb183-8"><a href="l11-gis-v.html#cb183-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb183-9"><a href="l11-gis-v.html#cb183-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">data=</span>ubahnEdgesPlot, <span class="fu">aes</span>(<span class="at">x=</span>XFROM, <span class="at">y=</span>YFROM, <span class="at">xend=</span>XTO, <span class="at">yend=</span>YTO), <span class="at">color=</span><span class="st">&quot;grey&quot;</span>, <span class="at">lwd=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb183-10"><a href="l11-gis-v.html#cb183-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> shortest_path, <span class="fu">aes</span>(<span class="at">x=</span>XVAL, <span class="at">y=</span>YVAL), <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
+<span id="cb183-11"><a href="l11-gis-v.html#cb183-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>ubahnNodesPlot, <span class="fu">aes</span>(<span class="at">x=</span>XVAL, <span class="at">y=</span>YVAL), <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb183-12"><a href="l11-gis-v.html#cb183-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>ubahnNodesPlot, <span class="fu">aes</span>(<span class="at">x=</span>XVAL, <span class="at">y=</span>YVAL), <span class="at">color=</span><span class="st">&quot;white&quot;</span>, <span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb183-13"><a href="l11-gis-v.html#cb183-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data=</span>ubahnNodesPlot, <span class="fu">aes</span>(<span class="at">x=</span>XVAL, <span class="at">y=</span>YVAL, <span class="at">label=</span>STATION), <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">2</span>, <span class="at">max.overlaps=</span><span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb183-14"><a href="l11-gis-v.html#cb183-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb183-15"><a href="l11-gis-v.html#cb183-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-115-1.png" width="480" /></p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="l11-gis-v.html#cb184-1" aria-hidden="true" tabindex="-1"></a>ubahnNetwork <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(<span class="at">d=</span>ubahnEdges, <span class="at">vertices=</span>ubahnNodes, <span class="at">directed=</span><span class="cn">FALSE</span>)</span>
+<span id="cb184-2"><a href="l11-gis-v.html#cb184-2" aria-hidden="true" tabindex="-1"></a>shortest_path <span class="ot">&lt;-</span> <span class="fu">shortest_paths</span>(ubahnNetwork, <span class="at">from =</span> <span class="st">&quot;Seestadt&quot;</span>, <span class="at">to =</span> <span class="st">&quot;Westbahnhof&quot;</span>)<span class="sc">$</span>vpath</span>
+<span id="cb184-3"><a href="l11-gis-v.html#cb184-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-4"><a href="l11-gis-v.html#cb184-4" aria-hidden="true" tabindex="-1"></a>shortest_path <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">unlist</span>(shortest_path))</span>
+<span id="cb184-5"><a href="l11-gis-v.html#cb184-5" aria-hidden="true" tabindex="-1"></a>shortest_path <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">ID =</span> shortest_path) <span class="sc">%&gt;%</span></span>
+<span id="cb184-6"><a href="l11-gis-v.html#cb184-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ubahnNodes, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;ID&quot;</span> <span class="ot">=</span> <span class="st">&quot;STATION&quot;</span>))</span>
+<span id="cb184-7"><a href="l11-gis-v.html#cb184-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-8"><a href="l11-gis-v.html#cb184-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb184-9"><a href="l11-gis-v.html#cb184-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">data=</span>ubahnEdgesPlot, <span class="fu">aes</span>(<span class="at">x=</span>XFROM, <span class="at">y=</span>YFROM, <span class="at">xend=</span>XTO, <span class="at">yend=</span>YTO), <span class="at">color=</span><span class="st">&quot;grey&quot;</span>, <span class="at">lwd=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb184-10"><a href="l11-gis-v.html#cb184-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> shortest_path, <span class="fu">aes</span>(<span class="at">x=</span>XVAL, <span class="at">y=</span>YVAL), <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
+<span id="cb184-11"><a href="l11-gis-v.html#cb184-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>ubahnNodesPlot, <span class="fu">aes</span>(<span class="at">x=</span>XVAL, <span class="at">y=</span>YVAL), <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb184-12"><a href="l11-gis-v.html#cb184-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>ubahnNodesPlot, <span class="fu">aes</span>(<span class="at">x=</span>XVAL, <span class="at">y=</span>YVAL), <span class="at">color=</span><span class="st">&quot;white&quot;</span>, <span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb184-13"><a href="l11-gis-v.html#cb184-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data=</span>ubahnNodesPlot, <span class="fu">aes</span>(<span class="at">x=</span>XVAL, <span class="at">y=</span>YVAL, <span class="at">label=</span>STATION), <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">2</span>, <span class="at">max.overlaps=</span><span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb184-14"><a href="l11-gis-v.html#cb184-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb184-15"><a href="l11-gis-v.html#cb184-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-116-1.png" width="480" /></p>
+</div>
+</div>
+<div id="interactive-content-with-leaflet" class="section level3" number="11.1.4">
+<h3><span class="header-section-number">11.1.4</span> Interactive Content with <code>leaflet</code></h3>
+<p>With Leaflet library (which connects into Leaflet Javascript library, <a href="https://leafletjs.com/" class="uri">https://leafletjs.com/</a>) we can create rather robust maps of reference type. That is to say, Leaflet does not provide any analytical fucntionality, but allows to put information on a map that can then be used as a reference of some kind. It is quite simple, but it does get the job done in many cases.</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="l11-gis-v.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LIBRARIES</span></span>
+<span id="cb185-2"><a href="l11-gis-v.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span></code></pre></div>
+<pre><code>## Warning: package &#39;leaflet&#39; was built under R version 4.0.2</code></pre>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="l11-gis-v.html#cb187-1" aria-hidden="true" tabindex="-1"></a>iwSettlements <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;./data_temp/althurayya/settlements.csv&quot;</span>,</span>
+<span id="cb187-2"><a href="l11-gis-v.html#cb187-2" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb187-3"><a href="l11-gis-v.html#cb187-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col=</span>coordinates, <span class="at">into=</span><span class="fu">c</span>(<span class="st">&quot;l&quot;</span>, <span class="st">&quot;lon&quot;</span>, <span class="st">&quot;lat&quot;</span>, <span class="st">&quot;r&quot;</span>), <span class="at">sep=</span><span class="st">&quot;([</span><span class="sc">\\</span><span class="st">[, </span><span class="sc">\\</span><span class="st">]]+)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb187-4"><a href="l11-gis-v.html#cb187-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(settlement_id, names_eng_translit, region_URI, top_type, lon, lat) <span class="sc">%&gt;%</span></span>
+<span id="cb187-5"><a href="l11-gis-v.html#cb187-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lon =</span> <span class="fu">as.numeric</span>(lon), <span class="at">lat =</span> <span class="fu">as.numeric</span>(lat))</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   settlement_id = col_character(),
+##   languages = col_character(),
+##   names_ara_common = col_character(),
+##   names_ara_common_other = col_character(),
+##   names_ara_search = col_character(),
+##   names_ara_translit = col_logical(),
+##   names_ara_translit_other = col_logical(),
+##   names_eng_common = col_character(),
+##   names_eng_common_other = col_character(),
+##   names_eng_search = col_character(),
+##   names_eng_translit = col_character(),
+##   names_eng_translit_other = col_character(),
+##   region_URI = col_character(),
+##   source = col_character(),
+##   top_type = col_character(),
+##   coordinates = col_character()
+## )</code></pre>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="l11-gis-v.html#cb189-1" aria-hidden="true" tabindex="-1"></a>iwRoutes <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;./data_temp/althurayya/routes.csv&quot;</span>, </span>
+<span id="cb189-2"><a href="l11-gis-v.html#cb189-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   route_id = col_character(),
+##   sToponym = col_character(),
+##   sToponym_type = col_character(),
+##   eToponym = col_character(),
+##   eToponym_type = col_character(),
+##   terrain = col_character(),
+##   safety = col_character(),
+##   coordinates = col_character(),
+##   meter = col_double()
+## )</code></pre>
+<p>Leaflet does not automatically assign colors from categorical data like <code>ggplot</code>, so we need to perform some manipulations with our data:</p>
+<ul>
+<li>assign colors to different provinces (so that each province is highlighted with its own color);</li>
+<li>assign sizes to points based on their types;</li>
+<li>generate a pop up message</li>
+</ul>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="l11-gis-v.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="co"># additional data for regions -- simply loading</span></span>
+<span id="cb191-2"><a href="l11-gis-v.html#cb191-2" aria-hidden="true" tabindex="-1"></a>iwRegions <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;./data_temp/althurayya/regions.csv&quot;</span>,</span>
+<span id="cb191-3"><a href="l11-gis-v.html#cb191-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   region_URI = col_character(),
+##   region_code = col_character(),
+##   region_color = col_character(),
+##   region_name = col_character()
+## )</code></pre>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="l11-gis-v.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co"># additional data for sizing --- can be formed in a CSV, or generated like shown below</span></span>
+<span id="cb193-2"><a href="l11-gis-v.html#cb193-2" aria-hidden="true" tabindex="-1"></a>types <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">top_type =</span> <span class="fu">unique</span>(iwSettlements<span class="sc">$</span>top_type),</span>
+<span id="cb193-3"><a href="l11-gis-v.html#cb193-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb193-4"><a href="l11-gis-v.html#cb193-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-5"><a href="l11-gis-v.html#cb193-5" aria-hidden="true" tabindex="-1"></a><span class="co"># now let&#39;s add everything with left_join, and then format a pop-up message</span></span>
+<span id="cb193-6"><a href="l11-gis-v.html#cb193-6" aria-hidden="true" tabindex="-1"></a>iwSettlementsMOD <span class="ot">&lt;-</span> iwSettlements <span class="sc">%&gt;%</span></span>
+<span id="cb193-7"><a href="l11-gis-v.html#cb193-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(iwRegions, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;region_URI&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb193-8"><a href="l11-gis-v.html#cb193-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(types, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;top_type&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb193-9"><a href="l11-gis-v.html#cb193-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">popup =</span> <span class="fu">paste0</span>(<span class="st">&quot;&lt;b&gt;&quot;</span>, names_eng_translit, <span class="st">&quot;&lt;/b&gt; is one of &quot;</span>, top_type,</span>
+<span id="cb193-10"><a href="l11-gis-v.html#cb193-10" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;. It is located in the province of &quot;</span>, region_name, <span class="st">&quot; (&quot;</span>, </span>
+<span id="cb193-11"><a href="l11-gis-v.html#cb193-11" aria-hidden="true" tabindex="-1"></a>                        lon, <span class="st">&quot;, &quot;</span>, lat, <span class="st">&quot;).&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb193-12"><a href="l11-gis-v.html#cb193-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(top_type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;metropoles&quot;</span>, <span class="st">&quot;capitals&quot;</span>, <span class="st">&quot;towns&quot;</span>, <span class="st">&quot;villages&quot;</span>, <span class="st">&quot;waystations&quot;</span>))</span>
+<span id="cb193-13"><a href="l11-gis-v.html#cb193-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-14"><a href="l11-gis-v.html#cb193-14" aria-hidden="true" tabindex="-1"></a>iwSettlementsMOD</span></code></pre></div>
+<pre><code>## # A tibble: 1,812 x 11
+##    settlement_id names_eng_trans… region_URI top_type    lon   lat region_code
+##    &lt;chr&gt;         &lt;chr&gt;            &lt;chr&gt;      &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      
+##  1 QAHIRA_312E3… al-Qāhiraŧ       Misr_RE    metropo… 31.2    30.0 Egypt      
+##  2 IRBIL_440E36… Irbīl            Aqur_RE    towns    44.0    36.2 Aqur       
+##  3 DANIYA_001E3… Dāniyaŧ          Andalus_RE towns     0.105  38.8 Andalus    
+##  4 WASHQA_003W4… Wašqaŧ           Andalus_RE towns    -0.354  42.2 Andalus    
+##  5 BALANSIYYA_0… Balansiyyaŧ      Andalus_RE towns    -0.415  39.4 Andalus    
+##  6 SHAQR_004W39… al-Šaqr          Andalus_RE villages -0.437  39.2 Andalus    
+##  7 QANT_004W383… Qānt             Andalus_RE towns    -0.471  38.3 Andalus    
+##  8 SHATIBA_005W… Šātibaŧ          Andalus_RE towns    -0.523  39.0 Andalus    
+##  9 SARAQUSA_009… Saraqūsaŧ        Andalus_RE towns    -0.929  41.6 Andalus    
+## 10 QARTAJANNA_0… Qarṭāǧannaŧ      Andalus_RE villages -0.983  37.6 Andalus    
+## # … with 1,802 more rows, and 4 more variables: region_color &lt;chr&gt;,
+## #   region_name &lt;chr&gt;, size &lt;dbl&gt;, popup &lt;chr&gt;</code></pre>
+<p>Now we can combine everything:
+- <strong>Base groups:</strong> there are plently of base map layers: <a href="http://leaflet-extras.github.io/leaflet-providers/preview/index.html" class="uri">http://leaflet-extras.github.io/leaflet-providers/preview/index.html</a>
+- <strong>Overlay groups:</strong> this is where you add your data; you can add a legend as well;
+- <strong>Layer control:</strong> you can use it for switching layers of your data on and off;
+- check official documentation for additional options: <a href="https://rstudio.github.io/leaflet/" class="uri">https://rstudio.github.io/leaflet/</a></p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="l11-gis-v.html#cb195-1" aria-hidden="true" tabindex="-1"></a>iraq <span class="ot">&lt;-</span> iwSettlementsMOD <span class="sc">%&gt;%</span></span>
+<span id="cb195-2"><a href="l11-gis-v.html#cb195-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region_URI <span class="sc">==</span> <span class="st">&quot;Iraq_RE&quot;</span>)</span>
+<span id="cb195-3"><a href="l11-gis-v.html#cb195-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-4"><a href="l11-gis-v.html#cb195-4" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">leaflet</span>(iwSettlementsMOD) <span class="sc">%&gt;%</span></span>
+<span id="cb195-5"><a href="l11-gis-v.html#cb195-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Base groups</span></span>
+<span id="cb195-6"><a href="l11-gis-v.html#cb195-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addProviderTiles</span>(providers<span class="sc">$</span>Esri.WorldPhysical, <span class="at">group =</span> <span class="st">&quot;World Physical (ESRI)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb195-7"><a href="l11-gis-v.html#cb195-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addProviderTiles</span>(providers<span class="sc">$</span>Esri.WorldTerrain, <span class="at">group =</span> <span class="st">&quot;World Terrain (ESRI)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb195-8"><a href="l11-gis-v.html#cb195-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addProviderTiles</span>(providers<span class="sc">$</span>Stamen.Toner, <span class="at">group =</span> <span class="st">&quot;Toner&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb195-9"><a href="l11-gis-v.html#cb195-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addProviderTiles</span>(providers<span class="sc">$</span>Stamen.TonerLite, <span class="at">group =</span> <span class="st">&quot;Toner Lite&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb195-10"><a href="l11-gis-v.html#cb195-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addProviderTiles</span>(providers<span class="sc">$</span>CartoDB.DarkMatter, <span class="at">group =</span> <span class="st">&quot;Dark Matter&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb195-11"><a href="l11-gis-v.html#cb195-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setView</span>(<span class="dv">32</span>, <span class="dv">32</span>, <span class="at">zoom =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb195-12"><a href="l11-gis-v.html#cb195-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Overlay groups</span></span>
+<span id="cb195-13"><a href="l11-gis-v.html#cb195-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircles</span>(<span class="sc">~</span>lon, <span class="sc">~</span>lat, <span class="at">popup=</span><span class="sc">~</span>popup, <span class="at">weight =</span> <span class="sc">~</span>size<span class="sc">*</span><span class="dv">2</span>, <span class="co">#radius=~size*10, </span></span>
+<span id="cb195-14"><a href="l11-gis-v.html#cb195-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="sc">~</span>region_color, <span class="at">stroke =</span> <span class="cn">TRUE</span>, <span class="at">fillOpacity =</span> <span class="dv">1</span>, <span class="at">group =</span> <span class="st">&quot;All regions&quot;</span>)  <span class="sc">%&gt;%</span></span>
+<span id="cb195-15"><a href="l11-gis-v.html#cb195-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addLabelOnlyMarkers</span>(<span class="sc">~</span>lon, <span class="sc">~</span>lat, <span class="at">label=</span><span class="sc">~</span>names_eng_translit, <span class="at">labelOptions =</span> <span class="fu">labelOptions</span>(<span class="at">noHide =</span> F)) <span class="sc">%&gt;%</span></span>
+<span id="cb195-16"><a href="l11-gis-v.html#cb195-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addLegend</span>(<span class="st">&quot;bottomleft&quot;</span>, <span class="at">colors =</span> iwRegions<span class="sc">$</span>region_color,</span>
+<span id="cb195-17"><a href="l11-gis-v.html#cb195-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">labels =</span> iwRegions<span class="sc">$</span>region_name, <span class="at">title  =</span> <span class="st">&quot;Islamic World (11th Century)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb195-18"><a href="l11-gis-v.html#cb195-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Layers control</span></span>
+<span id="cb195-19"><a href="l11-gis-v.html#cb195-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addLayersControl</span>(</span>
+<span id="cb195-20"><a href="l11-gis-v.html#cb195-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">baseGroups =</span> <span class="fu">c</span>(<span class="st">&quot;World Physical (ESRI)&quot;</span>, <span class="st">&quot;World Terrain (ESRI)&quot;</span>, <span class="st">&quot;Toner&quot;</span>, <span class="st">&quot;Toner Lite&quot;</span>, <span class="st">&quot;Dark Matter&quot;</span>),</span>
+<span id="cb195-21"><a href="l11-gis-v.html#cb195-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">overlayGroups =</span> <span class="fu">c</span>(<span class="co">#&quot;al-ʿIrāq (Iraq)&quot;,</span></span>
+<span id="cb195-22"><a href="l11-gis-v.html#cb195-22" aria-hidden="true" tabindex="-1"></a>                      <span class="co">#&quot;Labels&quot;,</span></span>
+<span id="cb195-23"><a href="l11-gis-v.html#cb195-23" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;All regions&quot;</span>),</span>
+<span id="cb195-24"><a href="l11-gis-v.html#cb195-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">options =</span> <span class="fu">layersControlOptions</span>(<span class="at">collapsed =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb195-25"><a href="l11-gis-v.html#cb195-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb195-26"><a href="l11-gis-v.html#cb195-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hideGroup</span>(<span class="st">&quot;Labels&quot;</span>)</span>
+<span id="cb195-27"><a href="l11-gis-v.html#cb195-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-28"><a href="l11-gis-v.html#cb195-28" aria-hidden="true" tabindex="-1"></a><span class="co">#m</span></span></code></pre></div>
+<p>If you now run <code>m</code> in your console in RStudio, the interactive map will be generated and shown in the Viewer. You can save this map now as an HTML page and then use it however you find necessary. (Export &gt; Save as Web Page…) You can upload this HTML file to your website or show it from your computer — in any browser (well, in most browsers; internet connection will be necessary for loading the base map layers). <a href="./data_temp/althurayya/iw.html">Here is the link to the map</a>.</p>
+<p><img src="data_temp/althurayya/saving_map.jpg" /></p>
+</div>
+<div id="AM11" class="section level3" number="11.1.5">
+<h3><span class="header-section-number">11.1.5</span> Additional Materials</h3>
+<ul>
+<li>Andrew Ba Tran. <em>R for Journalists</em>, <a href="https://learn.r-journalism.com/en/" class="uri">https://learn.r-journalism.com/en/</a>
+<ul>
+<li>Interactive Maps with Leaflet, <a href="https://learn.r-journalism.com/en/mapping/leaflet_maps/leaflet/" class="uri">https://learn.r-journalism.com/en/mapping/leaflet_maps/leaflet/</a></li>
+</ul></li>
+</ul>
 </div>
 </div>
 <div id="HW11" class="section level2" number="11.2">
