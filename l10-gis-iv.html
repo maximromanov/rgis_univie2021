@@ -342,7 +342,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.1.2" data-path="l11-gis-v.html"><a href="l11-gis-v.html#SOFT11"><i class="fa fa-check"></i><b>11.1.2</b> Software</a></li>
 <li class="chapter" data-level="11.1.3" data-path="l11-gis-v.html"><a href="l11-gis-v.html#main-materials"><i class="fa fa-check"></i><b>11.1.3</b> Main materials</a></li>
 <li class="chapter" data-level="11.1.4" data-path="l11-gis-v.html"><a href="l11-gis-v.html#interactive-content-with-leaflet"><i class="fa fa-check"></i><b>11.1.4</b> Interactive Content with <code>leaflet</code></a></li>
-<li class="chapter" data-level="11.1.5" data-path="l11-gis-v.html"><a href="l11-gis-v.html#AM11"><i class="fa fa-check"></i><b>11.1.5</b> Additional Materials</a></li>
+<li class="chapter" data-level="11.1.5" data-path="l11-gis-v.html"><a href="l11-gis-v.html#simple-summaries-of-your-data-with-flexidashboard"><i class="fa fa-check"></i><b>11.1.5</b> Simple summaries of your data with <code>flexidashboard</code></a></li>
+<li class="chapter" data-level="11.1.6" data-path="l11-gis-v.html"><a href="l11-gis-v.html#dynamic-apps-with-shiny"><i class="fa fa-check"></i><b>11.1.6</b> Dynamic apps with <code>shiny</code></a></li>
+<li class="chapter" data-level="11.1.7" data-path="l11-gis-v.html"><a href="l11-gis-v.html#AM11"><i class="fa fa-check"></i><b>11.1.7</b> Additional Materials</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="l11-gis-v.html"><a href="l11-gis-v.html#HW11"><i class="fa fa-check"></i><b>11.2</b> Homework</a></li>
 <li class="chapter" data-level="11.3" data-path="l11-gis-v.html"><a href="l11-gis-v.html#SH11"><i class="fa fa-check"></i><b>11.3</b> Submitting homework</a></li>
@@ -767,11 +769,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="l10-gis-iv.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
 <span id="cb114-2"><a href="l10-gis-iv.html#cb114-2" aria-hidden="true" tabindex="-1"></a>iwNetwork <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(<span class="at">d=</span>edges, <span class="at">vertices=</span>nodes, <span class="at">directed=</span><span class="cn">FALSE</span>)</span>
 <span id="cb114-3"><a href="l10-gis-iv.html#cb114-3" aria-hidden="true" tabindex="-1"></a>iwNetwork</span></code></pre></div>
-<pre><code>## IGRAPH 8bb44fc UNW- 1692 2053 -- 
+<pre><code>## IGRAPH ffcd407 UNW- 1692 2053 -- 
 ## + attr: name (v/c), names_eng_translit (v/c), region_URI (v/c),
 ## | top_type (v/c), lon (v/n), lat (v/n), weight (e/n), meter (e/n),
 ## | terrain (e/c), safety (e/c)
-## + edges from 8bb44fc (vertex names):
+## + edges from ffcd407 (vertex names):
 ## [1] NABULUS_352E322N_S --RIHA_354E318N_S         
 ## [2] AMMAN_359E319N_S   --ZARQA_360E320N_S        
 ## [3] ZARQA_360E320N_S   --ADHRIAT_360E326N_S      
@@ -795,7 +797,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><code>igraph</code> objects provide us with an easy access to nodes, edges, and their attributes with the following commands:</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="l10-gis-iv.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">E</span>(iwNetwork), <span class="dv">20</span>)</span></code></pre></div>
-<pre><code>## + 20/2053 edges from 8bb44fc (vertex names):
+<pre><code>## + 20/2053 edges from ffcd407 (vertex names):
 ##  [1] NABULUS_352E322N_S   --RIHA_354E318N_S         
 ##  [2] AMMAN_359E319N_S     --ZARQA_360E320N_S        
 ##  [3] ZARQA_360E320N_S     --ADHRIAT_360E326N_S      
@@ -808,7 +810,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [10] JASIM_360E329N_S     --ROUTPOINT0121_362E333N_O
 ## + ... omitted several edges</code></pre>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="l10-gis-iv.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">V</span>(iwNetwork), <span class="dv">20</span>)</span></code></pre></div>
-<pre><code>## + 20/1692 vertices, named, from 8bb44fc:
+<pre><code>## + 20/1692 vertices, named, from ffcd407:
 ##  [1] QAHIRA_312E300N_S      WASHQA_003W421N_S      BALANSIYYA_004W394N_S 
 ##  [4] SHAQR_004W391N_S       QANT_004W383N_S        SHATIBA_005W389N_S    
 ##  [7] SARAQUSA_009W416N_S    MURSIYA_011W379N_S     TUTILA_016W420N_S     

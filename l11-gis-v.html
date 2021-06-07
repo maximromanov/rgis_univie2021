@@ -342,7 +342,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.1.2" data-path="l11-gis-v.html"><a href="l11-gis-v.html#SOFT11"><i class="fa fa-check"></i><b>11.1.2</b> Software</a></li>
 <li class="chapter" data-level="11.1.3" data-path="l11-gis-v.html"><a href="l11-gis-v.html#main-materials"><i class="fa fa-check"></i><b>11.1.3</b> Main materials</a></li>
 <li class="chapter" data-level="11.1.4" data-path="l11-gis-v.html"><a href="l11-gis-v.html#interactive-content-with-leaflet"><i class="fa fa-check"></i><b>11.1.4</b> Interactive Content with <code>leaflet</code></a></li>
-<li class="chapter" data-level="11.1.5" data-path="l11-gis-v.html"><a href="l11-gis-v.html#AM11"><i class="fa fa-check"></i><b>11.1.5</b> Additional Materials</a></li>
+<li class="chapter" data-level="11.1.5" data-path="l11-gis-v.html"><a href="l11-gis-v.html#simple-summaries-of-your-data-with-flexidashboard"><i class="fa fa-check"></i><b>11.1.5</b> Simple summaries of your data with <code>flexidashboard</code></a></li>
+<li class="chapter" data-level="11.1.6" data-path="l11-gis-v.html"><a href="l11-gis-v.html#dynamic-apps-with-shiny"><i class="fa fa-check"></i><b>11.1.6</b> Dynamic apps with <code>shiny</code></a></li>
+<li class="chapter" data-level="11.1.7" data-path="l11-gis-v.html"><a href="l11-gis-v.html#AM11"><i class="fa fa-check"></i><b>11.1.7</b> Additional Materials</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="l11-gis-v.html"><a href="l11-gis-v.html#HW11"><i class="fa fa-check"></i><b>11.2</b> Homework</a></li>
 <li class="chapter" data-level="11.3" data-path="l11-gis-v.html"><a href="l11-gis-v.html#SH11"><i class="fa fa-check"></i><b>11.3</b> Submitting homework</a></li>
@@ -739,7 +741,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb195-14"><a href="l11-gis-v.html#cb195-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addProviderTiles</span>(providers<span class="sc">$</span>CartoDB.DarkMatter, <span class="at">group =</span> <span class="st">&quot;Dark Matter&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb195-15"><a href="l11-gis-v.html#cb195-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setView</span>(<span class="dv">32</span>, <span class="dv">32</span>, <span class="at">zoom =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb195-16"><a href="l11-gis-v.html#cb195-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Overlay groups</span></span>
-<span id="cb195-17"><a href="l11-gis-v.html#cb195-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircles</span>(<span class="sc">~</span>lon, <span class="sc">~</span>lat, <span class="at">popup=</span><span class="sc">~</span>popup, <span class="at">weight =</span> <span class="sc">~</span>size<span class="sc">*</span><span class="dv">2</span>, <span class="co">#radius=~size*10, </span></span>
+<span id="cb195-17"><a href="l11-gis-v.html#cb195-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircles</span>(<span class="sc">~</span>lon, <span class="sc">~</span>lat, <span class="at">popup=</span><span class="sc">~</span>popup, <span class="at">weight =</span> <span class="sc">~</span>size<span class="sc">*</span><span class="dv">2</span>, <span class="at">radius=</span><span class="sc">~</span>size<span class="sc">*</span><span class="dv">10</span>, </span>
 <span id="cb195-18"><a href="l11-gis-v.html#cb195-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="sc">~</span>region_color, <span class="at">stroke =</span> <span class="cn">TRUE</span>, <span class="at">fillOpacity =</span> <span class="dv">1</span>, <span class="at">group =</span> <span class="st">&quot;All regions&quot;</span>)  <span class="sc">%&gt;%</span></span>
 <span id="cb195-19"><a href="l11-gis-v.html#cb195-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addLabelOnlyMarkers</span>(<span class="sc">~</span>lon, <span class="sc">~</span>lat, <span class="at">label=</span><span class="sc">~</span>names_eng_translit, <span class="at">labelOptions =</span> <span class="fu">labelOptions</span>(<span class="at">noHide =</span> F)) <span class="sc">%&gt;%</span></span>
 <span id="cb195-20"><a href="l11-gis-v.html#cb195-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addLegend</span>(<span class="st">&quot;bottomleft&quot;</span>, <span class="at">colors =</span> iwRegions<span class="sc">$</span>region_color,</span>
@@ -760,8 +762,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If you now run <code>m</code> in your console in RStudio, the interactive map will be generated and shown in the Viewer. You can save this map now as an HTML page and then use it however you find necessary. (Export &gt; Save as Web Page…) You can upload this HTML file to your website or show it from your computer — in any browser (well, in most browsers; internet connection will be necessary for loading the base map layers). <a href="./data_temp/althurayya/iw.html">Here is the link to the map</a>.</p>
 <p><img src="data_temp/althurayya/saving_map.jpg" /></p>
 </div>
-<div id="AM11" class="section level3" number="11.1.5">
-<h3><span class="header-section-number">11.1.5</span> Additional Materials</h3>
+<div id="simple-summaries-of-your-data-with-flexidashboard" class="section level3" number="11.1.5">
+<h3><span class="header-section-number">11.1.5</span> Simple summaries of your data with <code>flexidashboard</code></h3>
+<p><code>flexidashboard</code> is aimed at delivering primarily semi-interactive summaries of your data. <code>Semi-</code> here means that the interactivity is highly limited and is provided primarily through some HTML+Javascript elements. Nothing that requires to run R code can be incorporated into these semi-interactive summaries. <code>flexidashboard</code> creates “static” HTML pages, which can be open in most browsers and can be hosted on any website. (<strong>NB:</strong> <code>flexidashboard</code> may use some <code>shiny</code> components—see the next section—in which case an RStudio Shiny Server will be necessary to run your dashboard.)</p>
+<ul>
+<li>easy and fast to create with Rmarkdown;</li>
+<li>usually, the “end product” fits into a single file (code and data together);</li>
+<li>created for web (mobile including);</li>
+<li>for simple summaries of your data;</li>
+<li>for small amounts of data; for data that can be shared with others;</li>
+<li>can work on any website: no special features necessary;</li>
+</ul>
+<p>EXAMPLE:</p>
+<p><strong>Recommended:</strong> RStudio has multiple learning materials on their products:</p>
+<ul>
+<li><em>Introducing flexdashboards</em> by Garrett Grolemund (<a href="https://www.rstudio.com/resources/webinars/introducing-flexdashboards/" class="uri">https://www.rstudio.com/resources/webinars/introducing-flexdashboards/</a>)</li>
+<li>Documentation (with lots of usable examples): <a href="https://pkgs.rstudio.com/flexdashboard/" class="uri">https://pkgs.rstudio.com/flexdashboard/</a></li>
+</ul>
+</div>
+<div id="dynamic-apps-with-shiny" class="section level3" number="11.1.6">
+<h3><span class="header-section-number">11.1.6</span> Dynamic apps with <code>shiny</code></h3>
+<p><code>shiny</code> is another library (+ the whole ecosystem) that allows one to convert any code that you write in R into an interactive app. These are a bit trickier to write, but allow you to do much more — practically anything that you can do with R. These are also tricker to host: you (and others) can run these apps on their local machines (R, RStudio and all the necessary libraries must be installed), or you can host is on a server which runs RStudio Shiny Server (<a href="https://www.shinyapps.io/" class="uri">https://www.shinyapps.io/</a> is offered by RStudio as a fremium option where you can host your apps)</p>
+<ul>
+<li>uses its own syntax (R + shiny); a certain learning curve;</li>
+<li>the “end product” is a package of files (code and data separately);</li>
+<li>for complex functionality;</li>
+<li>for larger amounts of data; for data that must not be shared with end users;</li>
+<li>requires a special RStudio Shiny Server to run;</li>
+</ul>
+<p>EXAMPLE: <a href="./data_temp/flexidashboard.html">Islamic World Geographical Data</a></p>
+<p><strong>Recommended:</strong> RStudio has multiple learning materials on their products:</p>
+<ul>
+<li>For example: <a href="https://shiny.rstudio.com/tutorial/" class="uri">https://shiny.rstudio.com/tutorial/</a></li>
+<li><em>How to Start Shiny tutorial</em> by Garrett Grolemund (<a href="https://shiny.rstudio.com/tutorial/" class="uri">https://shiny.rstudio.com/tutorial/</a>)</li>
+</ul>
+</div>
+<div id="AM11" class="section level3" number="11.1.7">
+<h3><span class="header-section-number">11.1.7</span> Additional Materials</h3>
 <ul>
 <li>Andrew Ba Tran. <em>R for Journalists</em>, <a href="https://learn.r-journalism.com/en/" class="uri">https://learn.r-journalism.com/en/</a>
 <ul>
