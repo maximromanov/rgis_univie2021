@@ -342,7 +342,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.1.2" data-path="l11-gis-v.html"><a href="l11-gis-v.html#SOFT11"><i class="fa fa-check"></i><b>11.1.2</b> Software</a></li>
 <li class="chapter" data-level="11.1.3" data-path="l11-gis-v.html"><a href="l11-gis-v.html#main-materials"><i class="fa fa-check"></i><b>11.1.3</b> Main materials</a></li>
 <li class="chapter" data-level="11.1.4" data-path="l11-gis-v.html"><a href="l11-gis-v.html#interactive-content-with-leaflet"><i class="fa fa-check"></i><b>11.1.4</b> Interactive Content with <code>leaflet</code></a></li>
-<li class="chapter" data-level="11.1.5" data-path="l11-gis-v.html"><a href="l11-gis-v.html#simple-summaries-of-your-data-with-flexidashboard"><i class="fa fa-check"></i><b>11.1.5</b> Simple summaries of your data with <code>flexidashboard</code></a></li>
+<li class="chapter" data-level="11.1.5" data-path="l11-gis-v.html"><a href="l11-gis-v.html#simple-summaries-of-your-data-with-flexdashboard"><i class="fa fa-check"></i><b>11.1.5</b> Simple summaries of your data with <code>flexdashboard</code></a></li>
 <li class="chapter" data-level="11.1.6" data-path="l11-gis-v.html"><a href="l11-gis-v.html#dynamic-apps-with-shiny"><i class="fa fa-check"></i><b>11.1.6</b> Dynamic apps with <code>shiny</code></a></li>
 <li class="chapter" data-level="11.1.7" data-path="l11-gis-v.html"><a href="l11-gis-v.html#AM11"><i class="fa fa-check"></i><b>11.1.7</b> Additional Materials</a></li>
 </ul></li>
@@ -628,7 +628,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb184-13"><a href="l11-gis-v.html#cb184-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data=</span>ubahnNodesPlot, <span class="fu">aes</span>(<span class="at">x=</span>XVAL, <span class="at">y=</span>YVAL, <span class="at">label=</span>STATION), <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">2</span>, <span class="at">max.overlaps=</span><span class="dv">100</span>) <span class="sc">+</span></span>
 <span id="cb184-14"><a href="l11-gis-v.html#cb184-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
 <span id="cb184-15"><a href="l11-gis-v.html#cb184-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-116-1.png" width="960" /></p>
+<p><img src="RGIS2021S_files/figure-html/unnamed-chunk-116-1.png" width="480" /></p>
 </div>
 </div>
 <div id="interactive-content-with-leaflet" class="section level3" number="11.1.4">
@@ -760,9 +760,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If you now run <code>m</code> in your console in RStudio, the interactive map will be generated and shown in the Viewer. You can save this map now as an HTML page and then use it however you find necessary. (Export &gt; Save as Web Page…) You can upload this HTML file to your website or show it from your computer — in any browser (well, in most browsers; internet connection will be necessary for loading the base map layers). <a href="./data_temp/althurayya/iw.html">Here is the link to the map</a>.</p>
 <p><img src="data_temp/althurayya/saving_map.jpg" /></p>
 </div>
-<div id="simple-summaries-of-your-data-with-flexidashboard" class="section level3" number="11.1.5">
-<h3><span class="header-section-number">11.1.5</span> Simple summaries of your data with <code>flexidashboard</code></h3>
-<p><code>flexidashboard</code> is aimed at delivering primarily semi-interactive summaries of your data. <code>Semi-</code> here means that the interactivity is highly limited and is provided primarily through some HTML+Javascript elements. Nothing that requires to run R code can be incorporated into these semi-interactive summaries. <code>flexidashboard</code> creates “static” HTML pages, which can be open in most browsers and can be hosted on any website. (<strong>NB:</strong> <code>flexidashboard</code> may use some <code>shiny</code> components—see the next section—in which case an RStudio Shiny Server will be necessary to run your dashboard.)</p>
+<div id="simple-summaries-of-your-data-with-flexdashboard" class="section level3" number="11.1.5">
+<h3><span class="header-section-number">11.1.5</span> Simple summaries of your data with <code>flexdashboard</code></h3>
+<p><code>flexdashboard</code> is aimed at delivering primarily semi-interactive summaries of your data. <code>Semi-</code> here means that the interactivity is highly limited and is provided primarily through some HTML+Javascript elements. Nothing that requires to run R code can be incorporated into these semi-interactive summaries. <code>flexdashboard</code> creates “static” HTML pages, which can be open in most browsers and can be hosted on any website. (<strong>NB:</strong> <code>flexdashboard</code> may use some <code>shiny</code> components—see the next section—in which case an RStudio Shiny Server will be necessary to run your dashboard.)</p>
 <ul>
 <li><p>easy and fast to create with Rmarkdown;</p></li>
 <li><p>usually, the “end product” fits into a single file (code and data together);</p></li>
@@ -770,9 +770,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>for simple summaries of your data;</p></li>
 <li><p>for small amounts of data; for data that can be shared with others;</p></li>
 <li><p>can work on any website: no special features necessary;</p></li>
-<li><p>SIMPLE EXAMPLE: <a href="./data_temp/flexidashboard_template.html">Empty Template</a></p></li>
-<li><p>COMPLEX EXAMPLE: <a href="./data_temp/flexidashboard.html">Islamic World Geographical Data</a></p></li>
+<li><p>SIMPLE EXAMPLE: <a href="./data_temp/flexdashboard_template.html">Empty Template</a></p></li>
+<li><p>COMPLEX EXAMPLE: <a href="./data_temp/flexdashboard.html">Islamic World Geographical Data</a></p></li>
 </ul>
+<p><strong>Note:</strong> I am not including any code from these flexdashboards, because you can get it directly from the examples.</p>
 <p><strong>Recommended:</strong> RStudio has multiple learning materials on their products:</p>
 <ul>
 <li><em>Introducing flexdashboards</em> by Garrett Grolemund (<a href="https://www.rstudio.com/resources/webinars/introducing-flexdashboards/" class="uri">https://www.rstudio.com/resources/webinars/introducing-flexdashboards/</a>)</li>
@@ -793,6 +794,114 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">11.1.6.1</span> Examples</h4>
 <ul>
 <li>SIMPLE EXAMPLE: <a href="https://maximromanov.shinyapps.io/vienna_subway/">Vienna Subway</a></li>
+<li>you can download the entire app from here: <a href="./data_temp/shiny_app.zip">Vienna Subway App</a></li>
+</ul>
+<p>The code for this app looks as follows. THere are three parts</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="l11-gis-v.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="do">######################################################################################################</span></span>
+<span id="cb196-2"><a href="l11-gis-v.html#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="co"># PART I :: LIBRARIES &amp; DATA #########################################################################</span></span>
+<span id="cb196-3"><a href="l11-gis-v.html#cb196-3" aria-hidden="true" tabindex="-1"></a><span class="do">######################################################################################################</span></span>
+<span id="cb196-4"><a href="l11-gis-v.html#cb196-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-5"><a href="l11-gis-v.html#cb196-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb196-6"><a href="l11-gis-v.html#cb196-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb196-7"><a href="l11-gis-v.html#cb196-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb196-8"><a href="l11-gis-v.html#cb196-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb196-9"><a href="l11-gis-v.html#cb196-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb196-10"><a href="l11-gis-v.html#cb196-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb196-11"><a href="l11-gis-v.html#cb196-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb196-12"><a href="l11-gis-v.html#cb196-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-13"><a href="l11-gis-v.html#cb196-13" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD AND PREPARE DATA</span></span>
+<span id="cb196-14"><a href="l11-gis-v.html#cb196-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-15"><a href="l11-gis-v.html#cb196-15" aria-hidden="true" tabindex="-1"></a>ubahnEdges <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;wien_ubahn.csv&quot;</span>, <span class="st">&quot;,&quot;</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb196-16"><a href="l11-gis-v.html#cb196-16" aria-hidden="true" tabindex="-1"></a>ubahnNodes <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;wien_ubahn_nodes.csv&quot;</span>, <span class="st">&quot;,&quot;</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb196-17"><a href="l11-gis-v.html#cb196-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-18"><a href="l11-gis-v.html#cb196-18" aria-hidden="true" tabindex="-1"></a>stations <span class="ot">&lt;-</span> ubahnNodes<span class="sc">$</span>STATION <span class="co"># for the drop down list of stations</span></span>
+<span id="cb196-19"><a href="l11-gis-v.html#cb196-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-20"><a href="l11-gis-v.html#cb196-20" aria-hidden="true" tabindex="-1"></a>ubahnEdgesPlot <span class="ot">&lt;-</span> ubahnEdges <span class="sc">%&gt;%</span></span>
+<span id="cb196-21"><a href="l11-gis-v.html#cb196-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">EDGELINE =</span> LINE) <span class="sc">%&gt;%</span></span>
+<span id="cb196-22"><a href="l11-gis-v.html#cb196-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ubahnNodes, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;FROM&quot;</span><span class="ot">=</span><span class="st">&quot;STATION&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">XFROM =</span> XVAL, <span class="at">YFROM =</span> YVAL) <span class="sc">%&gt;%</span></span>
+<span id="cb196-23"><a href="l11-gis-v.html#cb196-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ubahnNodes, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;TO&quot;</span><span class="ot">=</span><span class="st">&quot;STATION&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">XTO =</span> XVAL, <span class="at">YTO =</span> YVAL)</span>
+<span id="cb196-24"><a href="l11-gis-v.html#cb196-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-25"><a href="l11-gis-v.html#cb196-25" aria-hidden="true" tabindex="-1"></a>ubahnNodesPlot <span class="ot">&lt;-</span> ubahnNodes</span>
+<span id="cb196-26"><a href="l11-gis-v.html#cb196-26" aria-hidden="true" tabindex="-1"></a>ubahnNetwork <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(<span class="at">d=</span>ubahnEdges, <span class="at">vertices=</span>ubahnNodes, <span class="at">directed=</span><span class="cn">FALSE</span>)</span>
+<span id="cb196-27"><a href="l11-gis-v.html#cb196-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-28"><a href="l11-gis-v.html#cb196-28" aria-hidden="true" tabindex="-1"></a><span class="do">######################################################################################################</span></span>
+<span id="cb196-29"><a href="l11-gis-v.html#cb196-29" aria-hidden="true" tabindex="-1"></a><span class="co"># PART II :: FUNCTION THAT CALCULATES THE PATH AND GRAPHS IT  ########################################</span></span>
+<span id="cb196-30"><a href="l11-gis-v.html#cb196-30" aria-hidden="true" tabindex="-1"></a><span class="do">######################################################################################################</span></span>
+<span id="cb196-31"><a href="l11-gis-v.html#cb196-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-32"><a href="l11-gis-v.html#cb196-32" aria-hidden="true" tabindex="-1"></a>subwayPath <span class="ot">&lt;-</span> <span class="cf">function</span>(departure, arrival){</span>
+<span id="cb196-33"><a href="l11-gis-v.html#cb196-33" aria-hidden="true" tabindex="-1"></a>  shortest_path <span class="ot">&lt;-</span> <span class="fu">shortest_paths</span>(ubahnNetwork, <span class="at">from =</span> departure, <span class="at">to =</span> arrival)<span class="sc">$</span>vpath</span>
+<span id="cb196-34"><a href="l11-gis-v.html#cb196-34" aria-hidden="true" tabindex="-1"></a>  shortest_path <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">unlist</span>(shortest_path))</span>
+<span id="cb196-35"><a href="l11-gis-v.html#cb196-35" aria-hidden="true" tabindex="-1"></a>  shortest_path <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">ID =</span> shortest_path) <span class="sc">%&gt;%</span></span>
+<span id="cb196-36"><a href="l11-gis-v.html#cb196-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(ubahnNodes, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;ID&quot;</span> <span class="ot">=</span> <span class="st">&quot;STATION&quot;</span>))</span>
+<span id="cb196-37"><a href="l11-gis-v.html#cb196-37" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb196-38"><a href="l11-gis-v.html#cb196-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb196-39"><a href="l11-gis-v.html#cb196-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_segment</span>(<span class="at">data=</span>ubahnEdgesPlot, <span class="fu">aes</span>(<span class="at">x=</span>XFROM, <span class="at">y=</span>YFROM, <span class="at">xend=</span>XTO, <span class="at">yend=</span>YTO), <span class="at">color=</span><span class="st">&quot;grey&quot;</span>, <span class="at">lwd=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb196-40"><a href="l11-gis-v.html#cb196-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="at">data =</span> shortest_path, <span class="fu">aes</span>(<span class="at">x=</span>XVAL, <span class="at">y=</span>YVAL), <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
+<span id="cb196-41"><a href="l11-gis-v.html#cb196-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data=</span>ubahnNodesPlot, <span class="fu">aes</span>(<span class="at">x=</span>XVAL, <span class="at">y=</span>YVAL), <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb196-42"><a href="l11-gis-v.html#cb196-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data=</span>ubahnNodesPlot, <span class="fu">aes</span>(<span class="at">x=</span>XVAL, <span class="at">y=</span>YVAL), <span class="at">color=</span><span class="st">&quot;white&quot;</span>, <span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb196-43"><a href="l11-gis-v.html#cb196-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text_repel</span>(<span class="at">data=</span>ubahnNodesPlot, <span class="fu">aes</span>(<span class="at">x=</span>XVAL, <span class="at">y=</span>YVAL, <span class="at">label=</span>STATION), <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">2</span>, <span class="at">max.overlaps=</span><span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb196-44"><a href="l11-gis-v.html#cb196-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb196-45"><a href="l11-gis-v.html#cb196-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb196-46"><a href="l11-gis-v.html#cb196-46" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb196-47"><a href="l11-gis-v.html#cb196-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-48"><a href="l11-gis-v.html#cb196-48" aria-hidden="true" tabindex="-1"></a><span class="do">######################################################################################################</span></span>
+<span id="cb196-49"><a href="l11-gis-v.html#cb196-49" aria-hidden="true" tabindex="-1"></a><span class="co"># PART III :: THE APP ITSELF  ########################################################################</span></span>
+<span id="cb196-50"><a href="l11-gis-v.html#cb196-50" aria-hidden="true" tabindex="-1"></a><span class="do">######################################################################################################</span></span>
+<span id="cb196-51"><a href="l11-gis-v.html#cb196-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-52"><a href="l11-gis-v.html#cb196-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Define UI ----</span></span>
+<span id="cb196-53"><a href="l11-gis-v.html#cb196-53" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb196-54"><a href="l11-gis-v.html#cb196-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;Vienna Subway&quot;</span>),</span>
+<span id="cb196-55"><a href="l11-gis-v.html#cb196-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textOutput</span>(<span class="st">&quot;itinerary&quot;</span>), <span class="co"># output$itinerary</span></span>
+<span id="cb196-56"><a href="l11-gis-v.html#cb196-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotOutput</span>(<span class="st">&quot;shortestPath&quot;</span>, <span class="at">width=</span><span class="st">&quot;100%&quot;</span>), <span class="co"># output$shortestPath</span></span>
+<span id="cb196-57"><a href="l11-gis-v.html#cb196-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-58"><a href="l11-gis-v.html#cb196-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidRow</span>(</span>
+<span id="cb196-59"><a href="l11-gis-v.html#cb196-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="at">width =</span> <span class="dv">3</span>, <span class="fu">selectInput</span>(<span class="st">&quot;from_station&quot;</span>, <span class="st">&quot;From&quot;</span>, stations)),</span>
+<span id="cb196-60"><a href="l11-gis-v.html#cb196-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="at">width =</span> <span class="dv">3</span>, <span class="fu">selectInput</span>(<span class="st">&quot;to_station&quot;</span>, <span class="st">&quot;To&quot;</span>, stations))</span>
+<span id="cb196-61"><a href="l11-gis-v.html#cb196-61" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb196-62"><a href="l11-gis-v.html#cb196-62" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb196-63"><a href="l11-gis-v.html#cb196-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-64"><a href="l11-gis-v.html#cb196-64" aria-hidden="true" tabindex="-1"></a><span class="co"># Define server logic ----</span></span>
+<span id="cb196-65"><a href="l11-gis-v.html#cb196-65" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb196-66"><a href="l11-gis-v.html#cb196-66" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>itinerary <span class="ot">&lt;-</span> <span class="fu">renderText</span>({<span class="fu">paste0</span>(<span class="st">&quot;Traveling from &quot;</span>, input<span class="sc">$</span>from_station, <span class="st">&quot; to &quot;</span>, input<span class="sc">$</span>to_station)})</span>
+<span id="cb196-67"><a href="l11-gis-v.html#cb196-67" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>shortestPath <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({<span class="fu">subwayPath</span>(input<span class="sc">$</span>from_station, input<span class="sc">$</span>to_station)})</span>
+<span id="cb196-68"><a href="l11-gis-v.html#cb196-68" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb196-69"><a href="l11-gis-v.html#cb196-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-70"><a href="l11-gis-v.html#cb196-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the app ----</span></span>
+<span id="cb196-71"><a href="l11-gis-v.html#cb196-71" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<p><strong>Parts I and II</strong> should be very familar to you by now. Part I simply loads all the libraries and then loads and prepares all the necessary data. <strong>Part II</strong> should be rather clear as well, except for, perhaps, the function part. We have briefly touched upon creating our own functions before, but have not used them much. The only thing to pay attention to here is that <code>subwayPath</code> is a small program of sorts that takes two stations as its arguments and draws the shortest path between them.</p>
+<p><strong>Part III</strong> is a totally new thing. This is where we create the app itself and define all the things that appear in the user interface (<code>ui</code>) and all the things that are done by R under the hood (<code>server</code>). Let’s take a closer look. (A bit of a confusing thing is that variables sometimes appear as variables (<code>input$itinerary</code>), and sometimes — as strings (“itinerary”), but this should become clear with some practice.)</p>
+<ul>
+<li><code>ui</code> is the variable for our interface:
+<ul>
+<li>everything here is inside the function <code>fluidPage</code>, which is responsible for creating the main interface (elements are connected with commas!);
+<ul>
+<li><code>titlePanel()</code> creates the main header;</li>
+<li><code>textOutput()</code> prints out “itinerary,” which is takes from the variable <code>output$itinerary</code> that is [re]created in the <code>server</code> part;</li>
+<li><code>plotOutput()</code> plots out a graph that is [re]created in the <code>server</code> part;</li>
+<li><code>fluidRow()</code> creates an table, where we can add columns (<code>column()</code>; <code>width</code> determines the relative width of the column, which is measured in 12 parts — so 3 is a quarter of the window width)
+<ul>
+<li>inside the <code>column()</code> function we create a drop down menu:
+<ul>
+<li>“from_station” becomes variable <code>input$from_station</code> in the <code>server</code> part;</li>
+<li><code>stations</code> gives us the list of values for the drop down menu;</li>
+</ul></li>
+<li>(the same is for the “to_station” line.)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><code>server</code> is our main functionality:
+<ul>
+<li>note that the actual R code is between curly brakets (<code>{...}</code>); on the outside of the R code there are <code>shiny</code> rendering functions;</li>
+<li><code>output$itinerary</code>:
+<ul>
+<li>here everything is rather simple: we take variables selected in the <code>ui</code> — <code>input$from_station</code> and <code>input$to_station</code> — and <code>paste0</code> them together into a readable line of text; <code>output$itinerary</code> becomes available to the <code>ui</code> for printing out with <code>textOutput("itinerary")</code>;</li>
+</ul></li>
+<li><code>output$shortestPath</code>:
+<ul>
+<li>here we call our function <code>subwayPath()</code> that takes <code>departure</code> and <code>arrival</code> as its arguments; we give it <code>input$from_station</code> and <code>input$to_station</code> which has been selected in the <code>ui</code>; then <code>renderPlot()</code> generates a graph which is made available to the <code>ui</code> for plotting wth <code>plotOutput("shortestPath")</code></li>
+</ul></li>
+</ul></li>
+<li><code>shinyApp(ui = ui, server = server)</code> activates our <code>ui</code> and our <code>server</code>.</li>
 </ul>
 <p><strong>Recommended:</strong> RStudio has multiple learning materials on their products:</p>
 <ul>
